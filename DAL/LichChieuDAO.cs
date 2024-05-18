@@ -49,7 +49,7 @@ namespace DAO
             return list;
         }
 
-        public LichChieu GetById(int id)
+        public LichChieu GetById(String id)
         {
             string query = @"SELECT lc.Id,p.TenPhim,nv.Fullname,lc.NgayChieu,lc.GioChieu,p.thoiluong 
                     FROM LichChieu lc 

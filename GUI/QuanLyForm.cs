@@ -29,7 +29,7 @@ namespace GUI
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Controls.Add(childForm);
+            panel2.Controls.Add(childForm);
             childForm.BringToFront();
             childForm.Show();
         }
@@ -57,6 +57,16 @@ namespace GUI
         private void Doanh_Thu_Click(object sender, EventArgs e)
         {
             openChildForm(new DoanhThu());
+        }
+
+        private void btTHoat_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void QuanLyForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

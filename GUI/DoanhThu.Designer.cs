@@ -44,8 +44,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1890, 993);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1916, 1064);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "DoanhThu";
             this.Text = "DoanhThu";
             this.ResumeLayout(false);
