@@ -8,7 +8,7 @@ namespace DTO
 {
     public class KhachHang : NguoiDung
     {
-        public KhachHang(string id, string ten, string sdt, string email, string vaitro) : base(id, ten, sdt, email,vaitro)
+        public KhachHang(String id, string ten, string sdt, string email, string vaitro) : base(id, ten, sdt, email,vaitro)
         {
         }
     }

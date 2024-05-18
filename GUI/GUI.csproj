@@ -46,11 +46,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BanVe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BanVe.Designer.cs">
+      <DependentUpon>BanVe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatVe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatVe.Designer.cs">
+      <DependentUpon>DatVe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DoanhThu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DoanhThu.Designer.cs">
+      <DependentUpon>DoanhThu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GheNgoiPhong1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GheNgoiPhong1.Designer.cs">
+      <DependentUpon>GheNgoiPhong1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GheNgoiPhong2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GheNgoiPhong2.Designer.cs">
+      <DependentUpon>GheNgoiPhong2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GheNgoiPhong3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GheNgoiPhong3.Designer.cs">
+      <DependentUpon>GheNgoiPhong3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LichChieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LichChieu.Designer.cs">
+      <DependentUpon>LichChieu.cs</DependentUpon>
+    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PhongChieu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PhongChieu.Designer.cs">
+      <DependentUpon>PhongChieu.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -65,14 +113,44 @@
     <Compile Include="QuanLyForm.Designer.cs">
       <DependentUpon>QuanLyForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="QuanLyPhim.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QuanLyPhim.Designer.cs">
+      <DependentUpon>QuanLyPhim.cs</DependentUpon>
+    </Compile>
     <Compile Include="ThongTinNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ThongTinNhanVien.Designer.cs">
       <DependentUpon>ThongTinNhanVien.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BanVe.resx">
+      <DependentUpon>BanVe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DatVe.resx">
+      <DependentUpon>DatVe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DoanhThu.resx">
+      <DependentUpon>DoanhThu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GheNgoiPhong1.resx">
+      <DependentUpon>GheNgoiPhong1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GheNgoiPhong2.resx">
+      <DependentUpon>GheNgoiPhong2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GheNgoiPhong3.resx">
+      <DependentUpon>GheNgoiPhong3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LichChieu.resx">
+      <DependentUpon>LichChieu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PhongChieu.resx">
+      <DependentUpon>PhongChieu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -81,6 +159,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QuanLyForm.resx">
       <DependentUpon>QuanLyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuanLyPhim.resx">
+      <DependentUpon>QuanLyPhim.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ThongTinNhanVien.resx">
       <DependentUpon>ThongTinNhanVien.cs</DependentUpon>

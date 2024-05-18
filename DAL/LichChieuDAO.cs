@@ -37,7 +37,7 @@ namespace DAO
             List<LichChieu> list = new List<LichChieu>();
             foreach(DataRow row in reader.Rows)
             {
-                int id = Convert.ToInt32(row["Id"]);
+                String id = row["Id"].ToString();
                 string tenphim = row["TenPhim"].ToString();
                 string tennvql = row["Fullname"].ToString();
                 DateTime ngaychieu = Convert.ToDateTime(row["NgayChieu"]);

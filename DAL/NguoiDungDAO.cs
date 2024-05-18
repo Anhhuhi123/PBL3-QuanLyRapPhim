@@ -32,7 +32,7 @@ namespace DAO
             DataTable dt =DatabaseHelper.Instance.GetRecords(query);
             foreach(DataRow dr in dt.Rows)
             {
-                int id = Convert.ToInt32(dr["ID"]);
+                String id = dr["ID"].ToString();
                 string name = dr["Fullname"].ToString();
                 string Sodt = dr["SoDt"].ToString();
                 string email = dr["Email"].ToString();

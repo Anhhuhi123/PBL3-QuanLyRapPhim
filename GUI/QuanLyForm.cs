@@ -36,17 +36,17 @@ namespace GUI
 
         private void Quan_Ly_Phong_Chieu_Click(object sender, EventArgs e)
         {
-            //openChildForm(new PhongChieu());
+            openChildForm(new PhongChieu());
         }
 
         private void Quan_Ly_Phim_Click(object sender, EventArgs e)
         {
-            //openChildForm(new Phim());
+            openChildForm(new QuanLyPhim());
         }
 
         private void Quan_Ly_Lich_Chieu_Click(object sender, EventArgs e)
         {
-            //openChildForm(new LichChieu());
+            openChildForm(new LichChieu());
         }
 
         private void Quan_Ly_Nhan_Vien_Click(object sender, EventArgs e)
@@ -56,7 +56,7 @@ namespace GUI
 
         private void Doanh_Thu_Click(object sender, EventArgs e)
         {
-            //openChildForm(new DoanhThu());
+            openChildForm(new DoanhThu());
         }
     }
 }

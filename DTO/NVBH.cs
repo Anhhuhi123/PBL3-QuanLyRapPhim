@@ -9,7 +9,7 @@ namespace DTO
     public class NVBH:NhanVien
     {
         public int KPI { get; set; }
-        public NVBH(string id,string name, string sdt, string email,string vaitro, bool active, int kpi) 
+        public NVBH(String id,string name, string sdt, string email,string vaitro, bool active, int kpi) 
             : base(id,name, sdt, email, vaitro,active)
         {
             KPI = kpi;

@@ -9,7 +9,7 @@ namespace DTO
     public class NhanVien : NguoiDung
     {
         public bool Active { get; set; }
-        public NhanVien(string id, string fullName, string soDt, string email, string vaitro, bool active) 
+        public NhanVien(String id, string fullName, string soDt, string email, string vaitro, bool active) 
             : base(id, fullName, soDt, email, vaitro)
         {
             Active = active;
