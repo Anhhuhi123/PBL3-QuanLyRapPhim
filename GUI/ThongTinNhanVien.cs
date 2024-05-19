@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +13,21 @@ namespace GUI
 {
     public partial class ThongTinNhanVien : Form
     {
+        NguoiDungBLL controller;
         public ThongTinNhanVien()
         {
+            controller = new NguoiDungBLL();
             InitializeComponent();
         }
 
         private void Exitbtn_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void rolecbb_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            controller.setDGV(dataGridView1, rolecbb);
         }
     }
 }

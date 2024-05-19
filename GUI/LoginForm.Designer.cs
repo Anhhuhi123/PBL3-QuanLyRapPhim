@@ -129,7 +129,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(336, 39);
             this.label1.TabIndex = 10;
-            this.label1.Text = "He Thong Quan Ly Ban Ve";
+            this.label1.Text = "Hệ Thống Quản Lý Bán Vé";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // LoginForm

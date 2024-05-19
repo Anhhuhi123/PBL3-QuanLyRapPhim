@@ -28,11 +28,11 @@ namespace DAO
         public List<NguoiDung> GetAll()
         {
             List<NguoiDung> list = new List<NguoiDung> ();
-            string query = @"select * NguoiDung";
+            string query = "SELECT * FROM NguoiDung";
             DataTable dt =DatabaseHelper.Instance.GetRecords(query);
             foreach(DataRow dr in dt.Rows)
             {
-                String id = dr["ID"].ToString();
+                string id = dr["ID"].ToString();
                 string name = dr["Fullname"].ToString();
                 string Sodt = dr["SoDt"].ToString();
                 string email = dr["Email"].ToString();

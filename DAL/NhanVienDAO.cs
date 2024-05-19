@@ -9,53 +9,26 @@ using System.Threading.Tasks;
 
 namespace DAO
 {
-    public class NhanVienDAO : NguoiDungDAO, InterfaceCRUD<NhanVien>
+    public class NhanVienDAO 
     {
-        public void Delete(string id,bool isNVQL)
+        public void Delete(string id)
         {
-            string query;
-            SqlParameter[] sqlParameters;
-            if (isNVQL == true) query = @"Delete from NhanVienQuanLy where id=@id";
-            else query=@"Delete from NhanVienBanHang where id=@id";
-            sqlParameters = new SqlParameter[1];
+            string query = @"Delete from NhanVien where id=@id";
+            SqlParameter[] sqlParameters = new SqlParameter[1];
             sqlParameters[0] = new SqlParameter("@id", id);
-            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
-
-            query = @"Delete from NhanVien where id=@id";
-            sqlParameters = new SqlParameter[1];
-            sqlParameters[0] = new SqlParameter("@id", id);
-            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
-            base.Delete(id);    
+            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);   
         }
-        public void Insert(NhanVien obj,bool isNVQL)
+        public void Insert(NhanVien obj)
         {
-            base.Insert(obj);
             string query = @"INSERT INTO NhanVien (Id,TenTK,Active)
                             VALUES(@id,@tentk,@active)";
             SqlParameter[] sqlParameters = new SqlParameter[3];
             sqlParameters[0] = new SqlParameter("@id", obj.Id);
             sqlParameters[1] = new SqlParameter("@active", obj.Active);
-            if(isNVQL==true)
-            {
-                query = @"INSERT INTO NhanVienQuanLy (Id)
-                            VALUES(@id)";
-            }
-            else
-            {
-                query = @"INSERT INTO NhanVienBanHang (Id,KPI)
-                            VALUES(@id,0)";
-            }
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
-
-        public void Insert(NhanVien obj)
+        public void Update(NhanVien obj)
         {
-            throw new NotImplementedException("Không thể xác định được là nhân viên quản lý hay nhân viên bán hàng");
-        }
-
-        public void Update(NhanVien obj,bool NVQL)
-        {
-            base.Update(obj);
             string query = @"UPDATE NhanVien 
                             SET active = @active
                             WHERE id = @id";
@@ -64,16 +37,11 @@ namespace DAO
             sqlParameters[1] = new SqlParameter("@active", obj.Active);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
-
-        public void Update(NhanVien obj)
+        public List<NhanVien> GetAll()
         {
-            throw new Exception("Không thể cập nhật thông tin nhân viên này!");
-        }
-
-        List<NhanVien> InterfaceCRUD<NhanVien>.GetAll()
-        {
-            string query = @"select * from NhanVien nv
-                            inner join  KhachHang kh on nv.Id=kh.Id";
+            string query = @"SELECT nv.Id,nd.Fullname,nd.SoDt,nd.Email,nd.Vaitro,nv.Active 
+                            FROM NhanVien nv
+	                        INNER JOIN  NguoiDung nd on nv.Id=nd.Id";
             List<NhanVien> list = new List<NhanVien>();
             DataTable dt =DatabaseHelper.Instance.GetRecords(query);
             foreach(DataRow dr in dt.Rows)

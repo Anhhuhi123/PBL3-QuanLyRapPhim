@@ -9,19 +9,17 @@ using System.Threading.Tasks;
 
 namespace DAO
 {
-    public class NhanVienBanHangDAO : NhanVienDAO, InterfaceCRUD<NVBH>
+    public class NhanVienBanHangDAO 
     {
-        public override void Delete(string id)
+        public void Delete(string id)
         {
             string query = @"Delete from NhanVienBanHang where id=@id";
             SqlParameter[] sqlParameters = new SqlParameter[1];
             sqlParameters[0] = new SqlParameter("@id", id);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
-            base.Delete(id);
         }
         public void Insert(NVBH obj)
         {
-            base.Insert(obj);
             string query = @"INSERT INTO NhanVienBanHang (Id,KPI) 
                     VALUES (@id, @kpi)";
             SqlParameter[] sqlParameters = new SqlParameter[2];
@@ -32,7 +30,6 @@ namespace DAO
 
         public void Update(NVBH obj)
         {
-            base.Update(obj);
             string query = @"UPDATE NhanVienBanHang 
                             SET KPI = @kpi WHERE Id = @id";
             SqlParameter[] sqlParameters = new SqlParameter[2];
@@ -40,13 +37,13 @@ namespace DAO
             sqlParameters[1] = new SqlParameter("@kpi", obj.KPI);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
-
-        List<NVBH> InterfaceCRUD<NVBH>.GetAll()
+        public List<NVBH> GetAll()
         {
-            string query =@"select * from NhanVienBanHang nvbh
-                            inner join NhanVien nv on nvbh.Id=nv.Id
-                            inner join NguoiDung nd on nd.Id = nvbh.Id";
             List<NVBH> list = new List<NVBH>();
+            string query = @"SELECT nvbh.Id,nd.Fullname,nd.SoDt,nd.Email,nd.Vaitro,nv.Active,nvbh.KPI 
+							FROM NhanVienBanHang nvbh
+                            INNER JOIN NhanVien nv ON nvbh.Id=nv.Id
+                            INNER JOIN NguoiDung nd ON nd.Id = nvbh.Id";
             DataTable dt =DatabaseHelper.Instance.GetRecords(query);
             foreach(DataRow row in dt.Rows)
             {
