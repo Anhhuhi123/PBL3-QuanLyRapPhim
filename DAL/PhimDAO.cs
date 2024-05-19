@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAO
 {
-    public class PhimDAO : InterfaceCRUD<Phim>
+    public class PhimDAO 
     {
         public void Delete(int id)
         {

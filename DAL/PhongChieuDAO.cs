@@ -1,6 +1,7 @@
 ﻿using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -21,7 +22,18 @@ namespace DAO
 
         public List<PhongChieu> GetAll()
         {
-            throw new NotImplementedException();
+            string query =@"SELECT * FROM PhongChieu";
+            List<PhongChieu> list = new List<PhongChieu>();
+            DataTable dt = DatabaseHelper.Instance.GetRecords(query);
+            foreach(DataRow dr in dt.Rows)
+            {
+                int id = Convert.ToInt32(dr["Id"]);
+                string name = dr["Name"].ToString();
+                int succhua = Convert.ToInt32(dr["Succhua"]);
+                string mota = dr["MoTa"].ToString();
+                list.Add(new PhongChieu(id, name, succhua, mota));
+            }
+            return list;
         }
 
         public PhongChieu GetById(int id)
