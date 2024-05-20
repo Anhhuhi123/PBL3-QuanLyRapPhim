@@ -13,10 +13,13 @@ namespace GUI
 {
     public partial class QuanLyForm : Form
     {
+        private readonly string idnvql ;
         public Form currentChildForm;
-        public QuanLyForm()
+        public QuanLyForm(string username)
         {
+            idnvql=username;
             InitializeComponent();
+            Welcomelbl.Text = "Xin chào " + idnvql;
         }
 
         public void openChildForm(Form childForm)
@@ -46,7 +49,9 @@ namespace GUI
 
         private void Quan_Ly_Lich_Chieu_Click(object sender, EventArgs e)
         {
-            openChildForm(new LichChieu());
+            LichChieu lc = new LichChieu();
+            lc.idnvql = idnvql;
+            openChildForm(lc);
         }
 
         private void Quan_Ly_Nhan_Vien_Click(object sender, EventArgs e)
@@ -59,8 +64,10 @@ namespace GUI
             openChildForm(new DoanhThu());
         }
 
-        private void btTHoat_Click(object sender, EventArgs e)
+        private void btDangXuat_Click(object sender, EventArgs e)
         {
+            LoginForm loginForm = new LoginForm();
+            loginForm.Show();
             Close();
         }
 

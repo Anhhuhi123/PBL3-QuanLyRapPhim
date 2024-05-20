@@ -34,7 +34,7 @@
             this.Quan_Ly_Lich_Chieu = new System.Windows.Forms.Button();
             this.Doanh_Thu = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btTHoat = new System.Windows.Forms.Button();
+            this.btLogout = new System.Windows.Forms.Button();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -42,6 +42,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Nhan_Vien_Quan_Ly = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.Welcomelbl = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -119,7 +120,8 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.IndianRed;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel1.Controls.Add(this.btTHoat);
+            this.panel1.Controls.Add(this.Welcomelbl);
+            this.panel1.Controls.Add(this.btLogout);
             this.panel1.Controls.Add(this.pictureBox5);
             this.panel1.Controls.Add(this.pictureBox4);
             this.panel1.Controls.Add(this.pictureBox3);
@@ -131,22 +133,23 @@
             this.panel1.Controls.Add(this.Quan_Ly_Phim);
             this.panel1.Controls.Add(this.Quan_Ly_Phong_Chieu);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(341, 675);
             this.panel1.TabIndex = 5;
             // 
-            // btTHoat
+            // btLogout
             // 
-            this.btTHoat.Location = new System.Drawing.Point(68, 6);
-            this.btTHoat.Margin = new System.Windows.Forms.Padding(2);
-            this.btTHoat.Name = "btTHoat";
-            this.btTHoat.Size = new System.Drawing.Size(221, 47);
-            this.btTHoat.TabIndex = 0;
-            this.btTHoat.Text = "Dang Xuat";
-            this.btTHoat.UseVisualStyleBackColor = true;
-            this.btTHoat.Click += new System.EventHandler(this.btTHoat_Click);
+            this.btLogout.Location = new System.Drawing.Point(188, 9);
+            this.btLogout.Margin = new System.Windows.Forms.Padding(2);
+            this.btLogout.Name = "btLogout";
+            this.btLogout.Size = new System.Drawing.Size(147, 47);
+            this.btLogout.TabIndex = 0;
+            this.btLogout.Text = "Đăng Xuất";
+            this.btLogout.UseVisualStyleBackColor = true;
+            this.btLogout.Click += new System.EventHandler(this.btDangXuat_Click);
             // 
             // pictureBox5
             // 
@@ -227,6 +230,16 @@
             this.panel2.Size = new System.Drawing.Size(942, 675);
             this.panel2.TabIndex = 6;
             // 
+            // Welcomelbl
+            // 
+            this.Welcomelbl.AutoSize = true;
+            this.Welcomelbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.Welcomelbl.Location = new System.Drawing.Point(24, 21);
+            this.Welcomelbl.Name = "Welcomelbl";
+            this.Welcomelbl.Size = new System.Drawing.Size(53, 20);
+            this.Welcomelbl.TabIndex = 10;
+            this.Welcomelbl.Text = "label1";
+            // 
             // QuanLyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -241,6 +254,7 @@
             this.Text = "QuanLy";
             this.Load += new System.EventHandler(this.QuanLyForm_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -263,7 +277,8 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btTHoat;
+        private System.Windows.Forms.Button btLogout;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label Welcomelbl;
     }
 }

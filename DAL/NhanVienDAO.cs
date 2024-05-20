@@ -20,9 +20,9 @@ namespace DAO
         }
         public void Insert(NhanVien obj)
         {
-            string query = @"INSERT INTO NhanVien (Id,TenTK,Active)
-                            VALUES(@id,@tentk,@active)";
-            SqlParameter[] sqlParameters = new SqlParameter[3];
+            string query = @"INSERT INTO NhanVien (Id,Active)
+                            VALUES(@id,@active)";
+            SqlParameter[] sqlParameters = new SqlParameter[2];
             sqlParameters[0] = new SqlParameter("@id", obj.Id);
             sqlParameters[1] = new SqlParameter("@active", obj.Active);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);

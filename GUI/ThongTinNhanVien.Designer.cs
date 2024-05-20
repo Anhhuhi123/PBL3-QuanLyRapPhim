@@ -1,4 +1,6 @@
-﻿namespace GUI
+﻿using System.Windows.Forms;
+
+namespace GUI
 {
     partial class ThongTinNhanVien
     {
@@ -61,6 +63,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(872, 681);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // Idlbl
             // 
@@ -82,7 +85,7 @@
             // 
             this.txtFullname.Location = new System.Drawing.Point(174, 124);
             this.txtFullname.Name = "txtFullname";
-            this.txtFullname.Size = new System.Drawing.Size(156, 22);
+            this.txtFullname.Size = new System.Drawing.Size(179, 22);
             this.txtFullname.TabIndex = 5;
             // 
             // label1
@@ -106,6 +109,7 @@
             // 
             // rolecbb
             // 
+            this.rolecbb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.rolecbb.FormattingEnabled = true;
             this.rolecbb.Items.AddRange(new object[] {
             "Người dùng",
@@ -113,9 +117,10 @@
             "Nhân viên quản lý",
             "Nhân viên bán hàng",
             "Khách hàng"});
+            this.rolecbb.SelectedItem = "Người dùng";
             this.rolecbb.Location = new System.Drawing.Point(174, 166);
             this.rolecbb.Name = "rolecbb";
-            this.rolecbb.Size = new System.Drawing.Size(121, 24);
+            this.rolecbb.Size = new System.Drawing.Size(156, 24);
             this.rolecbb.TabIndex = 7;
             this.rolecbb.SelectedIndexChanged += new System.EventHandler(this.rolecbb_SelectedIndexChanged);
             // 
@@ -132,7 +137,7 @@
             // 
             this.txtNumber.Location = new System.Drawing.Point(174, 210);
             this.txtNumber.Name = "txtNumber";
-            this.txtNumber.Size = new System.Drawing.Size(156, 22);
+            this.txtNumber.Size = new System.Drawing.Size(179, 22);
             this.txtNumber.TabIndex = 9;
             // 
             // label4
@@ -148,7 +153,7 @@
             // 
             this.txtemail.Location = new System.Drawing.Point(174, 255);
             this.txtemail.Name = "txtemail";
-            this.txtemail.Size = new System.Drawing.Size(156, 22);
+            this.txtemail.Size = new System.Drawing.Size(179, 22);
             this.txtemail.TabIndex = 11;
             // 
             // Activerdb
@@ -183,6 +188,7 @@
             this.Addbtn.Text = "Thêm";
             this.Addbtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Addbtn.UseVisualStyleBackColor = false;
+            this.Addbtn.Click += new System.EventHandler(this.Button_Click);
             // 
             // Updatebtn
             // 
@@ -196,6 +202,7 @@
             this.Updatebtn.Text = "Sửa";
             this.Updatebtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Updatebtn.UseVisualStyleBackColor = false;
+            this.Updatebtn.Click += new System.EventHandler(this.Button_Click);
             // 
             // Exitbtn
             // 
@@ -209,7 +216,7 @@
             this.Exitbtn.Text = "Thoát";
             this.Exitbtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Exitbtn.UseVisualStyleBackColor = false;
-            this.Exitbtn.Click += new System.EventHandler(this.Exitbtn_Click);
+            this.Exitbtn.Click += new System.EventHandler(this.Exit_Click);
             // 
             // Deletebtn
             // 
@@ -223,6 +230,7 @@
             this.Deletebtn.Text = "Xóa";
             this.Deletebtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Deletebtn.UseVisualStyleBackColor = false;
+            this.Deletebtn.Click += new System.EventHandler(this.Button_Click);
             // 
             // txtKPI
             // 
@@ -266,7 +274,7 @@
             this.Controls.Add(this.Idlbl);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThongTinNhanVien";
             this.Text = "ThongTinNhanVien";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

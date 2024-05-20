@@ -26,5 +26,19 @@ namespace GUI
         {
             controller.setDGV(dataGridView1, ccbTheLoai);
         }
+        private void button_Click(object sender,EventArgs e)
+        {
+            controller.xuLySuKien((Button)sender,txtMaPhim,txtTenPhim,ccbTheLoai,txtThoiLuong,txtMoTa);
+            controller.setDGV(dataGridView1,ccbTheLoai);
+        }
+        private void Exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            controller.setInfo((DataGridView)sender,txtMaPhim,txtTenPhim,ccbTheLoai,txtThoiLuong,txtMoTa,e.RowIndex);
+        }
     }
 }

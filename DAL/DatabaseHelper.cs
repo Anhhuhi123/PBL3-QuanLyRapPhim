@@ -38,12 +38,13 @@ namespace DAO
                 }
                 catch(Exception e)
                 {
-                    Console.WriteLine("SQL Error "+e.Message);
+                    throw new Exception("SQL Error "+e.Message);
                 }
-                connection.Close();
+                finally
+                {
+                    connection.Close();
+                }
             }
-            
-            connection.Close();
         }
         public DataTable GetRecords(string query,params SqlParameter[] sqlParameters)
         {

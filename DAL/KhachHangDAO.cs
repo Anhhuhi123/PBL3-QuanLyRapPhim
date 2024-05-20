@@ -11,7 +11,7 @@ namespace DAO
 {
     public class KhachHangDAO 
     {
-        public void Delete(int id)
+        public void Delete(string id)
         {
             string query = @"DELETE FROM KhachHang WHERE Id = @id";
             SqlParameter[] sqlParameters = new SqlParameter[1];

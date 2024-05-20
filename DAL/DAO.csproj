@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="GheNgoiDAO.cs" />
-    <Compile Include="InterfaceCRUD.cs" />
     <Compile Include="KhachHangDAO.cs" />
     <Compile Include="LichChieuDAO.cs" />
     <Compile Include="NguoiDungDAO.cs" />

@@ -23,6 +23,7 @@ namespace DAO
         }
         public NhanVienBanHangDAO NhanVienBanHangDAO { get; }
         public NhanVienQuanLyDAO NhanVienQuanLyDAO { get; }
+        public TaiKhoanDAO TaiKhoanDAO { get; }
         public NhanVienDAO NhanVienDAO { get; }
         public KhachHangDAO KhachHangDAO { get; }
         public NguoiDungDAO NguoiDungDAO { get;}
@@ -30,6 +31,7 @@ namespace DAO
         public UnitofWork() {
             NhanVienBanHangDAO = new NhanVienBanHangDAO();
             NhanVienQuanLyDAO = new NhanVienQuanLyDAO();
+            TaiKhoanDAO = new TaiKhoanDAO();
             NhanVienDAO = new NhanVienDAO();
             NguoiDungDAO = new NguoiDungDAO();
             KhachHangDAO = new KhachHangDAO();

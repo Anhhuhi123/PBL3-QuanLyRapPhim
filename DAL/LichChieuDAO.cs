@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DAO
 {
-    public class LichChieuDAO : InterfaceCRUD<LichChieu>
+    public class LichChieuDAO
     {
         public void Delete(int id)
         {
@@ -81,12 +81,6 @@ namespace DAO
             sqlParameters[4] = new SqlParameter("@nvql", idnvql);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
-
-        public void Insert(LichChieu obj)
-        {
-            throw new Exception("Không thể thêm lịch chiếu mà không có phim và nhân viên quản lý");
-        }
-
         public void Update(LichChieu obj)
         {
             string query = @"UPDATE LichChieu 

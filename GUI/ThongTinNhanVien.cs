@@ -18,16 +18,26 @@ namespace GUI
         {
             controller = new NguoiDungBLL();
             InitializeComponent();
+            controller.setDGV(dataGridView1, rolecbb);
         }
 
-        private void Exitbtn_Click(object sender, EventArgs e)
+        private void Button_Click(object sender, EventArgs e)
+        {
+            controller.xuLySuKien((Button)sender, txtId, txtFullname, rolecbb, txtNumber, txtemail, txtKPI, Activerdb);
+            controller.setDGV(dataGridView1, rolecbb);
+        }
+        private void Exit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void rolecbb_SelectedIndexChanged(object sender, EventArgs e)
         {
             controller.setDGV(dataGridView1, rolecbb);
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            controller.setInfo(txtId, txtFullname, rolecbb, txtNumber, txtemail, txtKPI, Activerdb,e.RowIndex,dataGridView1);
         }
     }
 }

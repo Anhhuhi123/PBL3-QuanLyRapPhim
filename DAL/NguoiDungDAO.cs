@@ -10,21 +10,15 @@ using DTO;
 
 namespace DAO
 {
-    public class NguoiDungDAO : InterfaceCRUD<NguoiDung>
+    public class NguoiDungDAO 
     {
-        public virtual void Delete(string id)
+        public void Delete(string id)
         {
             string query = @"Delete from NguoiDung where id=@id";
             SqlParameter[] sqlParameters = new SqlParameter[1];
             sqlParameters[0] = new SqlParameter("@id", id);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
-
-        public void Delete(int id)
-        {
-            throw new Exception("Không có Id theo loại dữ liệu này!");
-        }
-
         public List<NguoiDung> GetAll()
         {
             List<NguoiDung> list = new List<NguoiDung> ();

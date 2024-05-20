@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,7 +17,20 @@ namespace GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new QuanLyForm());
+            LoginForm loginForm = new LoginForm();
+            if(loginForm.ShowDialog()==DialogResult.OK)
+            {
+                if(loginForm.user.Contains("QL"))
+                {
+                    Application.Run(new QuanLyForm(loginForm.user));
+                    loginForm.Close();
+                }
+                else if(loginForm.user.Contains("BH"))
+                {
+                    Application.Run(new DatVe(loginForm.user));
+                    loginForm.Close();
+                }
+            }
         }
     }
 }

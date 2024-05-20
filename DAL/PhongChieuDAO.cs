@@ -9,14 +9,17 @@ using System.Threading.Tasks;
 
 namespace DAO
 {
-    public class PhongChieuDAO : InterfaceCRUD<PhongChieu>
+    public class PhongChieuDAO 
     {
         public void Delete(int id)
         {
-
-            string query = @"DELETE FROM PhongChieu WHERE Id = @id";
+            string query =@"DELETE FROM LichChieu_PhongChieu WHERE IdPhongChieu = @id";
             SqlParameter[] sqlParameters = new SqlParameter[1];
             sqlParameters[0] = new SqlParameter("@id", id);
+            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
+            query =@"DELETE FROM GheNgoi WHERE IdPhongChieu = @id";
+            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
+            query = @"DELETE FROM PhongChieu WHERE Id = @id";
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
 
@@ -35,20 +38,29 @@ namespace DAO
             }
             return list;
         }
-
-        public PhongChieu GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Insert(PhongChieu obj)
         {
-            throw new NotImplementedException();
+            string query =@"INSERT INTO PhongChieu(Id,Name,SucChua,MoTa) 
+                            VALUES(@id,@name,@succhua,@mota)";
+            SqlParameter[] sqlParameters = new SqlParameter[4];
+            sqlParameters[0] = new SqlParameter("@id", obj.Id);
+            sqlParameters[1] = new SqlParameter("@name", obj.Name);
+            sqlParameters[2] = new SqlParameter("@succhua", obj.Succhua);
+            sqlParameters[3] = new SqlParameter("@mota", obj.MoTa);
+            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
 
         public void Update(PhongChieu obj)
         {
-            throw new NotImplementedException();
+            string query=@"UPDATE PhongChieu 
+                        SET Name = @name, SucChua = @succhua, MoTa = @mota 
+                        WHERE Id = @id";
+            SqlParameter[] sqlParameters = new SqlParameter[4];
+            sqlParameters[0] = new SqlParameter("@id", obj.Id);
+            sqlParameters[1] = new SqlParameter("@name", obj.Name);
+            sqlParameters[2] = new SqlParameter("@succhua", obj.Succhua);
+            sqlParameters[3] = new SqlParameter("@mota", obj.MoTa);
+            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
     }
 }

@@ -12,8 +12,10 @@ namespace GUI
 {
     public partial class DatVe : Form
     {
-        public DatVe()
+        string idnvbh;
+        public DatVe(string username)
         {
+            idnvbh = username;
             InitializeComponent();
         }
     }

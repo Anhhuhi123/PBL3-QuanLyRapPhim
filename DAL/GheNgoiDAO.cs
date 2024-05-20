@@ -10,23 +10,16 @@ using DTO;
 
 namespace DAO
 {
-    public class GheNgoiDAO : InterfaceCRUD<GheNgoi>
+    public class GheNgoiDAO 
     {
-        public void Delete(int id,int idphong,int idlichchieu)
+        public void Delete(int idphong,int idlichchieu)
         {
-            string query = @"DELETE FROM GheNgoi WHERE Id = @id and IdPhong=@idphong and Idlichchieu=@idlich";
-            SqlParameter[] sqlParameters = new SqlParameter[3];
-            sqlParameters[0] = new SqlParameter("@id", id);
-            sqlParameters[1] = new SqlParameter("@idphong", idphong);
-            sqlParameters[2] = new SqlParameter("@idlich", idlichchieu);
+            string query = @"DELETE FROM GheNgoi WHERE IdPhong=@idphong and Idlichchieu=@idlich";
+            SqlParameter[] sqlParameters = new SqlParameter[2];
+            sqlParameters[0] = new SqlParameter("@idphong", idphong);
+            sqlParameters[1] = new SqlParameter("@idlich", idlichchieu);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
-
-        public void Delete(int id)
-        {
-            throw new Exception("Không thể xóa ghế nếu không biết phòng chiếu và lịch chiếu");
-        }
-
         public List<GheNgoi> GetAll()
         {
             List<GheNgoi> list = new List<GheNgoi>();
@@ -43,26 +36,6 @@ namespace DAO
             }
             return list;
         }
-
-        public GheNgoi GetById(int id,int idphong,int idlich)
-        {
-            string query = @"SELECT * FROM GheNgoi WHERE Id = @id
-                             and IdPhong =@idphong and IdLichChieu=@idlich";
-            SqlParameter[] sqlParameters = new SqlParameter[3];
-            sqlParameters[0] = new SqlParameter("@id", id);
-            sqlParameters[1] = new SqlParameter("@idphong", idphong);
-            sqlParameters[2] = new SqlParameter("@idlich", idlich);
-            DataTable dt = DatabaseHelper.Instance.GetRecords(query, sqlParameters);
-            DataRow row = dt.Rows[0];
-            bool trangthai = Convert.ToBoolean(row["TrangThai"]);
-            return new GheNgoi(id, idphong,idlich, trangthai);
-        }
-
-        public GheNgoi GetById(int id)
-        {
-            throw new Exception("Không thể lấy ghế nếu không biết phòng chiếu và lịch chiếu");
-        }
-
         public void Insert(GheNgoi obj)
         {
             string query = @"INSERT INTO GheNgoi (Id, TrangThai, IdPhong,IdLichChieu) 

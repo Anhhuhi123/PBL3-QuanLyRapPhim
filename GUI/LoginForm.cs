@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BLL;
+using DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,16 +14,13 @@ namespace GUI
 {
     public partial class LoginForm : Form
     {
+        public string user;
+        TaiKhoanBLL controller;
         private string mkhauPlaceholder = "Password";
         private string dnhapsPlaceholder = "Login";
-
-        private string tkql = "admin";
-        private string mkql = "admin";
-
-        private string tknv = "nv";
-        private string mknv = "nv";
         public LoginForm()
         {
+            controller =new TaiKhoanBLL();
             InitializeComponent();
             MKhau.Text = mkhauPlaceholder;
             DNhap.Text = dnhapsPlaceholder;
@@ -30,21 +29,10 @@ namespace GUI
 
         private void Dang_Nhap_Click(object sender, EventArgs e)
         {
-            if (DNhap.Text == tkql && MKhau.Text == mkql)
-            {
-                QuanLyForm ql = new QuanLyForm();
-                ql.Show();
-            }
-            /*else if (DNhap.Text == tknv && MKhau.Text == mknv)
-            {
-                NhanVien nv = new NhanVien();
-                nv.Show();
-            }*/
-            else
-            {
-                MessageBox.Show("Enror");
-            }
-
+            string username =controller.checkLogin(DNhap,MKhau);
+            if (username == null) return;
+            user = username;
+            this.DialogResult = DialogResult.OK;
         }
 
         private void MKhau_Enter(object sender, EventArgs e)
