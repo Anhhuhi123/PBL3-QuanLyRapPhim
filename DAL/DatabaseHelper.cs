@@ -35,6 +35,7 @@ namespace DAO
                 {
                     connection.Open();
                     command.ExecuteNonQuery();
+                    command.Parameters.Clear();
                 }
                 catch(Exception e)
                 {

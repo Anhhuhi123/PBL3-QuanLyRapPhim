@@ -13,13 +13,14 @@ namespace GUI
 {
     public partial class LichChieu : Form
     {
-        private LichiChieuBLL controller;
+        private LichChieuBLL controller;
         public string idnvql;
         public LichChieu()
         {
-            controller =new LichiChieuBLL();
+            controller =new LichChieuBLL();
             InitializeComponent();
-            controller.setDGV(dataGridView1);
+            controller.SetCbb(ccbTenPhim);
+            controller.SetDGV(dataGridView1,ccbTenPhim);
         }
 
         private void btThoat_Click(object sender, EventArgs e)

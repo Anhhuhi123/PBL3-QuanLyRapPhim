@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LichiChieuBLL.cs" />
+    <Compile Include="LichChieuBLL.cs" />
     <Compile Include="NguoiDungBLL.cs" />
     <Compile Include="PhimBLL.cs" />
     <Compile Include="PhongChieuBLL.cs" />

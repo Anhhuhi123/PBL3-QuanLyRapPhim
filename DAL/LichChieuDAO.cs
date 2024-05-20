@@ -29,15 +29,15 @@ namespace DAO
 
         public List<LichChieu> GetAll()
         {
-            string query = @"SELECT lc.Id,p.TenPhim,nv.Fullname,lc.NgayChieu,lc.GioChieu,p.thoiluong 
+            string query = @"SELECT lc.Id,p.TenPhim,nd.Fullname,lc.NgayChieu,lc.GioChieu,p.thoiluong 
                     FROM LichChieu lc 
-                    LEFT JOIN Phim p on lc.IdPhim=p.Id 
-                    LEFT JOIN NhanVienQuanLy nv on nv.Id=lc.IdNVQL";
+                    INNER JOIN Phim p on lc.IdPhim=p.Id 
+                    LEFT JOIN NguoiDung nd on nd.Id=lc.IdNVQL";
             DataTable reader = DatabaseHelper.Instance.GetRecords(query);
             List<LichChieu> list = new List<LichChieu>();
             foreach(DataRow row in reader.Rows)
             {
-                String id = row["Id"].ToString();
+                int id = Convert.ToInt32(row["Id"].ToString());
                 string tenphim = row["TenPhim"].ToString();
                 string tennvql = row["Fullname"].ToString();
                 DateTime ngaychieu = Convert.ToDateTime(row["NgayChieu"]);
@@ -49,7 +49,7 @@ namespace DAO
             return list;
         }
 
-        public LichChieu GetById(String id)
+        public LichChieu GetById(int id)
         {
             string query = @"SELECT lc.Id,p.TenPhim,nv.Fullname,lc.NgayChieu,lc.GioChieu,p.thoiluong 
                     FROM LichChieu lc 

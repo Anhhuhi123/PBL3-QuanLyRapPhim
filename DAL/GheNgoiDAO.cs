@@ -28,27 +28,25 @@ namespace DAO
             foreach(DataRow row in dt.Rows)
             {
                 int id = Convert.ToInt32(row["Id"]);
-                int idphong = Convert.ToInt32(row["IdPhong"]);
-                int idlich = Convert.ToInt32(row["IdLichChieu"]);
                 bool trangthai= Convert.ToBoolean(row["TrangThai"]);
-                GheNgoi gheNgoi = new GheNgoi(id, idphong,idlich, trangthai);
+                GheNgoi gheNgoi = new GheNgoi(id, trangthai);
                 list.Add(gheNgoi);
             }
             return list;
         }
-        public void Insert(GheNgoi obj)
+        public void Insert(GheNgoi obj,int idlich, int idphong)
         {
             string query = @"INSERT INTO GheNgoi (Id, TrangThai, IdPhong,IdLichChieu) 
                             VALUES (@id,@trangthai,@idphong,@idlich)";
             SqlParameter[] sqlParameters = new SqlParameter[3];
             sqlParameters[0] = new SqlParameter("@id", obj.Id);
             sqlParameters[1] = new SqlParameter("@trangthai", obj.TrangThai);
-            sqlParameters[2] = new SqlParameter("@idphong", obj.IdPhong);
-            sqlParameters[3] = new SqlParameter("@idlich", obj.IdLichChieu);
+            sqlParameters[2] = new SqlParameter("@idphong", idphong);
+            sqlParameters[3] = new SqlParameter("@idlich", idlich);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
 
-        public void Update(GheNgoi obj)
+        public void Update(GheNgoi obj,int idlich,int idphong)
         {
             string query = @"UPDATE GheNgoi 
                             SET TrangThai=@trangthai ,IdPhong=@idphong,IdLichChieu=@idlich 
@@ -56,8 +54,8 @@ namespace DAO
             SqlParameter[] sqlParameters = new SqlParameter[4];
             sqlParameters[0] = new SqlParameter("@id", obj.Id);
             sqlParameters[1] = new SqlParameter("@trangthai", obj.TrangThai);
-            sqlParameters[2] = new SqlParameter("@idphong", obj.IdPhong);
-            sqlParameters[3] = new SqlParameter("@idlich", obj.IdLichChieu);
+            sqlParameters[2] = new SqlParameter("@idphong", idphong);
+            sqlParameters[3] = new SqlParameter("@idlich", idlich);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
     }
