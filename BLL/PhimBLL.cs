@@ -88,6 +88,28 @@ namespace BLL
                 MessageBox.Show("Lỗi "+e.Message);
             }
         }
+        public Phim GetPhim(int id)
+        {
+            foreach(Phim ph in phimDAO.GetAll())
+            {
+                if(ph.Id==id)
+                {
+                    return ph;
+                }
+            }
+            return null;
+        }
+        public int TimKiemPhim(string name)
+        {
+            foreach (Phim phim in phimDAO.GetAll())
+            {
+                if (phim.TenPhim.Equals(name))
+                {
+                    return phim.Id;
+                }
+            }
+            return 0;
+        }
 
         public void xuLySuKien(Button sender, TextBox txtMa, TextBox txtTen, ComboBox ccbTheLoai, TextBox txtThoiLuong, TextBox txtMoTa)
         {

@@ -50,12 +50,13 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Right;
             this.dataGridView1.Location = new System.Drawing.Point(480, 0);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
             this.dataGridView1.Size = new System.Drawing.Size(797, 681);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // label1
             // 
@@ -100,37 +101,40 @@
             // btThem
             // 
             this.btThem.Location = new System.Drawing.Point(63, 385);
-            this.btThem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btThem.Margin = new System.Windows.Forms.Padding(2);
             this.btThem.Name = "btThem";
             this.btThem.Size = new System.Drawing.Size(143, 56);
             this.btThem.TabIndex = 6;
             this.btThem.Text = "Thêm";
             this.btThem.UseVisualStyleBackColor = true;
+            this.btThem.Click += new System.EventHandler(this.Button_Click);
             // 
             // btSua
             // 
             this.btSua.Location = new System.Drawing.Point(281, 385);
-            this.btSua.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btSua.Margin = new System.Windows.Forms.Padding(2);
             this.btSua.Name = "btSua";
             this.btSua.Size = new System.Drawing.Size(143, 56);
             this.btSua.TabIndex = 7;
             this.btSua.Text = "Sửa";
             this.btSua.UseVisualStyleBackColor = true;
+            this.btSua.Click += new System.EventHandler(this.Button_Click);
             // 
             // btXoa
             // 
             this.btXoa.Location = new System.Drawing.Point(63, 463);
-            this.btXoa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btXoa.Margin = new System.Windows.Forms.Padding(2);
             this.btXoa.Name = "btXoa";
             this.btXoa.Size = new System.Drawing.Size(143, 56);
             this.btXoa.TabIndex = 8;
             this.btXoa.Text = "Xóa";
             this.btXoa.UseVisualStyleBackColor = true;
+            this.btXoa.Click += new System.EventHandler(this.Button_Click);
             // 
             // btThoat
             // 
             this.btThoat.Location = new System.Drawing.Point(281, 463);
-            this.btThoat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btThoat.Margin = new System.Windows.Forms.Padding(2);
             this.btThoat.Name = "btThoat";
             this.btThoat.Size = new System.Drawing.Size(143, 56);
             this.btThoat.TabIndex = 9;
@@ -141,7 +145,7 @@
             // txtIDLichChieu
             // 
             this.txtIDLichChieu.Location = new System.Drawing.Point(201, 59);
-            this.txtIDLichChieu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtIDLichChieu.Margin = new System.Windows.Forms.Padding(2);
             this.txtIDLichChieu.Name = "txtIDLichChieu";
             this.txtIDLichChieu.Size = new System.Drawing.Size(246, 22);
             this.txtIDLichChieu.TabIndex = 10;
@@ -150,15 +154,16 @@
             // 
             this.ccbTenPhim.FormattingEnabled = true;
             this.ccbTenPhim.Location = new System.Drawing.Point(201, 118);
-            this.ccbTenPhim.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ccbTenPhim.Margin = new System.Windows.Forms.Padding(2);
             this.ccbTenPhim.Name = "ccbTenPhim";
             this.ccbTenPhim.Size = new System.Drawing.Size(246, 24);
             this.ccbTenPhim.TabIndex = 11;
+            this.ccbTenPhim.SelectedIndexChanged += new System.EventHandler(this.ccbTenPhim_SelectedIndexChanged_1);
             // 
             // txtGioChieu
             // 
             this.txtGioChieu.Location = new System.Drawing.Point(201, 243);
-            this.txtGioChieu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtGioChieu.Margin = new System.Windows.Forms.Padding(2);
             this.txtGioChieu.Name = "txtGioChieu";
             this.txtGioChieu.Size = new System.Drawing.Size(246, 22);
             this.txtGioChieu.TabIndex = 12;
@@ -166,7 +171,7 @@
             // dateTimeLichChieu
             // 
             this.dateTimeLichChieu.Location = new System.Drawing.Point(201, 188);
-            this.dateTimeLichChieu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimeLichChieu.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimeLichChieu.Name = "dateTimeLichChieu";
             this.dateTimeLichChieu.Size = new System.Drawing.Size(246, 22);
             this.dateTimeLichChieu.TabIndex = 15;
@@ -175,13 +180,14 @@
             // 
             this.rdoThayDoiLichChieuTrongPhong.AutoSize = true;
             this.rdoThayDoiLichChieuTrongPhong.Location = new System.Drawing.Point(46, 345);
-            this.rdoThayDoiLichChieuTrongPhong.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rdoThayDoiLichChieuTrongPhong.Margin = new System.Windows.Forms.Padding(2);
             this.rdoThayDoiLichChieuTrongPhong.Name = "rdoThayDoiLichChieuTrongPhong";
-            this.rdoThayDoiLichChieuTrongPhong.Size = new System.Drawing.Size(228, 20);
+            this.rdoThayDoiLichChieuTrongPhong.Size = new System.Drawing.Size(213, 20);
             this.rdoThayDoiLichChieuTrongPhong.TabIndex = 16;
             this.rdoThayDoiLichChieuTrongPhong.TabStop = true;
-            this.rdoThayDoiLichChieuTrongPhong.Text = "Thay Doi Lich Chieu Trong Phong";
+            this.rdoThayDoiLichChieuTrongPhong.Text = "Thay đổi lịch chiếu trong phòng";
             this.rdoThayDoiLichChieuTrongPhong.UseVisualStyleBackColor = true;
+            this.rdoThayDoiLichChieuTrongPhong.Visible = false;
             // 
             // LichChieu
             // 
@@ -204,7 +210,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LichChieu";
             this.Text = "LichChieu";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

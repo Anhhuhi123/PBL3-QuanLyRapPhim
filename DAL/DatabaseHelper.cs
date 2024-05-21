@@ -35,7 +35,6 @@ namespace DAO
                 {
                     connection.Open();
                     command.ExecuteNonQuery();
-                    command.Parameters.Clear();
                 }
                 catch(Exception e)
                 {
@@ -47,14 +46,25 @@ namespace DAO
                 }
             }
         }
-        public DataTable GetRecords(string query,params SqlParameter[] sqlParameters)
+        public DataTable GetRecords(string query,params SqlParameter[] sqlParameter)
         {
             DataTable dt=new DataTable();
             SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
-            connection.Open();
-            adapter.Fill(dt);
-            connection.Close();
-            return dt;
+            adapter.SelectCommand.Parameters.AddRange(sqlParameter);
+            try
+            {
+                connection.Open();
+                adapter.Fill(dt);
+                return dt;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Connection Error " +e.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
         }
     }
 }

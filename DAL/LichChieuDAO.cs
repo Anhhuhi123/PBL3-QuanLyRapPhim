@@ -16,15 +16,14 @@ namespace DAO
         public void Delete(int id)
         {
             string query = @"Delete from LichChieu_PhongChieu where IdLichChieu =@id";
-            SqlParameter[] sqlParameters = new SqlParameter[1];
-            sqlParameters[0] = new SqlParameter("@id", id);
-            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
+            SqlParameter parapclc = new SqlParameter("@id", id);
+            DatabaseHelper.Instance.ExecuteNonQuery(query, parapclc);
             query = @"Delete from GheNgoi where IdLichChieu =@id";
-            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
+            SqlParameter paraghengoi = new SqlParameter("@id",id);
+            DatabaseHelper.Instance.ExecuteNonQuery(query, paraghengoi);
             query= @"DELETE FROM LichChieu WHERE Id = @id";
-            sqlParameters = new SqlParameter[1];
-            sqlParameters[0] = new SqlParameter("@id", id);
-            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
+            SqlParameter paralichchieu = new SqlParameter("@id", id);
+            DatabaseHelper.Instance.ExecuteNonQuery(query, paralichchieu);
         }
 
         public List<LichChieu> GetAll()
@@ -69,17 +68,24 @@ namespace DAO
             return new LichChieu(id, tenphim, tennvql, ngaychieu, giochieu, gioketthuc);
         }
 
-        public void Insert(LichChieu obj,int Idphim, int idnvql)
+        public void Insert(LichChieu obj,int Idphim, string idnvql)
         {
-            string query = @"INSERT INTO LichChieu (Id, IdPhim, NgayChieu, GioChieu, IdNVQL) 
+            try
+            {
+                string query = @"INSERT INTO LichChieu (Id, IdPhim, NgayChieu, GioChieu, IdNVQL) 
                     VALUES (@id, @idphim, @ngaychieu, @giochieu, @nvql)";
-            SqlParameter[] sqlParameters = new SqlParameter[5];
-            sqlParameters[0] = new SqlParameter("@id", obj.Id);
-            sqlParameters[1] = new SqlParameter("@idphim", Idphim);
-            sqlParameters[2] = new SqlParameter("@ngaychieu", obj.NgayChieu);
-            sqlParameters[3] = new SqlParameter("@giochieu", obj.GioChieu);
-            sqlParameters[4] = new SqlParameter("@nvql", idnvql);
-            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
+                SqlParameter[] sqlParameters = new SqlParameter[5];
+                sqlParameters[0] = new SqlParameter("@id", obj.Id);
+                sqlParameters[1] = new SqlParameter("@idphim", Idphim);
+                sqlParameters[2] = new SqlParameter("@ngaychieu", obj.NgayChieu);
+                sqlParameters[3] = new SqlParameter("@giochieu", obj.GioChieu);
+                sqlParameters[4] = new SqlParameter("@nvql", idnvql);
+                DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
+            }
+            catch(Exception e)
+            {
+                throw new Exception("SQL Error " + e.Message);
+            }
         }
         public void Update(LichChieu obj)
         {

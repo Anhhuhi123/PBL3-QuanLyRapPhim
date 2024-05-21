@@ -192,5 +192,15 @@ namespace BLL
                 MessageBox.Show("Lỗi: " + e.Message);
             }
         }
+
+        public NguoiDung GetNguoiDung(string idnvql)
+        {
+            foreach(NguoiDung nd in UnitofWork.NguoiDungDAO.GetAll())
+            {
+                if (nd.Id == idnvql)
+                    return nd;
+            }
+            return null;
+        }
     }
 }
