@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace BLL
 {
+    
     public class PhimBLL
     {
         PhimDAO phimDAO;
@@ -17,6 +18,13 @@ namespace BLL
         {
             phimDAO = new PhimDAO();
         }
+
+
+        public List<Phim> GetAllPhim()
+        {
+            return phimDAO.GetAll();
+        }
+
         public void setDGV(DataGridView dgv,ComboBox text)
         {
             List<Phim> list = new List<Phim>();
@@ -99,6 +107,8 @@ namespace BLL
             }
             return null;
         }
+
+
         public int TimKiemPhim(string name)
         {
             foreach (Phim phim in phimDAO.GetAll())

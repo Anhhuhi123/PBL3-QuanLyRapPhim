@@ -21,6 +21,12 @@ namespace BLL
             phimBLL = new PhimBLL();
             nguoiDungBLL = new NguoiDungBLL();
         }
+
+        public List<LichChieu> GetLichChieus()
+        {
+            return lichChieuDAO.GetAll();
+        }
+
         public void SetCbb(ComboBox cb)
         {
             List<string> list = new List<string>();
