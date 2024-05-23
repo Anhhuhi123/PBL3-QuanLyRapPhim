@@ -27,10 +27,6 @@ namespace GUI
             controller.XuLySuKien((Button)sender,txtIDLichChieu,ccbTenPhim,idnvql,dateTimeLichChieu,txtGioChieu);
             controller.SetDGV(dataGridView1, ccbTenPhim);
         }
-        private void ccbTenPhim_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            controller.SetDGV(dataGridView1, ccbTenPhim);
-        }
         private void btThoat_Click(object sender, EventArgs e)
         {
             Close();
@@ -39,11 +35,6 @@ namespace GUI
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             controller.SetInfo(dataGridView1,txtIDLichChieu,ccbTenPhim,dateTimeLichChieu,txtGioChieu,e.RowIndex);
-        }
-
-        private void ccbTenPhim_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            controller.SetDGV(dataGridView1, ccbTenPhim);
         }
     }
 }

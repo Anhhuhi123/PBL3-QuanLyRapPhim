@@ -28,7 +28,7 @@ namespace GUI
         }
         private void Exit_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Dispose();
         }
         private void rolecbb_SelectedIndexChanged(object sender, EventArgs e)
         {

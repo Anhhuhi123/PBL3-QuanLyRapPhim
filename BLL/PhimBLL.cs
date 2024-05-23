@@ -36,6 +36,7 @@ namespace BLL
                 }
             }
             dgv.DataSource = list;
+            //dgv.Columns["Mota"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
         }
         public void setCBB(ComboBox cbb)
         {
@@ -133,6 +134,8 @@ namespace BLL
                     break;
                 case "Xóa":
                     Delete(txtMa);
+                    break;
+                case "Lọc":
                     break;
                 default:
                     MessageBox.Show(sender.Text);

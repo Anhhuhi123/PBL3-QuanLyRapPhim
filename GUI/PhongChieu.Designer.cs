@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btThem = new System.Windows.Forms.Button();
             this.btSua = new System.Windows.Forms.Button();
@@ -47,23 +48,33 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView1.Location = new System.Drawing.Point(263, 0);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Location = new System.Drawing.Point(350, 0);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(674, 582);
+            this.dataGridView1.Size = new System.Drawing.Size(899, 716);
             this.dataGridView1.TabIndex = 0;
             // 
             // btThem
             // 
-            this.btThem.Location = new System.Drawing.Point(39, 259);
-            this.btThem.Margin = new System.Windows.Forms.Padding(2);
+            this.btThem.Location = new System.Drawing.Point(52, 319);
+            this.btThem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btThem.Name = "btThem";
-            this.btThem.Size = new System.Drawing.Size(93, 36);
+            this.btThem.Size = new System.Drawing.Size(124, 44);
             this.btThem.TabIndex = 1;
             this.btThem.Text = "Thêm";
             this.btThem.UseVisualStyleBackColor = true;
@@ -71,10 +82,10 @@
             // 
             // btSua
             // 
-            this.btSua.Location = new System.Drawing.Point(39, 310);
-            this.btSua.Margin = new System.Windows.Forms.Padding(2);
+            this.btSua.Location = new System.Drawing.Point(52, 382);
+            this.btSua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btSua.Name = "btSua";
-            this.btSua.Size = new System.Drawing.Size(93, 36);
+            this.btSua.Size = new System.Drawing.Size(124, 44);
             this.btSua.TabIndex = 2;
             this.btSua.Text = "Sửa";
             this.btSua.UseVisualStyleBackColor = true;
@@ -82,10 +93,10 @@
             // 
             // btXoa
             // 
-            this.btXoa.Location = new System.Drawing.Point(39, 365);
-            this.btXoa.Margin = new System.Windows.Forms.Padding(2);
+            this.btXoa.Location = new System.Drawing.Point(52, 449);
+            this.btXoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btXoa.Name = "btXoa";
-            this.btXoa.Size = new System.Drawing.Size(93, 36);
+            this.btXoa.Size = new System.Drawing.Size(124, 44);
             this.btXoa.TabIndex = 3;
             this.btXoa.Text = "Xóa";
             this.btXoa.UseVisualStyleBackColor = true;
@@ -93,10 +104,10 @@
             // 
             // btThoat
             // 
-            this.btThoat.Location = new System.Drawing.Point(39, 421);
-            this.btThoat.Margin = new System.Windows.Forms.Padding(2);
+            this.btThoat.Location = new System.Drawing.Point(52, 518);
+            this.btThoat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btThoat.Name = "btThoat";
-            this.btThoat.Size = new System.Drawing.Size(93, 36);
+            this.btThoat.Size = new System.Drawing.Size(124, 44);
             this.btThoat.TabIndex = 4;
             this.btThoat.Text = "Thoát";
             this.btThoat.UseVisualStyleBackColor = true;
@@ -106,92 +117,87 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Mongolian Baiti", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(57, 18);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(76, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(159, 29);
+            this.label1.Size = new System.Drawing.Size(193, 36);
             this.label1.TabIndex = 5;
             this.label1.Text = "Phòng Chiếu";
             // 
             // lblid
             // 
             this.lblid.AutoSize = true;
-            this.lblid.Location = new System.Drawing.Point(37, 69);
-            this.lblid.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblid.Location = new System.Drawing.Point(49, 85);
             this.lblid.Name = "lblid";
-            this.lblid.Size = new System.Drawing.Size(58, 13);
+            this.lblid.Size = new System.Drawing.Size(70, 16);
             this.lblid.TabIndex = 6;
             this.lblid.Text = "Mã phòng:";
             // 
             // txtid
             // 
-            this.txtid.Location = new System.Drawing.Point(104, 69);
-            this.txtid.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtid.Location = new System.Drawing.Point(139, 85);
+            this.txtid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtid.Name = "txtid";
-            this.txtid.Size = new System.Drawing.Size(138, 20);
+            this.txtid.Size = new System.Drawing.Size(183, 22);
             this.txtid.TabIndex = 7;
             // 
             // txtname
             // 
-            this.txtname.Location = new System.Drawing.Point(104, 103);
-            this.txtname.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtname.Location = new System.Drawing.Point(139, 127);
+            this.txtname.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtname.Name = "txtname";
-            this.txtname.Size = new System.Drawing.Size(138, 20);
+            this.txtname.Size = new System.Drawing.Size(183, 22);
             this.txtname.TabIndex = 9;
             // 
             // lblten
             // 
             this.lblten.AutoSize = true;
-            this.lblten.Location = new System.Drawing.Point(37, 103);
-            this.lblten.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblten.Location = new System.Drawing.Point(49, 127);
             this.lblten.Name = "lblten";
-            this.lblten.Size = new System.Drawing.Size(62, 13);
+            this.lblten.Size = new System.Drawing.Size(75, 16);
             this.lblten.TabIndex = 8;
             this.lblten.Text = "Tên phòng:";
             // 
             // txtsize
             // 
-            this.txtsize.Location = new System.Drawing.Point(104, 138);
-            this.txtsize.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtsize.Location = new System.Drawing.Point(139, 170);
+            this.txtsize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtsize.Name = "txtsize";
-            this.txtsize.Size = new System.Drawing.Size(138, 20);
+            this.txtsize.Size = new System.Drawing.Size(183, 22);
             this.txtsize.TabIndex = 11;
             // 
             // lblsize
             // 
             this.lblsize.AutoSize = true;
-            this.lblsize.Location = new System.Drawing.Point(37, 138);
-            this.lblsize.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblsize.Location = new System.Drawing.Point(49, 170);
             this.lblsize.Name = "lblsize";
-            this.lblsize.Size = new System.Drawing.Size(56, 13);
+            this.lblsize.Size = new System.Drawing.Size(65, 16);
             this.lblsize.TabIndex = 10;
             this.lblsize.Text = "Sức chứa:";
             // 
             // txtmota
             // 
-            this.txtmota.Location = new System.Drawing.Point(104, 177);
-            this.txtmota.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtmota.Location = new System.Drawing.Point(139, 218);
+            this.txtmota.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtmota.Multiline = true;
             this.txtmota.Name = "txtmota";
-            this.txtmota.Size = new System.Drawing.Size(138, 63);
+            this.txtmota.Size = new System.Drawing.Size(183, 77);
             this.txtmota.TabIndex = 13;
             // 
             // lbldes
             // 
             this.lbldes.AutoSize = true;
-            this.lbldes.Location = new System.Drawing.Point(37, 177);
-            this.lbldes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbldes.Location = new System.Drawing.Point(49, 218);
             this.lbldes.Name = "lbldes";
-            this.lbldes.Size = new System.Drawing.Size(37, 13);
+            this.lbldes.Size = new System.Drawing.Size(43, 16);
             this.lbldes.TabIndex = 12;
             this.lbldes.Text = "Mô tả:";
             // 
             // PhongChieu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(937, 582);
+            this.ClientSize = new System.Drawing.Size(1249, 716);
             this.Controls.Add(this.txtmota);
             this.Controls.Add(this.lbldes);
             this.Controls.Add(this.txtsize);
@@ -207,7 +213,7 @@
             this.Controls.Add(this.btThem);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "PhongChieu";
             this.RightToLeftLayout = true;
             this.Text = "PhongChieu";
