@@ -21,12 +21,20 @@ namespace GUI
             InitializeComponent();
             txtTenPhim.Text = search;
             txtTenPhim.Enabled = false;
-            refreshDGV();
+            refreshDGV(txtTenPhim.Text);
         }
 
-        private void refreshDGV()
+        private void refreshDGV(String tenPhim)
         {
-
+            List<DTO.LichChieu> lc = new List<DTO.LichChieu>();
+            foreach(DTO.LichChieu l in controller.GetAllLichChieu())
+            {                 
+                if (l.TenPhim == tenPhim)
+                {
+                    lc.Add(l);
+                }
+            }
+            dataGridView1.DataSource = lc;
         }
 
     }

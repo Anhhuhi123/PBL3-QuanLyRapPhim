@@ -14,7 +14,7 @@ namespace GUI
 {
     public partial class DatVe : Form
     {
-        string idnvbh;
+        private readonly string idnvbh;
         private readonly PhimBLL controllerPhim;
         public DatVe(string username)
         {
@@ -34,21 +34,12 @@ namespace GUI
 
         private void setButton()
         {
-            List<String> list = new List<String>();
-            foreach(Phim phim in controllerPhim.GetAllPhim())
+            List<Button> buttons = new List<Button>
             {
-                list.Add(phim.TenPhim);
-            }
-
-            button1.Text = list[0];
-            button2.Text = list[1];
-            button3.Text = list[2];
-            button4.Text = list[3];
-            button5.Text = list[4];
-            button6.Text = list[5];
-            button7.Text = list[6];
-            button8.Text = list[7];
-
+                button1, button2, button3, button4,
+                button5, button6, button7, button8
+            };
+            controllerPhim.setTenPhim(buttons);
         }
 
 

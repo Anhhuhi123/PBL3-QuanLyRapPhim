@@ -50,18 +50,18 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView1.Location = new System.Drawing.Point(263, 0);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Location = new System.Drawing.Point(289, 0);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(674, 582);
+            this.dataGridView1.Size = new System.Drawing.Size(790, 592);
             this.dataGridView1.TabIndex = 0;
             // 
             // btThem
             // 
             this.btThem.Location = new System.Drawing.Point(39, 259);
-            this.btThem.Margin = new System.Windows.Forms.Padding(2);
+            this.btThem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btThem.Name = "btThem";
             this.btThem.Size = new System.Drawing.Size(93, 36);
             this.btThem.TabIndex = 1;
@@ -72,7 +72,7 @@
             // btSua
             // 
             this.btSua.Location = new System.Drawing.Point(39, 310);
-            this.btSua.Margin = new System.Windows.Forms.Padding(2);
+            this.btSua.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btSua.Name = "btSua";
             this.btSua.Size = new System.Drawing.Size(93, 36);
             this.btSua.TabIndex = 2;
@@ -83,7 +83,7 @@
             // btXoa
             // 
             this.btXoa.Location = new System.Drawing.Point(39, 365);
-            this.btXoa.Margin = new System.Windows.Forms.Padding(2);
+            this.btXoa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btXoa.Name = "btXoa";
             this.btXoa.Size = new System.Drawing.Size(93, 36);
             this.btXoa.TabIndex = 3;
@@ -94,7 +94,7 @@
             // btThoat
             // 
             this.btThoat.Location = new System.Drawing.Point(39, 421);
-            this.btThoat.Margin = new System.Windows.Forms.Padding(2);
+            this.btThoat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btThoat.Name = "btThoat";
             this.btThoat.Size = new System.Drawing.Size(93, 36);
             this.btThoat.TabIndex = 4;
@@ -191,7 +191,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(937, 582);
+            this.ClientSize = new System.Drawing.Size(1079, 592);
             this.Controls.Add(this.txtmota);
             this.Controls.Add(this.lbldes);
             this.Controls.Add(this.txtsize);
@@ -207,7 +207,7 @@
             this.Controls.Add(this.btThem);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "PhongChieu";
             this.RightToLeftLayout = true;
             this.Text = "PhongChieu";

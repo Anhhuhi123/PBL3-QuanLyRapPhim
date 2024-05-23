@@ -19,10 +19,29 @@ namespace BLL
             phimDAO = new PhimDAO();
         }
 
-
         public List<Phim> GetAllPhim()
         {
             return phimDAO.GetAll();
+        }
+
+        public void setTenPhim(List<Button> buttons)
+        {
+            List<String> list = new List<String>();
+            foreach (Phim phim in phimDAO.GetAll())
+            {
+                list.Add(phim.TenPhim);
+            }
+            for (int i = 0; i < buttons.Count; i++)
+            {
+                if (i < list.Count)
+                {
+                    buttons[i].Text = list[i];
+                }
+                else
+                {
+                    buttons[i].Text = "No Movie";
+                }
+            }
         }
 
         public void setDGV(DataGridView dgv,ComboBox text)

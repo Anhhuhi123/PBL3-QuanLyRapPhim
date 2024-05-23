@@ -125,6 +125,12 @@
     <Compile Include="ThongTinNhanVien.Designer.cs">
       <DependentUpon>ThongTinNhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="VeDuocDat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VeDuocDat.Designer.cs">
+      <DependentUpon>VeDuocDat.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="BanVe.resx">
       <DependentUpon>BanVe.cs</DependentUpon>
     </EmbeddedResource>
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ThongTinNhanVien.resx">
       <DependentUpon>ThongTinNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VeDuocDat.resx">
+      <DependentUpon>VeDuocDat.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

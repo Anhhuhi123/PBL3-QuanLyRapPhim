@@ -22,9 +22,22 @@ namespace BLL
             nguoiDungBLL = new NguoiDungBLL();
         }
 
-        public List<LichChieu> GetLichChieus()
+        public List<LichChieu> GetAllLichChieu()
         {
             return lichChieuDAO.GetAll();
+        }
+
+        public List<int> GetLichChieuid(string name)
+        {
+            List<int> list = new List<int>();
+            foreach (LichChieu lc in GetAllLichChieu())
+            {
+                if (lc.TenPhim == name)
+                {
+                    list.Add(lc.Id);
+                }
+            }
+            return list;
         }
 
         public void SetCbb(ComboBox cb)

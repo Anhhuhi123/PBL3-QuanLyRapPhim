@@ -29,7 +29,7 @@ namespace GUI
 
         private void Dang_Nhap_Click(object sender, EventArgs e)
         {
-            string username =controller.checkLogin(DNhap,MKhau);
+            string username = controller.checkLogin(DNhap,MKhau);
             if (username == null) return;
             user = username;
             this.DialogResult = DialogResult.OK;

@@ -38,6 +38,7 @@
             this.txtChonPhong = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.DTSearch = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -121,14 +122,24 @@
             // 
             this.panel1.Location = new System.Drawing.Point(671, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1242, 545);
+            this.panel1.Size = new System.Drawing.Size(1242, 544);
             this.panel1.TabIndex = 9;
+            // 
+            // DTSearch
+            // 
+            this.DTSearch.AutoSize = true;
+            this.DTSearch.Location = new System.Drawing.Point(631, 148);
+            this.DTSearch.Name = "DTSearch";
+            this.DTSearch.Size = new System.Drawing.Size(28, 27);
+            this.DTSearch.TabIndex = 10;
+            this.DTSearch.UseVisualStyleBackColor = true;
             // 
             // BanVe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1910, 892);
+            this.Controls.Add(this.DTSearch);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.txtChonPhong);
@@ -159,5 +170,6 @@
         private System.Windows.Forms.TextBox txtChonPhong;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox DTSearch;
     }
 }
