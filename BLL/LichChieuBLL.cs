@@ -64,6 +64,11 @@ namespace BLL
         }
         private void Insert(TextBox txtIDLichChieu, ComboBox ccbTenPhim, string idnvql, DateTimePicker dateTimeLichChieu, TextBox txtGioChieu)
         {
+            if (ccbTenPhim.Text == "Tất cả")
+            {
+                MessageBox.Show("Vui lòng chọn phim");
+                return;
+            }
             try
             {
                 int idphim=phimBLL.TimKiemPhim(ccbTenPhim.Text);
@@ -135,6 +140,8 @@ namespace BLL
                     break;
                 case "Xóa":
                     Delete(txtIDLichChieu);
+                    break;
+                case "Lọc":
                     break;
             }
         }

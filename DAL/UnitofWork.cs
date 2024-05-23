@@ -22,12 +22,12 @@ namespace DAO
             }
             private set { }
         }
-        public NhanVienBanHangDAO NhanVienBanHangDAO { get; }
-        public NhanVienQuanLyDAO NhanVienQuanLyDAO { get; }
-        public TaiKhoanDAO TaiKhoanDAO { get; }
-        public NhanVienDAO NhanVienDAO { get; }
-        public KhachHangDAO KhachHangDAO { get; }
-        public NguoiDungDAO NguoiDungDAO { get;}
+        public NhanVienBanHangDAO NhanVienBanHangDAO { get; private set; }
+        public NhanVienQuanLyDAO NhanVienQuanLyDAO { get; private set; }
+        public TaiKhoanDAO TaiKhoanDAO { get; private set; }
+        public NhanVienDAO NhanVienDAO { get; private set; }
+        public KhachHangDAO KhachHangDAO { get; private set; }
+        public NguoiDungDAO NguoiDungDAO { get; private set; }
 
         public UnitofWork() {
             NhanVienBanHangDAO = new NhanVienBanHangDAO();
@@ -39,7 +39,12 @@ namespace DAO
         }
         public void Dispose()
         {
-            throw new NotImplementedException();
+            NhanVienBanHangDAO = null;
+            NhanVienQuanLyDAO = null;
+            TaiKhoanDAO = null;
+            NhanVienDAO = null;
+            NguoiDungDAO = null;
+            KhachHangDAO = null;
         }
     }
 }
