@@ -29,7 +29,7 @@ namespace DAO
         public KhachHangDAO KhachHangDAO { get; private set; }
         public NguoiDungDAO NguoiDungDAO { get; private set; }
 
-        public UnitofWork() {
+        private UnitofWork() {
             NhanVienBanHangDAO = new NhanVienBanHangDAO();
             NhanVienQuanLyDAO = new NhanVienQuanLyDAO();
             TaiKhoanDAO = new TaiKhoanDAO();
@@ -37,6 +37,7 @@ namespace DAO
             NguoiDungDAO = new NguoiDungDAO();
             KhachHangDAO = new KhachHangDAO();
         }
+
         public void Dispose()
         {
             NhanVienBanHangDAO = null;
@@ -45,6 +46,7 @@ namespace DAO
             NhanVienDAO = null;
             NguoiDungDAO = null;
             KhachHangDAO = null;
+            NguoiDungDAO = null;
         }
     }
 }

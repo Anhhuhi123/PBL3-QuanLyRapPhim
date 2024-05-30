@@ -34,7 +34,7 @@ namespace DAO
             sqlParameters[1] = new SqlParameter("@MatKhau", taikhoan.MatKhau);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
-        public void Del(string Id)
+        public void Delete(string Id)
         {
             string query =@"Delete from TaiKhoan where TenTK = @TenTK";
             SqlParameter[] sqlParameters = new SqlParameter[1];

@@ -43,7 +43,14 @@ namespace BLL
                 }
             }
         }
-
+        private void SetDGVHeader(DataGridView dgv)
+        {
+            dgv.Columns["Id"].HeaderText = "Mã số";
+            dgv.Columns["TenPhim"].HeaderText = "Tên phim";
+            dgv.Columns["TheLoai"].HeaderText = "Thể loại";
+            dgv.Columns["ThoiLuong"].HeaderText = "Thời lượng";
+            dgv.Columns["MoTa"].HeaderText = "Mô tả";
+        }
         public void setDGV(DataGridView dgv,ComboBox text)
         {
             List<Phim> list = new List<Phim>();
@@ -55,7 +62,7 @@ namespace BLL
                 }
             }
             dgv.DataSource = list;
-            //dgv.Columns["Mota"].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            SetDGVHeader(dgv);
         }
         public void setCBB(ComboBox cbb)
         {

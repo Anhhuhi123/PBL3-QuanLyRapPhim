@@ -12,33 +12,64 @@ namespace BLL
 {
     public class NguoiDungBLL
     {
-        UnitofWork UnitofWork;
-        public NguoiDungBLL()
+        private void SetDGVHeader(DataGridView dgv,ComboBox cb)
         {
-            UnitofWork = UnitofWork.Instance;
+            dgv.Columns["Id"].HeaderText = "Mã số";
+            dgv.Columns["FullName"].HeaderText = "Họ tên";
+            dgv.Columns["SoDT"].HeaderText = "Số điện thoại";
+            dgv.Columns["Email"].HeaderText = "Email";
+            dgv.Columns["VaiTro"].HeaderText = "Vai trò";
+            switch (cb.Text)
+            {
+                case "Nhân viên bán hàng":
+                    dgv.Columns["KPI"].HeaderText = "KPI";
+                    dgv.Columns["Active"].HeaderText = "Trạng thái";
+                    break;
+                case "Nhân viên quản lý":
+                case " Nhân viên":
+                    dgv.Columns["Active"].HeaderText = "Trạng thái";
+                    break;
+                default:
+                    break;
+
+            }
+            return;
+        }
+        public void SetCbb(ComboBox rolecbb)
+        {
+            rolecbb.Items.Clear();
+            rolecbb.Items.Add("Người dùng");
+            rolecbb.Items.Add("Nhân viên");
+            rolecbb.Items.Add("Nhân viên quản lý");
+            rolecbb.Items.Add("Nhân viên bán hàng");
+            rolecbb.Items.Add("Khách hàng");
+            rolecbb.DropDownStyle = ComboBoxStyle.DropDownList;
+            rolecbb.SelectedIndex = 0;
         }
         public void setDGV(DataGridView dgv, ComboBox cb)
         {
             switch (cb.Text)
             {
                 case "Khách hàng":
-                    dgv.DataSource = UnitofWork.KhachHangDAO.GetAll();
+                    dgv.DataSource = UnitofWork.Instance.KhachHangDAO.GetAll();
                     break;
                 case "Nhân viên quản lý":
-                    dgv.DataSource = UnitofWork.NhanVienQuanLyDAO.GetAll();
+                    dgv.DataSource = UnitofWork.Instance.NhanVienQuanLyDAO.GetAll();
                     break;
                 case "Nhân viên bán hàng":
-                    dgv.DataSource = UnitofWork.NhanVienBanHangDAO.GetAll();
+                    dgv.DataSource = UnitofWork.Instance.NhanVienBanHangDAO.GetAll();
                     break;
                 case "Nhân viên":
-                    dgv.DataSource = UnitofWork.NhanVienDAO.GetAll();
+                    dgv.DataSource = UnitofWork.Instance.NhanVienDAO.GetAll();
                     break;
                 case "Người dùng":
-                    dgv.DataSource = UnitofWork.NguoiDungDAO.GetAll();
+                    dgv.DataSource = UnitofWork.Instance.NguoiDungDAO.GetAll();
                     break;
                 default:
                     throw new Exception("Không hợp lệ!");
             }
+            SetDGVHeader(dgv,cb);
+            return;
         }
         public void Insert(TextBox txtid, TextBox txtname, ComboBox role, TextBox sdt, TextBox email, TextBox kpi, RadioButton bt)
         {
@@ -62,12 +93,14 @@ namespace BLL
                         NVQL nvql = new NVQL(id, name, sodt, mail, vaitro, active);
                         UnitofWork.Instance.NguoiDungDAO.Insert(nvql);
                         UnitofWork.Instance.NhanVienDAO.Insert(nvql);
+                        UnitofWork.Instance.TaiKhoanDAO.Insert(new TaiKhoan(id, "123"));
                         UnitofWork.Instance.NhanVienQuanLyDAO.Insert(nvql);
                         break;
                     case "Nhân viên bán hàng":
                         NVBH nvbh = new NVBH(id, name, sodt, mail, vaitro, active, kpi1);
                         UnitofWork.Instance.NguoiDungDAO.Insert(nvbh);
                         UnitofWork.Instance.NhanVienDAO.Insert(nvbh);
+                        UnitofWork.Instance.TaiKhoanDAO.Insert(new TaiKhoan(id, "123"));
                         UnitofWork.Instance.NhanVienBanHangDAO.Insert(nvbh);
                         break;
                     default:
@@ -94,11 +127,13 @@ namespace BLL
                         break;
                     case "Nhân viên quản lý":
                         UnitofWork.Instance.NhanVienQuanLyDAO.Delete(id);
+                        UnitofWork.Instance.TaiKhoanDAO.Delete(id);
                         UnitofWork.Instance.NhanVienDAO.Delete(id);
                         UnitofWork.Instance.NguoiDungDAO.Delete(id);
                         break;
                     case "Nhân viên bán hàng":
                         UnitofWork.Instance.NhanVienBanHangDAO.Delete(id);
+                        UnitofWork.Instance.TaiKhoanDAO.Delete(id);
                         UnitofWork.Instance.NhanVienDAO.Delete(id);
                         UnitofWork.Instance.NguoiDungDAO.Delete(id);
                         break;
@@ -195,12 +230,14 @@ namespace BLL
 
         public NguoiDung GetNguoiDung(string idnvql)
         {
-            foreach(NguoiDung nd in UnitofWork.NguoiDungDAO.GetAll())
+            foreach(NguoiDung nd in UnitofWork.Instance.NguoiDungDAO.GetAll())
             {
                 if (nd.Id == idnvql)
                     return nd;
             }
             return null;
         }
+
+
     }
 }

@@ -18,7 +18,7 @@ namespace BLL
         }
         public string checkLogin(TextBox txtTK, TextBox txtMK)
         {
-            if(txtTK.Text=="Username"||txtMK.Text=="Password")
+            if(txtTK.Text==""||txtMK.Text=="")
             {
                 MessageBox.Show("Vui lòng nhập tên tài khoản và mật khẩu!");
                 return null;

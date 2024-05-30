@@ -18,6 +18,7 @@ namespace GUI
         {
             controller = new NguoiDungBLL();
             InitializeComponent();
+            controller.SetCbb(rolecbb);
             controller.setDGV(dataGridView1, rolecbb);
         }
 

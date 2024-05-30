@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BanVeBLL.cs" />
+    <Compile Include="DatVeBLL.cs" />
     <Compile Include="LichChieuBLL.cs" />
     <Compile Include="NguoiDungBLL.cs" />
     <Compile Include="PhimBLL.cs" />

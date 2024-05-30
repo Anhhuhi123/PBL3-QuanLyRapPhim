@@ -16,13 +16,16 @@ namespace GUI
     {
         private readonly string idnvbh;
         private readonly PhimBLL controllerPhim;
+        private DatVeBLL datVeBLL;
         public DatVe(string username)
-        {
+        {   
             controllerPhim = new PhimBLL();
+            datVeBLL = new DatVeBLL();
+            datVeBLL.mydel = new DatVeBLL.Mydel(button1_Click);
             idnvbh = username;
-            //label1.Text = "Xin chào " + idnvbh;
             InitializeComponent();
-            setButton();
+            label1.Text = "Xin chào " + idnvbh;// ngu ac
+            datVeBLL.SetButton(flowLayoutPanel1);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -31,17 +34,5 @@ namespace GUI
             BanVe bv = new BanVe(bt.Text);
             bv.Show();
         }
-
-        private void setButton()
-        {
-            List<Button> buttons = new List<Button>
-            {
-                button1, button2, button3, button4,
-                button5, button6, button7, button8
-            };
-            controllerPhim.setTenPhim(buttons);
-        }
-
-
     }
 }

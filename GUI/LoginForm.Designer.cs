@@ -100,9 +100,6 @@
             this.DNhap.Name = "DNhap";
             this.DNhap.Size = new System.Drawing.Size(162, 22);
             this.DNhap.TabIndex = 8;
-            this.DNhap.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DNhap_KeyDown);
-            this.DNhap.MouseEnter += new System.EventHandler(this.DNhap_Enter);
-            this.DNhap.MouseLeave += new System.EventHandler(this.DNhap_Leave);
             // 
             // MKhau
             // 
@@ -113,9 +110,6 @@
             this.MKhau.PasswordChar = '*';
             this.MKhau.Size = new System.Drawing.Size(162, 22);
             this.MKhau.TabIndex = 9;
-            this.MKhau.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Mkhau_KeyDown);
-            this.MKhau.MouseEnter += new System.EventHandler(this.MKhau_Enter);
-            this.MKhau.MouseLeave += new System.EventHandler(this.MKhau_Leave);
             // 
             // label1
             // 

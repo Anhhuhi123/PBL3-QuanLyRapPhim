@@ -39,7 +39,7 @@ namespace DAO
         {
             string query = @"INSERT INTO GheNgoi (Id, TrangThai, IdPhong,IdLichChieu) 
                             VALUES (@id,@trangthai,@idphong,@idlich)";
-            SqlParameter[] sqlParameters = new SqlParameter[3];
+            SqlParameter[] sqlParameters = new SqlParameter[4];
             sqlParameters[0] = new SqlParameter("@id", obj.Id);
             sqlParameters[1] = new SqlParameter("@trangthai", obj.TrangThai);
             sqlParameters[2] = new SqlParameter("@idphong", idphong);

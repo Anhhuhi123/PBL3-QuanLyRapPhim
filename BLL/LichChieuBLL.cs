@@ -26,7 +26,19 @@ namespace BLL
         {
             return lichChieuDAO.GetAll();
         }
-
+        public List<LichChieu> GetLichDangChieu(int id)
+        {
+            return lichChieuDAO.GetLichDangChieu(id);
+        }
+        public bool CheckPhimDangChieu(int idlc, int idPhong)
+        {
+            foreach(LichChieu lc in GetLichDangChieu(idPhong))
+            {
+                if (lc.Id == idlc)
+                    return true;
+            }
+            return false;
+        }
         public List<int> GetLichChieuid(string name)
         {
             List<int> list = new List<int>();
@@ -43,14 +55,27 @@ namespace BLL
         public void SetCbb(ComboBox cb)
         {
             List<string> list = new List<string>();
-            foreach(LichChieu lc in lichChieuDAO.GetAll())
+            foreach(Phim p in phimBLL.GetAllPhim())
             {
-                list.Add(lc.TenPhim);
+                list.Add(p.TenPhim);
             }
             cb.DropDownStyle = ComboBoxStyle.DropDownList;
             cb.Items.Add("Tất cả");
             cb.SelectedIndex = 0;
             cb.Items.AddRange(list.Distinct().ToArray());
+        }
+
+        public void setDGVHeader(DataGridView dgv)
+        {
+            if(dgv.Columns.Count>0)
+            {
+                dgv.Columns[0].HeaderText = "ID";
+                dgv.Columns[1].HeaderText = "Tên phim";
+                dgv.Columns[2].HeaderText = "Nhân viên quản lý";
+                dgv.Columns[3].HeaderText = "Ngày chiếu";
+                dgv.Columns[4].HeaderText = "Giờ chiếu";
+                dgv.Columns[5].HeaderText="Giờ kết thúc";
+            }
         }
         public void SetDGV(DataGridView dgv,ComboBox cb)
         {
@@ -61,6 +86,27 @@ namespace BLL
                     list.Add(lc);
             }
             dgv.DataSource = list;
+            setDGVHeader(dgv);
+        }
+        public void SetDGV(DataGridView dgv, CheckBox cb, int idphong)
+        {
+            List<LichChieu> list = new List<LichChieu>();
+            if (cb.Checked)
+            {
+                foreach (LichChieu lc in GetAllLichChieu())
+                {
+                    list.Add(lc);
+                }
+            }
+            else
+            {
+                foreach (LichChieu lc in GetLichDangChieu(idphong))
+                {
+                    list.Add(lc);
+                }
+            }
+            dgv.DataSource = list;
+            setDGVHeader(dgv);
         }
         private void Insert(TextBox txtIDLichChieu, ComboBox ccbTenPhim, string idnvql, DateTimePicker dateTimeLichChieu, TextBox txtGioChieu)
         {
@@ -114,18 +160,37 @@ namespace BLL
                 MessageBox.Show("Lỗi " + e.Message);
             }
         }
-        private void Delete(TextBox txtId)
+        private void Delete(TextBox txtId,int idPhongChieu=0)
         {
             try
             {
                 int id = Convert.ToInt32(txtId.Text);
-                lichChieuDAO.Delete(id);
+                if(idPhongChieu==0)
+                {
+                    lichChieuDAO.Delete(id);
+                }
+                else
+                {
+                    XoaPhimDangChieu(id, idPhongChieu);
+                }
                 MessageBox.Show("Xóa thành công");
             }
             catch (Exception e)
             {
                 MessageBox.Show("Lỗi " + e.Message);
             }
+        }
+        public void ThemPhimDangChieu(int idlc,int idpc)
+        {
+            if(CheckPhimDangChieu(idlc,idpc))
+            {
+                throw new Exception ("Lịch chiếu đã có trong phòng chiếu");
+            }
+            lichChieuDAO.ThemPhimDangChieu(idlc, idpc);
+        }
+        public void XoaPhimDangChieu(int idphim, int idphong)
+        {
+            lichChieuDAO.XoaPhimDangChieu(idphim, idphong);
         }
 
         public void XuLySuKien(Button sender, TextBox txtIDLichChieu, ComboBox ccbTenPhim, string idnvql, DateTimePicker dateTimeLichChieu, TextBox txtGioChieu)
@@ -145,6 +210,38 @@ namespace BLL
                     break;
             }
         }
+        public void XuLySuKien(Button sender, DataGridView dataGridView1,int idPhong)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn lịch chiếu");
+                return;
+            }
+            else
+            {
+                foreach(DataGridViewRow dr in dataGridView1.SelectedRows)
+                {
+                    try
+                    {
+                        int id = Convert.ToInt32(dr.Cells["Id"].Value.ToString());
+                        switch (sender.Text)
+                        {
+                            case "Thêm":
+                                ThemPhimDangChieu(id, idPhong);
+                                break;
+                            case "Xóa":
+                                XoaPhimDangChieu(id, idPhong);
+                                break;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("Lỗi " + e.Message);
+                    }
+                }
+                MessageBox.Show("Thay đổi thành công!");
+            }
+        }
 
         public void SetInfo(DataGridView dataGridView1, TextBox txtIDLichChieu, ComboBox ccbTenPhim, DateTimePicker dateTimeLichChieu, TextBox txtGioChieu,int index)
         {
@@ -158,5 +255,24 @@ namespace BLL
                 ccbTenPhim.Text = dr.Cells["TenPhim"].Value.ToString();
             }
         }
+
+        public int OpenPhongChieu(DataGridViewRow dataGridViewRow)
+        {
+            try
+            {
+                int id = Convert.ToInt32(dataGridViewRow.Cells[0].Value);
+                if (id != 0)
+                {
+                    MessageBox.Show(string.Format("Lịch chiếu của phòng {0} là ", id));
+                    return id;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Lỗi " + ex.Message);
+            }
+            return 0;
+        }
+
     }
 }

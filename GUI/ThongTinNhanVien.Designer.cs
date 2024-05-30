@@ -117,13 +117,6 @@ namespace GUI
             // 
             this.rolecbb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.rolecbb.FormattingEnabled = true;
-            this.rolecbb.Items.AddRange(new object[] {
-            "Người dùng",
-            "Nhân viên",
-            "Nhân viên quản lý",
-            "Nhân viên bán hàng",
-            "Khách hàng"});
-            this.rolecbb.SelectedIndex = 0;
             this.rolecbb.Location = new System.Drawing.Point(173, 166);
             this.rolecbb.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rolecbb.Name = "rolecbb";
@@ -290,7 +283,7 @@ namespace GUI
             this.Controls.Add(this.Idlbl);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThongTinNhanVien";
             this.Text = "ThongTinNhanVien";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

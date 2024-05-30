@@ -17,20 +17,31 @@ namespace GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            LoginForm loginForm = new LoginForm();
-            if(loginForm.ShowDialog()==DialogResult.OK)
+            while (true)
             {
-                if(loginForm.user.Contains("QL"))
+                using (LoginForm loginForm = new LoginForm())
                 {
-                    Application.Run(new QuanLyForm(loginForm.user));
-                    loginForm.Close();
-                }
-                else if(loginForm.user.Contains("BH"))
-                {
-                    Application.Run(new DatVe(loginForm.user));
-                    loginForm.Close();
+                    if (loginForm.ShowDialog() == DialogResult.OK)
+                    {
+                        if (loginForm.user.Contains("QL"))
+                        {
+                            Application.Run(new QuanLyForm(loginForm.user));
+                            loginForm.Close();
+                        }
+                        else if (loginForm.user.Contains("BH"))
+                        {
+                            Application.Run(new DatVe(loginForm.user));
+                            loginForm.Close();
+                        }
+                    }
+                    else
+                    {
+                        Application.Exit();
+                        return;
+                    }
                 }
             }
+
         }
     }
 }

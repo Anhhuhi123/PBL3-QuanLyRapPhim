@@ -84,13 +84,13 @@ namespace DAO
         }
         public List<PhongChieu> GetAllPhongDangChieuPhim(int id)
         {
-            string query = @"select  PhongChieu.Id,PhongChieu.Name,PhongChieu.Succhua,PhongChieu.Mota
+            string query = @"select PhongChieu.Id,PhongChieu.Name,PhongChieu.Succhua,PhongChieu.Mota
                     from PhongChieu 
                     INNER JOIN LichChieu_PhongChieu ON LichChieu_PhongChieu.IdPhongChieu=PhongChieu.Id
                     INNER JOIN LichChieu ON LichChieu_PhongChieu.IdLichChieu=LichChieu.Id
                     Where LichChieu.Id=@id";
             SqlParameter[] sqlParameters = new SqlParameter[1];
-            sqlParameters[0] = new SqlParameter("@id", 1);
+            sqlParameters[0] = new SqlParameter("@id", id);
             List<PhongChieu> list = new List<PhongChieu>();
             DataTable dt = DatabaseHelper.Instance.GetRecords(query, sqlParameters);
             foreach (DataRow dr in dt.Rows)
@@ -111,8 +111,8 @@ namespace DAO
             sqlParameters[0] = new SqlParameter("@idPhong", idPhong);
             sqlParameters[1] = new SqlParameter("@idLichChieu", idLichChieu);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
-            PhongChieu temp =GetById(idPhong);
-            for(int i=0;i<temp.Succhua;i++)
+            PhongChieu temp = GetById(idPhong);
+            for (int i = 0; i < temp.Succhua; i++)
             {
                 gheNgoiDAO.Insert(new GheNgoi(i + 1, true), idLichChieu, idPhong);
             }
@@ -125,11 +125,7 @@ namespace DAO
             sqlParameters[0] = new SqlParameter("@idPhong", idPhong);
             sqlParameters[1] = new SqlParameter("@idLichChieu", idLichChieu);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
-            PhongChieu temp = GetById(idPhong);
-            for(int i=0;i<temp.Succhua;i++)
-            {
-                gheNgoiDAO.Delete(idPhong, idLichChieu);
-            }
+            gheNgoiDAO.Delete(idPhong, idLichChieu);
         }
     }
 }

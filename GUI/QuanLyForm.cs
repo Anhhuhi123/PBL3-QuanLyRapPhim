@@ -24,7 +24,11 @@ namespace GUI
 
         public void openChildForm(Form childForm)
         {
-            if (currentChildForm != null)
+            if (currentChildForm != null && currentChildForm.GetType() == childForm.GetType())
+            {
+                return;
+            }
+            else if(currentChildForm != null)
             {
                 currentChildForm.Close();
             }
@@ -66,14 +70,7 @@ namespace GUI
 
         private void btDangXuat_Click(object sender, EventArgs e)
         {
-            LoginForm loginForm = new LoginForm();
-            loginForm.Show();
-            Close();
-        }
-
-        private void QuanLyForm_Load(object sender, EventArgs e)
-        {
-
+            this.Close();
         }
     }
 }
