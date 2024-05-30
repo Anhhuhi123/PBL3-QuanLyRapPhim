@@ -1,0 +1,157 @@
+Alter Table NguoiDung alter Column Vaitro nvarchar(20);
+Alter Table PhongChieu alter column Mota nvarchar(MAX);
+Alter Table PhongChieu Alter column Name nvarchar(20);
+
+INSERT INTO NguoiDung (Id, Fullname, SoDt, Email, Vaitro)
+VALUES 
+('KH001', N'Nguyễn Văn A', '0135466789', 'nguyena@gmail.com', 'Khách hàng'),
+('KH002', N'Nguyễn Văn C', '0253456789', 'nguyenb@gmail.com', 'Khách hàng'),
+('KH003', N'Nguyễn Văn B', '0101456789', 'ngudayenc@gmail.com', 'Khách hàng'),
+('KH004', N'Trần Thị B', '0123026789', 'nguyedanc@gmail.com', 'Khách hàng'),
+('KH005', N'Võ Văn A'   ,   '0123450389', 'nguyencad@gmail.com', 'Khách hàng'),
+('KH006', N'Nguyễn Văn D', '0193456789', 'nguyeennc@gmail.com', 'Khách hàng'),
+('KH007', N'Nguyễn Văn E', '0178456789', 'nguydsenc@gmail.com', 'Khách hàng'),
+('KH008', N'Nguyễn Văn F', '0175456789', 'nguyehtrnc@gmail.com', 'Khách hàng'),
+('KH009', N'Nguyễn Văn K', '0143456789', 'nguyehfnnc@gmail.com', 'Khách hàng'),
+('KH010', N'Nguyễn Văn M', '0123456789', 'nguyenvfwc@gmail.com', 'Khách hàng');
+
+
+INSERT INTO KhachHang (Id)
+VALUES
+('KH001'),
+('KH002'),
+('KH003'),
+('KH004'),
+('KH005'),
+('KH006'),
+('KH007'),
+('KH008'),
+('KH009'),
+('KH010');
+
+
+INSERT INTO NguoiDung (Id, Fullname, SoDt, Email, Vaitro)
+VALUES 
+('NVQL01', N'Trần Thị B', '0987654321', 'tranb@company.com', N'Nhân viên quản lý'),
+('NVQL02', N'Trần Thị D', '0987654321', 'tranb@company.com', N'Nhân viên quản lý'),
+('NVQL03', N'Trần Thị E', '0987654321', 'tranb@company.com', N'Nhân viên quản lý');
+
+INSERT INTO NguoiDung (Id, Fullname, SoDt, Email, Vaitro)
+VALUES 
+('NVBH01', N'Lê Văn C', '0345678901', 'lecdas@company.com', 'Nhân viên bán hàng'),
+('NVBH02', N'Lê Văn D', '0345678901', 'lecdasd@company.com', 'Nhân viên bán hàng'),
+('NVBH03', N'Võ Văn F', '0345678901', 'lecreb@company.com', 'Nhân viên bán hàng'),
+('NVBH04', N'Trần Văn T', '0345678901', 'lecbdfw@company.com', 'Nhân viên bán hàng'),
+('NVBH05', N'Võ Thiện K', '0345678901', 'lecrwvb@company.com', 'Nhân viên bán hàng');
+
+Insert INTO NhanVien(Id,Active)
+VALUES 
+('NVQL01',1),
+('NVQL02',1),
+('NVQL03',1),
+('NVBH01',1),
+('NVBH02',1),
+('NVBH03',1),
+('NVBH04',1),
+('NVBH05',1);
+
+INSERT INTO NhanVienBanHang(Id,KPI)
+VALUES 
+('NVBH01',1000),
+('NVBH02',2000),
+('NVBH03',200),
+('NVBH04',300),
+('NVBH05',5000);
+
+Insert INTO NhanVienQuanLy(Id)
+VALUES 
+('NVQL01'),
+('NVQL02'),
+('NVQL03');
+
+-- Phim hành động
+INSERT INTO Phim (Id, TenPhim, LoaiPhim, ThoiLuong, Mota) VALUES
+(1, N'Mad Max: Fury Road', N'Hành Động', 120, N'Trong một thế giới hậu tận thế, một người phụ nữ nổi loạn cùng một nhóm nữ tù nhân chạy trốn khỏi một lãnh chúa độc tài.');
+
+INSERT INTO Phim (Id, TenPhim, LoaiPhim, ThoiLuong, Mota) VALUES
+(2, N'John Wick', N'Hành Động', 101, N'Một sát thủ đã nghỉ hưu trở lại con đường cũ để trả thù cho chú chó của mình.');
+
+-- Phim hài
+INSERT INTO Phim (Id, TenPhim, LoaiPhim, ThoiLuong, Mota) VALUES
+(3, N'21 Jump Street', N'Hài', 109, N'Hai cảnh sát trẻ được giao nhiệm vụ trà trộn vào một trường trung học để phá một đường dây ma túy.');
+
+INSERT INTO Phim (Id, TenPhim, LoaiPhim, ThoiLuong, Mota) VALUES
+(4, N'The Hangover', N'Hài', 100, N'Một nhóm bạn thân trải qua một đêm tiệc tùng đáng nhớ ở Las Vegas và thức dậy không nhớ gì.');
+
+-- Phim chính kịch
+INSERT INTO Phim (Id, TenPhim, LoaiPhim, ThoiLuong, Mota) VALUES
+(5, N'The Shawshank Redemption', N'Chính kịch', 142, N'Một nhân viên ngân hàng bị kết tội giết vợ và người tình của cô, và bị tống vào nhà tù Shawshank, nơi anh tìm thấy sự cứu rỗi qua tình bạn và hy vọng.');
+
+INSERT INTO Phim (Id, TenPhim, LoaiPhim, ThoiLuong, Mota) VALUES
+(6, N'The Godfather', N'Chính kịch', 175, N'Câu chuyện về một gia đình mafia quyền lực ở New York trong những năm 1940.');
+
+-- Phim khoa học viễn tưởng
+INSERT INTO Phim (Id, TenPhim, LoaiPhim, ThoiLuong, Mota) VALUES
+(7, N'Interstellar', N'Khoa Học Viễn Tưởng', 169, N'Một nhóm các nhà thám hiểm du hành qua một lỗ sâu không gian để tìm kiếm một ngôi nhà mới cho nhân loại.');
+
+INSERT INTO Phim (Id, TenPhim, LoaiPhim, ThoiLuong, Mota) VALUES
+(8, N'Arrival', N'Khoa Học Viễn Tưởng', 116, N'Một nhà ngôn ngữ học được tuyển dụng để giải mã ngôn ngữ của người ngoài hành tinh khi 12 tàu vũ trụ bí ẩn hạ cánh trên Trái đất.');
+
+-- Phim hoạt hình
+INSERT INTO Phim (Id, TenPhim, LoaiPhim, ThoiLuong, Mota) VALUES
+(9, N'Spider-Man: Into the Spider-Verse', N'Hoạt Hình', 117, N'Miles Morales trở thành Người Nhện mới và cùng với các Người Nhện từ các chiều không gian khác hợp sức để chống lại Kingpin.');
+
+INSERT INTO Phim (Id, TenPhim, LoaiPhim, ThoiLuong, Mota) VALUES
+(10, N'Toy Story', N'Hoạt Hình', 81, N'Câu chuyện về một nhóm đồ chơi sống động và cuộc phiêu lưu của chúng.');
+
+INSERT INTO PhongChieu (Id, Name, SucChua, Mota) VALUES (1, N'Phòng chiếu 1', 100, N'Phòng chiếu tiêu chuẩn với màn hình lớn và âm thanh vòm');
+
+INSERT INTO PhongChieu (Id, Name, SucChua, Mota) VALUES (2, N'Phòng chiếu VIP', 50, N'Phòng chiếu cao cấp với ghế ngồi thoải mái và dịch vụ đặc biệt');
+
+INSERT INTO PhongChieu (Id, Name, SucChua, Mota) VALUES (3, N'Phòng chiếu 3D', 80, N'Phòng chiếu 3D hiện đại với công nghệ âm thanh và hình ảnh sống động');
+
+INSERT INTO PhongChieu (Id, Name, SucChua, Mota) VALUES (4, N'Phòng chiếu 4DX', 60, N'Phòng chiếu 4DX với hiệu ứng rung lắc, gió, nước, và mùi hương');
+
+INSERT INTO PhongChieu (Id, Name, SucChua, Mota) VALUES (5, N'Phòng chiếu IMAX', 200, N'Phòng chiếu IMAX lớn nhất với màn hình khổng lồ và âm thanh đỉnh cao');
+
+Insert into TaiKhoan(TenTK,MatKhau)
+Values 
+('NVBH01','123'),
+('NVBH02','123'),
+('NVBH03','123'),
+('NVBH04','123'),
+('NVBH05','123'),
+('NVQL01','123'),
+('NVQL02','123'),
+('NVQL03','123');
+
+INSERT INTO LichChieu (Id, IdPhim, IdNVQL, NgayChieu, GioChieu) VALUES
+(1, 1, 'NVQL01', '2024-05-25', 18),
+(2, 3, 'NVQL02', '2024-06-01', 14),
+(3, 2, 'NVQL01', '2024-05-30', 20),
+(4, 4, 'NVQL02', '2024-06-02', 10),
+(5, 1, 'NVQL01', '2024-06-05', 16),
+(6, 5, 'NVQL03', '2024-06-08', 12),
+(7, 2, 'NVQL02', '2024-06-10', 19),
+(8, 3, 'NVQL01', '2024-06-12', 15),
+(9, 4, 'NVQL03', '2024-06-15', 11),
+(10, 1, 'NVQL02', '2024-06-18', 17),
+(11, 6, 'NVQL01', '2024-06-20', 21),
+(12, 5, 'NVQL03', '2024-06-22', 13),
+(13, 2, 'NVQL02', '2024-06-25', 18),
+(14, 3, 'NVQL01', '2024-06-27', 14),
+(15, 4, 'NVQL03', '2024-06-30', 10);
+
+INSERT INTO VeDuocDat (Id, SoVe, TongTien, IdLichChieu) VALUES
+(1, 2, 150000, 1),  -- Vé cho lịch chiếu có Id = 1
+(2, 1, 80000, 2),   -- Vé cho lịch chiếu có Id = 2
+(3, 3, 210000, 3),  -- Vé cho lịch chiếu có Id = 3
+(4, 5, 350000, 4),  -- Vé cho lịch chiếu có Id = 4
+(5, 2, 160000, 5);  -- Vé cho lịch chiếu có Id = 5 
+INSERT INTO HoaDon (Id, TongTien, GhiChu, IdNVBH, IdKhachHang, IdVeDuocDat) VALUES
+(1, 150000, N'Không', 'NVBH01', 'KH001', 1), 
+(2, 80000, N'Không', 'NVBH02', 'KH002', 2),
+(3, 210000, N'Không', 'NVBH01', 'KH003', 3),
+(4, 350000, N'Không', 'NVBH02', 'KH004', 4),
+(5, 160000, N'Không', 'NVBH03', 'KH005', 5); 
+
