@@ -1,7 +1,9 @@
-﻿using DAO;
+﻿using BLL.UnitOfWork;
+using DAO;
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,23 +13,26 @@ namespace BLL
 {
     public class PhongChieuBLL
     {
-        PhongChieuDAO phongChieuDAO;
+        CinemaUnitOfWork unitOfWork;
         public PhongChieuBLL()
         {
-            phongChieuDAO = new PhongChieuDAO();
+            unitOfWork = CinemaUnitOfWork.Instance;
         }
-        public List<PhongChieu> GetAllPhongChieu()
+        public PhongChieu GetPhongByName(string text)
         {
-            return phongChieuDAO.GetAll();
-        }
-        public List<PhongChieu> GetAllPhongDangChieuPhim(int id)
-        {
-            return phongChieuDAO.GetAllPhongDangChieuPhim(id);
+            foreach (PhongChieu pc in unitOfWork.GetAll<PhongChieu>())
+            {
+                if (pc.Name == text)
+                {
+                    return pc;
+                }
+            }
+            return null;
         }
         public bool CheckPhongChieuPhim(int idphim, int idphong)
         {
             if (idphim == 0 || idphong == 0) return false;
-            foreach (PhongChieu chieu in GetAllPhongDangChieuPhim(idphim))
+            foreach (PhongChieu chieu in unitOfWork.GetAllPhongDangChieuPhim(idphim))
             {
                 if (chieu.Id == idphong) return true;
             }
@@ -42,7 +47,7 @@ namespace BLL
         }
         public void SetDGV(DataGridView dgv)
         {
-            dgv.DataSource = phongChieuDAO.GetAll();
+            dgv.DataSource = unitOfWork.GetAll<PhongChieu>();
             setDGVHeader(dgv);
         }
         public void SetDGV(DataGridView dataGridView1, CheckBox checkBox1, int idLich)
@@ -50,14 +55,14 @@ namespace BLL
             List<PhongChieu> list = new List<PhongChieu>();
             if (checkBox1.Checked)
             {
-                foreach (PhongChieu lc in GetAllPhongChieu())
+                foreach (PhongChieu lc in unitOfWork.GetAll<PhongChieu>())
                 {
                     list.Add(lc);
                 }
             }
             else
             {
-                foreach (PhongChieu lc in GetAllPhongDangChieuPhim(idLich))
+                foreach (PhongChieu lc in unitOfWork.GetAllPhongDangChieuPhim(idLich))
                 {
                     list.Add(lc);
                 }
@@ -72,8 +77,11 @@ namespace BLL
                 int id= Convert.ToInt32(txtid.Text);
                 string name = txtname.Text;
                 int size = Convert.ToInt32(txtsize.Text);
+                if(size==0 || size > 100){
+                    throw new Exception("Sức chứa phải lớn hơn 0 và không quá 100");
+                }
                 string mota = txtmota.Text;
-                phongChieuDAO.Insert(new PhongChieu(id, name, size, mota));
+                unitOfWork.Insert(new PhongChieu(id, name, size, mota));
                 MessageBox.Show("Thêm thành công");
             }
             catch (Exception ex)
@@ -90,7 +98,7 @@ namespace BLL
                 string name = txtname.Text;
                 int size = Convert.ToInt32(txtsize.Text);
                 string mota = txtmota.Text;
-                phongChieuDAO.Update(new PhongChieu(id, name, size, mota));
+                unitOfWork.Update(new PhongChieu(id, name, size, mota));
                 MessageBox.Show("Sửa thành công");
             }
             catch(Exception ex)
@@ -103,7 +111,7 @@ namespace BLL
             try
             {
                 int id= Convert.ToInt32(txtid.Text);
-                phongChieuDAO.Delete(id);
+                unitOfWork.Delete<PhongChieu>(id);
                 MessageBox.Show("Xóa thành công");
             }
             catch(Exception ex)
@@ -111,19 +119,6 @@ namespace BLL
                 MessageBox.Show("Lỗi "+ex.Message);
             }
         }
-        public void ThemPhimDangChieu(int idlc, int idpc)
-        {
-            if (CheckPhongChieuPhim(idlc, idpc))
-            {
-                throw new Exception("Lịch chiếu đã có trong phòng chiếu");
-            }
-            phongChieuDAO.InsertPhongChieuPhim(idlc, idpc);
-        }
-        public void XoaPhimDangChieu(int idphim, int idphong)
-        {
-            phongChieuDAO.DeletePhongChieu(idphim, idphong);
-        }
-
         public void xuLySuKien(Button sender, TextBox txtid, TextBox txtname, TextBox txtsize, TextBox txtmota)
         {
             try
@@ -166,10 +161,10 @@ namespace BLL
                         switch (sender.Text)
                         {
                             case "Thêm":
-                                ThemPhimDangChieu(id, idLichChieu);
+                                unitOfWork.ThemSuatChieu(idLichChieu, id);
                                 break;
                             case "Xóa":
-                                XoaPhimDangChieu(id, idLichChieu);
+                                unitOfWork.XoaSuatChieu(idLichChieu, id);
                                 break;
                         }
                     }
@@ -198,7 +193,6 @@ namespace BLL
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
             return 0;
-
         }
     }
 }

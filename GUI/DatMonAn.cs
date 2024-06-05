@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,11 +11,16 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class GheNgoiPhong3 : Form
+    public partial class DatMonAn : Form
     {
-        public GheNgoiPhong3()
+        DatMonAnBLL controller;
+        public DatMonAn()
         {
             InitializeComponent();
+        }
+        private void Them_Mon_An_Click(object sender, EventArgs e)
+        {
+            controller.ThemMonAn(dataGridView1, (Button)sender);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DAO;
+﻿using BLL.UnitOfWork;
+using DAO;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -13,21 +14,21 @@ namespace BLL
     
     public class PhimBLL
     {
-        PhimDAO phimDAO;
+        CinemaUnitOfWork unitOfWork;
         public PhimBLL()
         {
-            phimDAO = new PhimDAO();
+            unitOfWork = CinemaUnitOfWork.Instance;
         }
 
-        public List<Phim> GetAllPhim()
+        public List<Phim> GetAll()
         {
-            return phimDAO.GetAll();
+            return unitOfWork.GetAll<Phim>();
         }
 
         public void setTenPhim(List<Button> buttons)
         {
             List<String> list = new List<String>();
-            foreach (Phim phim in phimDAO.GetAll())
+            foreach (Phim phim in GetAll())
             {
                 list.Add(phim.TenPhim);
             }
@@ -54,7 +55,7 @@ namespace BLL
         public void setDGV(DataGridView dgv,ComboBox text)
         {
             List<Phim> list = new List<Phim>();
-            foreach(Phim phim in phimDAO.GetAll())
+            foreach(Phim phim in GetAll())
             {
                 if (text.Text=="Tất cả"||phim.TheLoai.Contains(text.Text))
                 {
@@ -68,7 +69,7 @@ namespace BLL
         {
             List<string> tenphim = new List<string>();
             tenphim.Add("Tất cả");
-            foreach(Phim phim in phimDAO.GetAll())
+            foreach(Phim phim in GetAll())
             {
                 tenphim.Add(phim.TheLoai);
             }
@@ -84,7 +85,7 @@ namespace BLL
                 int dur = Convert.ToInt32(thoiluong.Text);
                 string des = mota.Text;
                 Phim phim = new Phim(id, name, type, dur, des);
-                phimDAO.Insert(phim);
+                unitOfWork.Insert(phim);
                 MessageBox.Show("Thêm thành công");
             }
             catch(Exception e)
@@ -102,7 +103,7 @@ namespace BLL
                 int dur = Convert.ToInt32(thoiluong.Text);
                 string des = mota.Text;
                 Phim phim = new Phim(id, name, type, dur, des);
-                phimDAO.Update(phim);
+                unitOfWork.Update(phim);
                 MessageBox.Show("Sửa thành công");
             }
             catch (Exception e)
@@ -115,7 +116,7 @@ namespace BLL
             try
             {
                 int id =Convert.ToInt32(maphim.Text);
-                phimDAO.Delete(id);
+                unitOfWork.Delete<Phim>(id);
                 MessageBox.Show("Xóa thành công");
             }
             catch(Exception e)
@@ -123,31 +124,6 @@ namespace BLL
                 MessageBox.Show("Lỗi "+e.Message);
             }
         }
-        public Phim GetPhim(int id)
-        {
-            foreach(Phim ph in phimDAO.GetAll())
-            {
-                if(ph.Id==id)
-                {
-                    return ph;
-                }
-            }
-            return null;
-        }
-
-
-        public int TimKiemPhim(string name)
-        {
-            foreach (Phim phim in phimDAO.GetAll())
-            {
-                if (phim.TenPhim.Equals(name))
-                {
-                    return phim.Id;
-                }
-            }
-            return 0;
-        }
-
         public void xuLySuKien(Button sender, TextBox txtMa, TextBox txtTen, ComboBox ccbTheLoai, TextBox txtThoiLuong, TextBox txtMoTa)
         {
             switch (sender.Text)

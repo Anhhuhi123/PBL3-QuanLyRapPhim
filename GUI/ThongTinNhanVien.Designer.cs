@@ -60,12 +60,12 @@ namespace GUI
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView1.Location = new System.Drawing.Point(411, 0);
+            this.dataGridView1.Location = new System.Drawing.Point(384, 0);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1037, 660);
+            this.dataGridView1.Size = new System.Drawing.Size(1057, 729);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
@@ -120,7 +120,7 @@ namespace GUI
             this.rolecbb.Location = new System.Drawing.Point(173, 166);
             this.rolecbb.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.rolecbb.Name = "rolecbb";
-            this.rolecbb.Size = new System.Drawing.Size(179, 24);
+            this.rolecbb.Size = new System.Drawing.Size(180, 24);
             this.rolecbb.TabIndex = 7;
             this.rolecbb.SelectedIndexChanged += new System.EventHandler(this.rolecbb_SelectedIndexChanged);
             // 
@@ -238,7 +238,7 @@ namespace GUI
             this.Deletebtn.Text = "Xóa";
             this.Deletebtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.Deletebtn.UseVisualStyleBackColor = false;
-            this.Deletebtn.Click += new System.EventHandler(this.Button_Click);
+            this.Deletebtn.Click += new System.EventHandler(this.Deletebtn_Click);
             // 
             // txtKPI
             // 
@@ -262,7 +262,7 @@ namespace GUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1448, 660);
+            this.ClientSize = new System.Drawing.Size(1441, 729);
             this.Controls.Add(this.txtKPI);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.Exitbtn);
@@ -283,7 +283,7 @@ namespace GUI
             this.Controls.Add(this.Idlbl);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ThongTinNhanVien";
             this.Text = "ThongTinNhanVien";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

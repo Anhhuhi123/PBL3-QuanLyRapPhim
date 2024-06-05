@@ -8,16 +8,16 @@ namespace DTO
 {
     public class HoaDon
     {
-        public int Id { get; set; }
-        public float TongTien { get; set; }
-        public string MoTa { get; set; }
+        public int Id { get; private set; }
+        public double TongTien { get; set; }
+        public string GhiChu { get; set; }
         public string TenKhach { get; set; }
         public string TenNVBH { get; set; }
-        public HoaDon(int id, float tongTien, string moTa, string tenKhach, string tenNVBH)
+        public HoaDon(int id,double tongTien, string ghiChu, string tenKhach, string tenNVBH)
         {
             Id = id;
             TongTien = tongTien;
-            MoTa = moTa;
+            GhiChu = ghiChu;
             TenKhach = tenKhach;
             TenNVBH = tenNVBH;
         }

@@ -36,6 +36,18 @@ namespace DAO
             }
             return list;
         }
+        public Phim GetById(int id)
+        {
+            string query = "SELECT * FROM Phim WHERE Id = @id";
+            SqlParameter sqlParameter = new SqlParameter("@id", id);
+            DataTable dt = DatabaseHelper.Instance.GetRecords(query, sqlParameter);
+            DataRow row = dt.Rows[0];
+            string tenphim = row["TenPhim"].ToString();
+            string theloai = row["LoaiPhim"].ToString();
+            int thoiluong = Convert.ToInt32(row["ThoiLuong"]);
+            string mota = row["MoTa"].ToString();
+            return new Phim(id, tenphim, theloai, thoiluong, mota);
+        }
         public void Insert(Phim obj)
         {
             string query = @"INSERT INTO Phim (Id,Tenphim, LoaiPhim, Thoiluong, Mota) 

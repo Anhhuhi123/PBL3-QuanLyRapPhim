@@ -56,6 +56,7 @@ Create Table VeDuocDat(
 	Id int primary key,
 	Tongtien float,
 	IdLichChieu int not null,
+	SoVe int,
 	Foreign key(IdLichChieu) references LichChieu(Id),
 )
 Create Table GheNgoi(
@@ -67,7 +68,8 @@ Create Table GheNgoi(
 	primary key(Id, IdPhong,IdLichChieu),
 	Foreign key(IdPhong) references PhongChieu(Id),
 	Foreign key(IdLichChieu) references LichChieu(Id),
-	Foreign key(IdVeDuocDat) references VeDuocDat(Id),
+	Foreign key(IdVeDuocDat) references VeDuocDat(Id)
+	on delele SET null,
 )
 Create table LichChieu_PhongChieu(
 	IdPhongChieu int,
@@ -92,4 +94,17 @@ Create Table DoanhThu(
 	TongDoanhThu Float,
 	IdHoaDon int not null,
 	Foreign key (IdHoaDon) references HoaDon(Id),
+)
+Create Table MonAn(
+	Id int primary key,
+	TenMon nvarchar(max),
+	GiaTien float,
+)
+cREATE tABLE ChiTietHoaDon(
+	IdHoaDon int,
+	IdMonAn int,
+	SoLuongMonAn int,
+	Foreign key (IdHoaDon) references HoaDon(Id),
+	Foreign key (IdHoaDon) references HoaDon(Id),
+	Primary key(IdHoaDon,IdMonAn)
 )

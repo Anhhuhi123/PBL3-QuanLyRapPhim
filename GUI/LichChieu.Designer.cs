@@ -49,16 +49,17 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView1.Location = new System.Drawing.Point(373, 0);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridView1.Location = new System.Drawing.Point(319, 0);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(706, 592);
+            this.dataGridView1.Size = new System.Drawing.Size(762, 592);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
@@ -107,7 +108,7 @@
             // 
             this.btThem.BackColor = System.Drawing.Color.DarkRed;
             this.btThem.Location = new System.Drawing.Point(35, 313);
-            this.btThem.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btThem.Margin = new System.Windows.Forms.Padding(2);
             this.btThem.Name = "btThem";
             this.btThem.Size = new System.Drawing.Size(107, 46);
             this.btThem.TabIndex = 6;
@@ -119,7 +120,7 @@
             // 
             this.btSua.BackColor = System.Drawing.Color.DarkRed;
             this.btSua.Location = new System.Drawing.Point(180, 313);
-            this.btSua.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btSua.Margin = new System.Windows.Forms.Padding(2);
             this.btSua.Name = "btSua";
             this.btSua.Size = new System.Drawing.Size(107, 46);
             this.btSua.TabIndex = 7;
@@ -131,7 +132,7 @@
             // 
             this.btXoa.BackColor = System.Drawing.Color.DarkRed;
             this.btXoa.Location = new System.Drawing.Point(35, 395);
-            this.btXoa.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btXoa.Margin = new System.Windows.Forms.Padding(2);
             this.btXoa.Name = "btXoa";
             this.btXoa.Size = new System.Drawing.Size(107, 46);
             this.btXoa.TabIndex = 8;
@@ -143,7 +144,7 @@
             // 
             this.btThoat.BackColor = System.Drawing.Color.DarkRed;
             this.btThoat.Location = new System.Drawing.Point(180, 395);
-            this.btThoat.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btThoat.Margin = new System.Windows.Forms.Padding(2);
             this.btThoat.Name = "btThoat";
             this.btThoat.Size = new System.Drawing.Size(107, 46);
             this.btThoat.TabIndex = 9;
@@ -154,7 +155,7 @@
             // txtIDLichChieu
             // 
             this.txtIDLichChieu.Location = new System.Drawing.Point(101, 99);
-            this.txtIDLichChieu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtIDLichChieu.Margin = new System.Windows.Forms.Padding(2);
             this.txtIDLichChieu.Name = "txtIDLichChieu";
             this.txtIDLichChieu.Size = new System.Drawing.Size(186, 20);
             this.txtIDLichChieu.TabIndex = 10;
@@ -163,7 +164,7 @@
             // 
             this.ccbTenPhim.FormattingEnabled = true;
             this.ccbTenPhim.Location = new System.Drawing.Point(101, 141);
-            this.ccbTenPhim.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ccbTenPhim.Margin = new System.Windows.Forms.Padding(2);
             this.ccbTenPhim.Name = "ccbTenPhim";
             this.ccbTenPhim.Size = new System.Drawing.Size(135, 21);
             this.ccbTenPhim.TabIndex = 11;
@@ -171,7 +172,7 @@
             // txtGioChieu
             // 
             this.txtGioChieu.Location = new System.Drawing.Point(101, 234);
-            this.txtGioChieu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtGioChieu.Margin = new System.Windows.Forms.Padding(2);
             this.txtGioChieu.Name = "txtGioChieu";
             this.txtGioChieu.Size = new System.Drawing.Size(186, 20);
             this.txtGioChieu.TabIndex = 12;
@@ -179,7 +180,7 @@
             // dateTimeLichChieu
             // 
             this.dateTimeLichChieu.Location = new System.Drawing.Point(101, 188);
-            this.dateTimeLichChieu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTimeLichChieu.Margin = new System.Windows.Forms.Padding(2);
             this.dateTimeLichChieu.Name = "dateTimeLichChieu";
             this.dateTimeLichChieu.Size = new System.Drawing.Size(186, 20);
             this.dateTimeLichChieu.TabIndex = 15;
@@ -197,7 +198,7 @@
             // Filterbtn
             // 
             this.Filterbtn.Location = new System.Drawing.Point(243, 141);
-            this.Filterbtn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Filterbtn.Margin = new System.Windows.Forms.Padding(2);
             this.Filterbtn.Name = "Filterbtn";
             this.Filterbtn.Size = new System.Drawing.Size(44, 20);
             this.Filterbtn.TabIndex = 18;
@@ -210,7 +211,7 @@
             this.checkBox1.AutoSize = true;
             this.checkBox1.Enabled = false;
             this.checkBox1.Location = new System.Drawing.Point(34, 280);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(176, 17);
             this.checkBox1.TabIndex = 19;
@@ -224,7 +225,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1079, 592);
+            this.ClientSize = new System.Drawing.Size(1081, 592);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.Filterbtn);
             this.Controls.Add(this.label5);
@@ -242,7 +243,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "LichChieu";
             this.Text = "LichChieu";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

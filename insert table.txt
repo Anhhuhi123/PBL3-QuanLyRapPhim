@@ -155,3 +155,18 @@ INSERT INTO HoaDon (Id, TongTien, GhiChu, IdNVBH, IdKhachHang, IdVeDuocDat) VALU
 (4, 350000, N'Không', 'NVBH02', 'KH004', 4),
 (5, 160000, N'Không', 'NVBH03', 'KH005', 5); 
 
+
+INSERT INTO MonAn (Id, TenMon, GiaTien)
+VALUES 
+    (1, N'Bắp rang bơ(M)', 50000),
+    (2, N'Bắp rang bơ(L)', 60000),
+    (3, N'Bắp rang caramel(M)', 60000),
+    (4, N'Bắp rang caramel(L)', 70000),
+    (5, N'Coca-Cola(M)', 25000),
+    (6, N'Coca-Cola(L)', 35000),
+    (7, N'Pepsi(M)', 25000),
+    (8, N'Pepsi(L)', 35000),
+    (9, N'Sprite(M)', 25000),
+    (10, N'Sprite(L)', 35000),
+    (11, N'Nước suối', 15000),
+    (12, N'Bánh kẹo M&M', 30000);

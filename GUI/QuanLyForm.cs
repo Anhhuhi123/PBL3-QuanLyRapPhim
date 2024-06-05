@@ -14,7 +14,7 @@ namespace GUI
     public partial class QuanLyForm : Form
     {
         private readonly string idnvql ;
-        public Form currentChildForm;
+        private Form currentChildForm=null;
         public QuanLyForm(string username)
         {
             idnvql=username;
@@ -26,18 +26,20 @@ namespace GUI
         {
             if (currentChildForm != null && currentChildForm.GetType() == childForm.GetType())
             {
+                currentChildForm.Dispose();
+                currentChildForm= null;
                 return;
             }
             else if(currentChildForm != null)
             {
-                currentChildForm.Close();
+                currentChildForm.Dispose();
+                currentChildForm = null;
             }
             currentChildForm = childForm;
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
-            childForm.Dock = DockStyle.Fill;
             panel2.Controls.Add(childForm);
-            childForm.BringToFront();
+            GC.Collect();
             childForm.Show();
         }
 

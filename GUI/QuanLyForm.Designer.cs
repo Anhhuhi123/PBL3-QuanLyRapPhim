@@ -245,7 +245,7 @@
             this.panel2.Location = new System.Drawing.Point(272, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1079, 592);
+            this.panel2.Size = new System.Drawing.Size(1081, 592);
             this.panel2.TabIndex = 8;
             // 
             // flowLayoutPanel1
@@ -262,7 +262,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ClientSize = new System.Drawing.Size(1351, 592);
+            this.ClientSize = new System.Drawing.Size(1353, 592);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);

@@ -21,11 +21,15 @@ namespace DAO
             sqlParameters[1] = new SqlParameter("@idlich", idlichchieu);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
-        public List<GheNgoi> GetAll()
+        public List<GheNgoi> GetAll(int idLich,int idPhong)
         {
             List<GheNgoi> list = new List<GheNgoi>();
-            string query=@"SELECT * FROM GheNgoi";
-            DataTable dt = DatabaseHelper.Instance.GetRecords(query);
+            string query= @"SELECT * FROM GheNgoi 
+                           WHERE IdLichChieu=@idlc and IdPhong=@idpc";
+            SqlParameter[] sqlParameters = new SqlParameter[2];
+            sqlParameters[0] = new SqlParameter("@idlc", idLich);
+            sqlParameters[1] = new SqlParameter("@idpc", idPhong);
+            DataTable dt = DatabaseHelper.Instance.GetRecords(query,sqlParameters);
             foreach(DataRow row in dt.Rows)
             {
                 int id = Convert.ToInt32(row["Id"]);
@@ -47,16 +51,19 @@ namespace DAO
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
 
-        public void Update(GheNgoi obj,int idlich,int idphong)
+        public void Update(GheNgoi obj,int idlich,int idphong,int idVeDuocDat)
         {
             string query = @"UPDATE GheNgoi 
-                            SET TrangThai=@trangthai ,IdPhong=@idphong,IdLichChieu=@idlich 
-                            WHERE Id = @id";
-            SqlParameter[] sqlParameters = new SqlParameter[4];
+                            SET TrangThai=@trangthai,
+                            IdVeDuocDat=@idVeDuocDat
+                            WHERE Id = @id AND IdPhong=@idphong
+                            AND IdLichChieu=@idlich ";
+            SqlParameter[] sqlParameters = new SqlParameter[5];
             sqlParameters[0] = new SqlParameter("@id", obj.Id);
             sqlParameters[1] = new SqlParameter("@trangthai", obj.TrangThai);
             sqlParameters[2] = new SqlParameter("@idphong", idphong);
             sqlParameters[3] = new SqlParameter("@idlich", idlich);
+            sqlParameters[4] = new SqlParameter("@idVeDuocDat", idVeDuocDat);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
     }
