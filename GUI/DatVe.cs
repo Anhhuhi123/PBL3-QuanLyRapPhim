@@ -32,6 +32,7 @@ namespace GUI
         {
             Button bt = (Button)sender;
             BanVe bv = new BanVe(bt.Text);
+            bv.idnvbh = idnvbh;
             bv.Show();
         }
     }

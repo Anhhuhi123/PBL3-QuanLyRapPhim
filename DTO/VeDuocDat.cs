@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class VeDuocDat : PhongChieu
+    public class VeDuocDat 
     {
         public int Id { get; set; }
         public int SoVe { get; set; }
-        public float TongTien { get; set; } 
-        public bool TrangThai { get; set; }
-        public string HinhThuc { get; set; }
+        public double TongTien { get; set; } 
+        public VeDuocDat(int id,int sove, double tongtien) {
+            Id=id;
+            SoVe = sove;
+            TongTien = tongtien;
+        }
         public VeDuocDat() { }
     }
 }

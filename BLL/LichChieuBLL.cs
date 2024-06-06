@@ -1,4 +1,5 @@
-﻿using DAO;
+﻿using BLL.UnitOfWork;
+using DAO;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -12,27 +13,17 @@ namespace BLL
 {
     public class LichChieuBLL
     {
-        LichChieuDAO lichChieuDAO;
-        PhimBLL phimBLL;
         NguoiDungBLL nguoiDungBLL;
+        CinemaUnitOfWork unitOfWork;
         public LichChieuBLL()
         {
-            lichChieuDAO = new LichChieuDAO();
-            phimBLL = new PhimBLL();
             nguoiDungBLL = new NguoiDungBLL();
+            unitOfWork = CinemaUnitOfWork.Instance;
         }
 
-        public List<LichChieu> GetAllLichChieu()
-        {
-            return lichChieuDAO.GetAll();
-        }
-        public List<LichChieu> GetLichDangChieu(int id)
-        {
-            return lichChieuDAO.GetLichDangChieu(id);
-        }
         public bool CheckPhimDangChieu(int idlc, int idPhong)
         {
-            foreach(LichChieu lc in GetLichDangChieu(idPhong))
+            foreach(LichChieu lc in unitOfWork.GetLichDangChieu(idPhong))
             {
                 if (lc.Id == idlc)
                     return true;
@@ -42,7 +33,7 @@ namespace BLL
         public List<int> GetLichChieuid(string name)
         {
             List<int> list = new List<int>();
-            foreach (LichChieu lc in GetAllLichChieu())
+            foreach (LichChieu lc in unitOfWork.GetAll<LichChieu>())
             {
                 if (lc.TenPhim == name)
                 {
@@ -55,7 +46,7 @@ namespace BLL
         public void SetCbb(ComboBox cb)
         {
             List<string> list = new List<string>();
-            foreach(Phim p in phimBLL.GetAllPhim())
+            foreach(Phim p in unitOfWork.GetAll<Phim>())
             {
                 list.Add(p.TenPhim);
             }
@@ -65,7 +56,7 @@ namespace BLL
             cb.Items.AddRange(list.Distinct().ToArray());
         }
 
-        public void setDGVHeader(DataGridView dgv)
+        public static void setDGVHeader(DataGridView dgv)
         {
             if(dgv.Columns.Count>0)
             {
@@ -80,7 +71,7 @@ namespace BLL
         public void SetDGV(DataGridView dgv,ComboBox cb)
         {
             List<LichChieu> list = new List<LichChieu>();
-            foreach(LichChieu lc in lichChieuDAO.GetAll())
+            foreach(LichChieu lc in unitOfWork.GetAll<LichChieu>())
             {
                 if(cb.Text=="Tất cả" || lc.TenPhim.Contains(cb.Text))
                     list.Add(lc);
@@ -93,14 +84,14 @@ namespace BLL
             List<LichChieu> list = new List<LichChieu>();
             if (cb.Checked)
             {
-                foreach (LichChieu lc in GetAllLichChieu())
+                foreach (LichChieu lc in unitOfWork.GetAll<LichChieu>())
                 {
                     list.Add(lc);
                 }
             }
             else
             {
-                foreach (LichChieu lc in GetLichDangChieu(idphong))
+                foreach (LichChieu lc in unitOfWork.GetLichDangChieu(idphong))
                 {
                     list.Add(lc);
                 }
@@ -117,17 +108,17 @@ namespace BLL
             }
             try
             {
-                int idphim=phimBLL.TimKiemPhim(ccbTenPhim.Text);
+                int idphim=unitOfWork.SearchPhimByName(ccbTenPhim.Text);
                 string tennvql = nguoiDungBLL.GetNguoiDung(idnvql).FullName;
 
                 int id =Convert.ToInt32(txtIDLichChieu.Text);
                 string tenphim = ccbTenPhim.Text;
                 DateTime ngaychieu = dateTimeLichChieu.Value;
                 int giochieu = Convert.ToInt32(txtGioChieu.Text);
-                double time = phimBLL.GetPhim(idphim).ThoiLuong/60;
+                double time = unitOfWork.GetById<Phim>(idphim).ThoiLuong/60;
                 int gioketthuc = giochieu + (int)Math.Ceiling(time);
                 LichChieu temp =new LichChieu(id, tenphim, tennvql, ngaychieu, giochieu, gioketthuc);
-                lichChieuDAO.Insert(temp,idphim,idnvql);
+                unitOfWork.InsertLichChieu(temp, idphim, idnvql);
                 MessageBox.Show("Thêm thành công");
             }
             catch (Exception e)
@@ -149,9 +140,10 @@ namespace BLL
                     string tenphim = cbbtenphim.Text;
                     DateTime ngaychieu = DTngaychieu.Value;
                     int giochieu = Convert.ToInt32(txtgio.Text);
-                    double time = phimBLL.GetPhim(phimBLL.TimKiemPhim(tenphim)).ThoiLuong / 60;
+                    double time = unitOfWork.GetById<Phim>(unitOfWork.SearchPhimByName(tenphim)).ThoiLuong / 60;
                     int gioketthuc = giochieu + (int)Math.Ceiling(time);
-                    lichChieuDAO.Update(new LichChieu(id, tenphim, idnvql, ngaychieu, giochieu, gioketthuc));
+                    LichChieu temp = new LichChieu(id, tenphim, nguoiDungBLL.GetNguoiDung(idnvql).FullName, ngaychieu, giochieu, gioketthuc);
+                    unitOfWork.Update(temp);
                     MessageBox.Show("Sửa thành công");
                 }
             }
@@ -160,19 +152,12 @@ namespace BLL
                 MessageBox.Show("Lỗi " + e.Message);
             }
         }
-        private void Delete(TextBox txtId,int idPhongChieu=0)
+        private void Delete(TextBox txtId)
         {
             try
             {
                 int id = Convert.ToInt32(txtId.Text);
-                if(idPhongChieu==0)
-                {
-                    lichChieuDAO.Delete(id);
-                }
-                else
-                {
-                    XoaPhimDangChieu(id, idPhongChieu);
-                }
+                unitOfWork.Delete<LichChieu>(id);
                 MessageBox.Show("Xóa thành công");
             }
             catch (Exception e)
@@ -180,19 +165,6 @@ namespace BLL
                 MessageBox.Show("Lỗi " + e.Message);
             }
         }
-        public void ThemPhimDangChieu(int idlc,int idpc)
-        {
-            if(CheckPhimDangChieu(idlc,idpc))
-            {
-                throw new Exception ("Lịch chiếu đã có trong phòng chiếu");
-            }
-            lichChieuDAO.ThemPhimDangChieu(idlc, idpc);
-        }
-        public void XoaPhimDangChieu(int idphim, int idphong)
-        {
-            lichChieuDAO.XoaPhimDangChieu(idphim, idphong);
-        }
-
         public void XuLySuKien(Button sender, TextBox txtIDLichChieu, ComboBox ccbTenPhim, string idnvql, DateTimePicker dateTimeLichChieu, TextBox txtGioChieu)
         {
             switch(sender.Text)
@@ -227,10 +199,10 @@ namespace BLL
                         switch (sender.Text)
                         {
                             case "Thêm":
-                                ThemPhimDangChieu(id, idPhong);
+                                unitOfWork.ThemSuatChieu(id, idPhong);
                                 break;
                             case "Xóa":
-                                XoaPhimDangChieu(id, idPhong);
+                                unitOfWork.XoaSuatChieu(id, idPhong);
                                 break;
                         }
                     }

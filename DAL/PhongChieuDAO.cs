@@ -103,29 +103,5 @@ namespace DAO
             }
             return list;
         }
-        public void InsertPhongChieuPhim(int idPhong, int idLichChieu)
-        {
-            string query = @"INSERT INTO LichChieu_PhongChieu(IdPhongChieu,IdLichChieu) 
-                            VALUES(@idPhong,@idLichChieu)";
-            SqlParameter[] sqlParameters = new SqlParameter[2];
-            sqlParameters[0] = new SqlParameter("@idPhong", idPhong);
-            sqlParameters[1] = new SqlParameter("@idLichChieu", idLichChieu);
-            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
-            PhongChieu temp = GetById(idPhong);
-            for (int i = 0; i < temp.Succhua; i++)
-            {
-                gheNgoiDAO.Insert(new GheNgoi(i + 1, true), idLichChieu, idPhong);
-            }
-        }
-        public void DeletePhongChieu(int idPhong,int idLichChieu)
-        {
-            string query = @"DELETE FROM LichChieu_PhongChieu WHERE IdPhongChieu = @idPhong 
-                            AND IdLichChieu = @idLichChieu";
-            SqlParameter[] sqlParameters = new SqlParameter[2];
-            sqlParameters[0] = new SqlParameter("@idPhong", idPhong);
-            sqlParameters[1] = new SqlParameter("@idLichChieu", idLichChieu);
-            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
-            gheNgoiDAO.Delete(idPhong, idLichChieu);
-        }
     }
 }

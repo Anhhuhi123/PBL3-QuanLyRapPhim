@@ -59,13 +59,12 @@ namespace DAO
 
         public LichChieu GetById(int id)
         {
-            string query = @"SELECT lc.Id,p.TenPhim,nv.Fullname,lc.NgayChieu,lc.GioChieu,p.thoiluong 
+            string query = @"SELECT lc.Id,p.TenPhim,nd.Fullname,lc.NgayChieu,lc.GioChieu,p.thoiluong 
                     FROM LichChieu lc 
                     LEFT JOIN Phim p on lc.IdPhim=p.Id 
-                    LEFT JOIN NhanVienQuanLy nv on nv.Id=lc.IdNVQL
-                    WHERE Id = @id";
-            SqlParameter[] sqlParameters = new SqlParameter[1];
-            sqlParameters[0] = new SqlParameter("@id", id);
+                    LEFT JOIN NguoiDung nd on nd.Id=lc.IdNVQL
+                    WHERE lc.Id = @id";
+            SqlParameter sqlParameters = new SqlParameter("@id", id);
             DataTable reader = DatabaseHelper.Instance.GetRecords(query, sqlParameters);
             DataRow row = reader.Rows[0];
             string tenphim = row["TenPhim"].ToString();

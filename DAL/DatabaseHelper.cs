@@ -61,12 +61,34 @@ namespace DAO
             }
             catch (Exception e)
             {
-                throw new Exception("Connection Error " +e.Message);
+                throw new Exception("Get Data Error "+ e.Message);
             }
             finally
             {
                 connection.Close();
             }
+        }
+
+        public int ExecuteScalar(string query)
+        {
+            int result=-1;
+            using(SqlCommand command = new SqlCommand(query, connection))
+            {
+                try
+                {
+                    connection.Open();
+                    result = (int)command.ExecuteScalar();
+                }
+                catch(Exception e)
+                {
+                    throw new Exception("SQL Error "+e.Message);
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            return result;
         }
     }
 }

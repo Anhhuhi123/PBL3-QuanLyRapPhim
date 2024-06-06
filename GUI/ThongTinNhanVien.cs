@@ -33,12 +33,27 @@ namespace GUI
         }
         private void rolecbb_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if(rolecbb.Text=="Khách hàng" || rolecbb.Text=="Người dùng")
+            {
+                Deletebtn.Enabled = false;
+                Deletebtn.BackColor=Color.Gray;
+            }
+            else
+            {
+                Deletebtn.Enabled = true;
+                Deletebtn.BackColor = Color.DarkRed;
+            }
             controller.setDGV(dataGridView1, rolecbb);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             controller.setInfo(txtId, txtFullname, rolecbb, txtNumber, txtemail, txtKPI, Activerdb,e.RowIndex,dataGridView1);
+        }
+
+        private void Deletebtn_Click(object sender, EventArgs e)
+        {
+            controller.Delete(dataGridView1);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using DTO;
+﻿using BLL.UnitOfWork;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,22 +11,22 @@ namespace BLL
 {
     public class DatVeBLL
     {
-        private LichChieuBLL lichChieuBLL;
+        CinemaUnitOfWork unitOfWork;
         public delegate void Mydel(object sender, EventArgs e);
         public Mydel mydel;
         public DatVeBLL()
         {
-            lichChieuBLL = new LichChieuBLL();
+            unitOfWork = CinemaUnitOfWork.Instance;
         }
         public void SetButton(Panel panel)
         {
             int count = 0;
             List<string> tenphim= new List<string>();
-            foreach(LichChieu lc in lichChieuBLL.GetAllLichChieu())
+            foreach (Phim phim in unitOfWork.GetAll<Phim>())
             {
-                tenphim.Add(lc.TenPhim);
+                tenphim.Add(phim.TenPhim);
             }
-            foreach(string ten in tenphim.Distinct())
+            foreach (string ten in tenphim.Distinct())
             {
                 Button temp = new Button();
                 temp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
