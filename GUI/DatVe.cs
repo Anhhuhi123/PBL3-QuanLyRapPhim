@@ -24,7 +24,7 @@ namespace GUI
             datVeBLL.mydel = new DatVeBLL.Mydel(button1_Click);
             idnvbh = username;
             InitializeComponent();
-            label1.Text = "Xin chào " + idnvbh;// ngu ac
+            label1.Text = "Xin chào " + idnvbh;
             datVeBLL.SetButton(flowLayoutPanel1);
         }
 

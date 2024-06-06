@@ -204,5 +204,23 @@
   <ItemGroup>
     <None Include="HinhAnh\group.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="HinhAnh\phimicon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HinhAnh\Phongchieuphim.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HinhAnh\nhanvien.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HinhAnh\lichchieu.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HinhAnh\doanhthu.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HinhAnh\ghengoi.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

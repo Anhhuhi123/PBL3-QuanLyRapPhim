@@ -60,55 +60,64 @@ namespace GUI
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView1.Location = new System.Drawing.Point(384, 0);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.dataGridView1.Location = new System.Drawing.Point(327, 0);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(1057, 729);
+            this.dataGridView1.Size = new System.Drawing.Size(754, 592);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // Idlbl
             // 
             this.Idlbl.AutoSize = true;
-            this.Idlbl.Location = new System.Drawing.Point(83, 89);
+            this.Idlbl.BackColor = System.Drawing.Color.Transparent;
+            this.Idlbl.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Idlbl.Location = new System.Drawing.Point(29, 83);
+            this.Idlbl.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Idlbl.Name = "Idlbl";
-            this.Idlbl.Size = new System.Drawing.Size(29, 16);
+            this.Idlbl.Size = new System.Drawing.Size(25, 13);
             this.Idlbl.TabIndex = 2;
             this.Idlbl.Text = "Mã:";
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(175, 84);
-            this.txtId.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtId.Location = new System.Drawing.Point(98, 79);
+            this.txtId.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(177, 22);
+            this.txtId.Size = new System.Drawing.Size(185, 20);
             this.txtId.TabIndex = 3;
             // 
             // txtFullname
             // 
-            this.txtFullname.Location = new System.Drawing.Point(173, 124);
-            this.txtFullname.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtFullname.Location = new System.Drawing.Point(97, 112);
+            this.txtFullname.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtFullname.Name = "txtFullname";
-            this.txtFullname.Size = new System.Drawing.Size(179, 22);
+            this.txtFullname.Size = new System.Drawing.Size(186, 20);
             this.txtFullname.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(83, 130);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(29, 117);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 16);
+            this.label1.Size = new System.Drawing.Size(32, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Tên :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(83, 166);
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(29, 146);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 16);
+            this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 6;
             this.label2.Text = "Vai trò:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -117,78 +126,89 @@ namespace GUI
             // 
             this.rolecbb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.rolecbb.FormattingEnabled = true;
-            this.rolecbb.Location = new System.Drawing.Point(173, 166);
-            this.rolecbb.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.rolecbb.Location = new System.Drawing.Point(97, 146);
+            this.rolecbb.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.rolecbb.Name = "rolecbb";
-            this.rolecbb.Size = new System.Drawing.Size(180, 24);
+            this.rolecbb.Size = new System.Drawing.Size(187, 21);
             this.rolecbb.TabIndex = 7;
             this.rolecbb.SelectedIndexChanged += new System.EventHandler(this.rolecbb_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(64, 210);
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label3.Location = new System.Drawing.Point(15, 182);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 16);
+            this.label3.Size = new System.Drawing.Size(73, 13);
             this.label3.TabIndex = 8;
             this.label3.Text = "Số điện thoại:";
             // 
             // txtNumber
             // 
-            this.txtNumber.Location = new System.Drawing.Point(173, 210);
-            this.txtNumber.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtNumber.Location = new System.Drawing.Point(97, 182);
+            this.txtNumber.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtNumber.Name = "txtNumber";
-            this.txtNumber.Size = new System.Drawing.Size(179, 22);
+            this.txtNumber.Size = new System.Drawing.Size(186, 20);
             this.txtNumber.TabIndex = 9;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(83, 255);
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label4.Location = new System.Drawing.Point(29, 218);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 16);
+            this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 10;
             this.label4.Text = "Email:";
             // 
             // txtemail
             // 
-            this.txtemail.Location = new System.Drawing.Point(173, 255);
-            this.txtemail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtemail.Location = new System.Drawing.Point(97, 218);
+            this.txtemail.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtemail.Name = "txtemail";
-            this.txtemail.Size = new System.Drawing.Size(179, 22);
+            this.txtemail.Size = new System.Drawing.Size(186, 20);
             this.txtemail.TabIndex = 11;
             // 
             // Activerdb
             // 
             this.Activerdb.AutoSize = true;
-            this.Activerdb.Location = new System.Drawing.Point(176, 337);
-            this.Activerdb.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Activerdb.BackColor = System.Drawing.Color.Transparent;
+            this.Activerdb.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.Activerdb.Location = new System.Drawing.Point(99, 285);
+            this.Activerdb.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Activerdb.Name = "Activerdb";
-            this.Activerdb.Size = new System.Drawing.Size(88, 20);
+            this.Activerdb.Size = new System.Drawing.Size(73, 17);
             this.Activerdb.TabIndex = 14;
             this.Activerdb.TabStop = true;
             this.Activerdb.Text = "Trạng thái";
-            this.Activerdb.UseVisualStyleBackColor = true;
+            this.Activerdb.UseVisualStyleBackColor = false;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Mongolian Baiti", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(28, 22);
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label6.Location = new System.Drawing.Point(46, 18);
+            this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(290, 36);
+            this.label6.Size = new System.Drawing.Size(239, 29);
             this.label6.TabIndex = 15;
             this.label6.Text = "Thông tin nhân viên";
             // 
             // Addbtn
             // 
-            this.Addbtn.BackColor = System.Drawing.Color.DarkRed;
+            this.Addbtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.Addbtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Addbtn.BackgroundImage")));
             this.Addbtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Addbtn.Location = new System.Drawing.Point(35, 400);
-            this.Addbtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Addbtn.Location = new System.Drawing.Point(24, 338);
+            this.Addbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Addbtn.Name = "Addbtn";
-            this.Addbtn.Size = new System.Drawing.Size(145, 54);
+            this.Addbtn.Size = new System.Drawing.Size(132, 44);
             this.Addbtn.TabIndex = 16;
             this.Addbtn.Text = "Thêm";
             this.Addbtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -197,13 +217,13 @@ namespace GUI
             // 
             // Updatebtn
             // 
-            this.Updatebtn.BackColor = System.Drawing.Color.DarkRed;
+            this.Updatebtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.Updatebtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Updatebtn.BackgroundImage")));
             this.Updatebtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Updatebtn.Location = new System.Drawing.Point(208, 400);
-            this.Updatebtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Updatebtn.Location = new System.Drawing.Point(176, 338);
+            this.Updatebtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Updatebtn.Name = "Updatebtn";
-            this.Updatebtn.Size = new System.Drawing.Size(145, 54);
+            this.Updatebtn.Size = new System.Drawing.Size(125, 44);
             this.Updatebtn.TabIndex = 17;
             this.Updatebtn.Text = "Sửa";
             this.Updatebtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -212,13 +232,13 @@ namespace GUI
             // 
             // Exitbtn
             // 
-            this.Exitbtn.BackColor = System.Drawing.Color.DarkRed;
+            this.Exitbtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.Exitbtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Exitbtn.BackgroundImage")));
             this.Exitbtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Exitbtn.Location = new System.Drawing.Point(208, 460);
-            this.Exitbtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Exitbtn.Location = new System.Drawing.Point(176, 431);
+            this.Exitbtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Exitbtn.Name = "Exitbtn";
-            this.Exitbtn.Size = new System.Drawing.Size(145, 54);
+            this.Exitbtn.Size = new System.Drawing.Size(125, 44);
             this.Exitbtn.TabIndex = 19;
             this.Exitbtn.Text = "Thoát";
             this.Exitbtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -227,13 +247,13 @@ namespace GUI
             // 
             // Deletebtn
             // 
-            this.Deletebtn.BackColor = System.Drawing.Color.DarkRed;
+            this.Deletebtn.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.Deletebtn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Deletebtn.BackgroundImage")));
             this.Deletebtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.Deletebtn.Location = new System.Drawing.Point(35, 460);
-            this.Deletebtn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Deletebtn.Location = new System.Drawing.Point(24, 431);
+            this.Deletebtn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Deletebtn.Name = "Deletebtn";
-            this.Deletebtn.Size = new System.Drawing.Size(145, 54);
+            this.Deletebtn.Size = new System.Drawing.Size(132, 44);
             this.Deletebtn.TabIndex = 18;
             this.Deletebtn.Text = "Xóa";
             this.Deletebtn.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -242,28 +262,32 @@ namespace GUI
             // 
             // txtKPI
             // 
-            this.txtKPI.Location = new System.Drawing.Point(175, 295);
-            this.txtKPI.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtKPI.Location = new System.Drawing.Point(98, 251);
+            this.txtKPI.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.txtKPI.Name = "txtKPI";
-            this.txtKPI.Size = new System.Drawing.Size(177, 22);
+            this.txtKPI.Size = new System.Drawing.Size(185, 20);
             this.txtKPI.TabIndex = 21;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(83, 300);
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label7.Location = new System.Drawing.Point(29, 255);
+            this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(27, 16);
+            this.label7.Size = new System.Drawing.Size(24, 13);
             this.label7.TabIndex = 20;
             this.label7.Text = "KPI";
             // 
             // ThongTinNhanVien
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(1441, 729);
+            this.BackgroundImage = global::GUI.Properties.Resources.nhanvien;
+            this.ClientSize = new System.Drawing.Size(1081, 592);
             this.Controls.Add(this.txtKPI);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.Exitbtn);
@@ -284,7 +308,6 @@ namespace GUI
             this.Controls.Add(this.Idlbl);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThongTinNhanVien";
             this.Text = "ThongTinNhanVien";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
