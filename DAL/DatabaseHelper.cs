@@ -12,8 +12,8 @@ namespace DAO
 {
     public class DatabaseHelper
     {
-        private readonly string connectionString = @"Data Source=MSI;Initial Catalog=PBL3;Integrated Security=True";
-        //private readonly string connectionString = "Data Source=192.168.1.14;Initial Catalog=\"rap phim1\";User ID=sa;Password=VeryStr0ngP@ssw0rd;";
+       // private readonly string connectionString = @"Data Source=MSI;Initial Catalog=PBL3;Integrated Security=True";
+        private readonly string connectionString = "Data Source=192.168.1.4;Initial Catalog=\"rap phim1\";User ID=sa;Password=VeryStr0ngP@ssw0rd;";
         private SqlConnection connection;
         private static DatabaseHelper instance;
         public static DatabaseHelper Instance
