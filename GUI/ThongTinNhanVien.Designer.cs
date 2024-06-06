@@ -262,6 +262,7 @@ namespace GUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1441, 729);
             this.Controls.Add(this.txtKPI);
             this.Controls.Add(this.label7);
@@ -283,7 +284,7 @@ namespace GUI
             this.Controls.Add(this.Idlbl);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThongTinNhanVien";
             this.Text = "ThongTinNhanVien";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

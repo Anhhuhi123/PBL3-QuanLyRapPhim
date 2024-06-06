@@ -36,21 +36,12 @@ namespace GUI
             ghiChu= txtGhiChu.Text;
             if (khachHang != null)
             {
-                if(MessageBox.Show("Khách hàng có muốn mua thêm đồ ăn -thức uống ? ","Thông báo",MessageBoxButtons.YesNo)==DialogResult.Yes)
-                {
-                    DatMonAn datMonAn = new DatMonAn();
-                    datMonAn.ShowDialog();
-                    if(datMonAn.DialogResult==DialogResult.OK)
-                    {
-                        DialogResult = DialogResult.OK;
-                        this.Dispose();
-                    }
-                }
-                else
-                {
-                    DialogResult = DialogResult.OK;
-                    this.Dispose();
-                }
+                DialogResult = DialogResult.OK;
+                this.Dispose();
+            }
+            else
+            {
+                MessageBox.Show("Có lỗi xảy ra, vui lòng kiểm tra lại thông tin", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

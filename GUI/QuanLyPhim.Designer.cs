@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanLyPhim));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -122,48 +123,60 @@
             // btThem
             // 
             this.btThem.BackColor = System.Drawing.Color.DarkRed;
+            this.btThem.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btThem.BackgroundImage")));
+            this.btThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btThem.Location = new System.Drawing.Point(36, 444);
             this.btThem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btThem.Name = "btThem";
             this.btThem.Size = new System.Drawing.Size(143, 57);
             this.btThem.TabIndex = 6;
             this.btThem.Text = "Thêm";
+            this.btThem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btThem.UseVisualStyleBackColor = false;
             this.btThem.Click += new System.EventHandler(this.button_Click);
             // 
             // btSua
             // 
             this.btSua.BackColor = System.Drawing.Color.DarkRed;
+            this.btSua.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btSua.BackgroundImage")));
+            this.btSua.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btSua.Location = new System.Drawing.Point(239, 444);
             this.btSua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btSua.Name = "btSua";
             this.btSua.Size = new System.Drawing.Size(143, 57);
             this.btSua.TabIndex = 7;
             this.btSua.Text = "Sửa";
+            this.btSua.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btSua.UseVisualStyleBackColor = false;
             this.btSua.Click += new System.EventHandler(this.button_Click);
             // 
             // btXoa
             // 
             this.btXoa.BackColor = System.Drawing.Color.DarkRed;
+            this.btXoa.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btXoa.BackgroundImage")));
+            this.btXoa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btXoa.Location = new System.Drawing.Point(36, 529);
             this.btXoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btXoa.Name = "btXoa";
             this.btXoa.Size = new System.Drawing.Size(143, 57);
             this.btXoa.TabIndex = 8;
             this.btXoa.Text = "Xóa";
+            this.btXoa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btXoa.UseVisualStyleBackColor = false;
             this.btXoa.Click += new System.EventHandler(this.button_Click);
             // 
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.DarkRed;
+            this.button4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button4.BackgroundImage")));
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button4.Location = new System.Drawing.Point(239, 529);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(143, 57);
             this.button4.TabIndex = 9;
             this.button4.Text = "Thoát";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.Exit_Click);
             // 
@@ -245,6 +258,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1441, 729);
             this.Controls.Add(this.Filterbtn);
             this.Controls.Add(this.label7);

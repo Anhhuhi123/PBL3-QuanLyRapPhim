@@ -13,6 +13,24 @@ namespace DAO
 {
     public class GheNgoiDAO 
     {
+        public List<string> GetGheNgoi(HoaDon hoaDon)
+        {
+            string query = @"Select GheNgoi.Id from GheNgoi
+                            INNER JOIN VeDuocDat on VeDuocDat.Id=GheNgoi.IdVeDuocDat
+                            INNER JOIN HoaDon On HoaDon.IdVeDuocDat=VeDuocDat.Id
+                            Where VeDuocDat.Id=@id";
+            SqlParameter sqlParameter= new SqlParameter("@id", hoaDon.Id);
+            DataTable dt = DatabaseHelper.Instance.GetRecords(query,sqlParameter);
+            List<string> list = new List<string>();
+            foreach(DataRow row in dt.Rows)
+            {
+                int id = Convert.ToInt32(row["Id"]);
+                GheNgoi gheNgoi = new GheNgoi(id, true);
+                list.Add(gheNgoi.ToString());
+            }
+            return list;
+        }
+
         public void Delete(int idphong,int idlichchieu)
         {
             string query = @"DELETE FROM GheNgoi WHERE IdPhong=@idphong and Idlichchieu=@idlich";

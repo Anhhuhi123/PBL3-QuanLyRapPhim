@@ -12,9 +12,18 @@ namespace DAO
 {
     public class PhimDAO 
     {
+        LichChieuDAO lichChieuDAO;
+        public PhimDAO(){
+            lichChieuDAO = new LichChieuDAO();
+        }
         public void Delete(int id)
         {
-            string query = "DELETE FROM Phim WHERE Id = @id";
+            string query ="SELECT Id FROM LichChieu WHERE IdPhim = @id";
+            SqlParameter sqlParameter = new SqlParameter("@id", id);
+            DataTable dt = DatabaseHelper.Instance.GetRecords(query, sqlParameter);
+            int idlich= Convert.ToInt32(dt.Rows[0]["Id"]);
+            lichChieuDAO.Delete(idlich);
+            query = "DELETE FROM Phim WHERE Id = @id";
             SqlParameter[] sqlParameters=new SqlParameter[1];
             sqlParameters[0] = new SqlParameter("@id", id);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);

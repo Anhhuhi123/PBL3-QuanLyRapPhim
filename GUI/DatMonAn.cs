@@ -1,4 +1,5 @@
 ﻿using BLL;
+using DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,14 +14,33 @@ namespace GUI
 {
     public partial class DatMonAn : Form
     {
-        DatMonAnBLL controller;
-        public DatMonAn()
+        readonly DatMonAnBLL controller;
+        public delegate void DatMonDel(DataGridView dgv);
+        public DatMonAn(int idhoadon)
         {
             InitializeComponent();
+            controller = new DatMonAnBLL(idhoadon);
+            controller.SetBangGia(dataGridView2);
+            controller.SetMonAnHoaDon(dataGridView1);
         }
-        private void Them_Mon_An_Click(object sender, EventArgs e)
+        public void Them_Mon_An_Click(object sender, EventArgs e)
         {
-            controller.ThemMonAn(dataGridView1, (Button)sender);
+            controller.ThemMonAn((Button)sender, dataGridView1, dataGridView2,label3);
+        }
+        private void deleterRowButton_Click(object sender, EventArgs e)
+        {
+            controller.DeleteARow(dataGridView1,label3);
+        }
+
+        private void deleteAll_Click(object sender, EventArgs e)
+        {
+            controller.DeleteAll(dataGridView1, label3);
+        }
+
+        private void confirmbtn_Click(object sender, EventArgs e)
+        {
+            controller.XacNhanMon(dataGridView1);
+            this.Close();
         }
     }
 }

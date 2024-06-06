@@ -16,5 +16,6 @@ namespace DTO
             SoVe = sove;
             TongTien = tongtien;
         }
+        public VeDuocDat() { }
     }
 }

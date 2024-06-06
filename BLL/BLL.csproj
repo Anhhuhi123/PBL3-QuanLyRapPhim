@@ -44,8 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BanVeBLL.cs" />
+    <Compile Include="ChiTietHoaDonBLL.cs" />
     <Compile Include="DatMonAnBLL.cs" />
     <Compile Include="DatVeBLL.cs" />
+    <Compile Include="DoanhThuBLL.cs" />
     <Compile Include="GheNgoiBLL.cs" />
     <Compile Include="LichChieuBLL.cs" />
     <Compile Include="NguoiDungBLL.cs" />

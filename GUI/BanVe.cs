@@ -31,6 +31,7 @@ namespace GUI
         private void btTimPhong_Click(object sender, EventArgs e)
         {
             List<GheNgoi> list =controller.Search(txtTenPhim,dateTimePicker1, DTSearch, comboBox1, dataGridView1,flowLayoutPanel1);
+            totallbl.Text = " 0";
             if(list!=null)
                 CreateGheNgoiButtons(list);
         }
@@ -92,7 +93,15 @@ namespace GUI
             {
                 KhachHang khachHang = thongTinKhachHang.khachHang;
                 string ghichu = thongTinKhachHang.ghiChu;
-                controller.XuLyDatVeThanhCong(khachHang,e.VeDuocDat,idnvbh,ghichu);
+                int idhoadon =controller.XuLyDatVeThanhCong(khachHang,e.VeDuocDat,txtTenPhim.Text,idnvbh,ghichu);
+                if (MessageBox.Show("Khách hàng có muốn mua thêm đồ ăn -thức uống ? ", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    DatMonAn datMonAn = new DatMonAn(idhoadon);
+                    datMonAn.ShowDialog();
+                    MessageBox.Show("Đặt món ăn thành công");
+                }
+                ChiTietHoaDonForm chiTietHoaDonForm = new ChiTietHoaDonForm(idhoadon);
+                chiTietHoaDonForm.ShowDialog();
             }
         }
     }

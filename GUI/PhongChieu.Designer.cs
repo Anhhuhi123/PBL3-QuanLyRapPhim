@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PhongChieu));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btThem = new System.Windows.Forms.Button();
             this.btSua = new System.Windows.Forms.Button();
@@ -53,14 +54,14 @@
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Right;
             this.dataGridView1.Location = new System.Drawing.Point(425, 0);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -75,48 +76,60 @@
             // btThem
             // 
             this.btThem.BackColor = System.Drawing.Color.DarkRed;
+            this.btThem.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btThem.BackgroundImage")));
+            this.btThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btThem.Location = new System.Drawing.Point(52, 351);
             this.btThem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btThem.Name = "btThem";
             this.btThem.Size = new System.Drawing.Size(143, 57);
             this.btThem.TabIndex = 1;
             this.btThem.Text = "Thêm";
+            this.btThem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btThem.UseVisualStyleBackColor = false;
             this.btThem.Click += new System.EventHandler(this.Button_Click);
             // 
             // btSua
             // 
             this.btSua.BackColor = System.Drawing.Color.DarkRed;
+            this.btSua.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btSua.BackgroundImage")));
+            this.btSua.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btSua.Location = new System.Drawing.Point(242, 351);
             this.btSua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btSua.Name = "btSua";
             this.btSua.Size = new System.Drawing.Size(143, 57);
             this.btSua.TabIndex = 2;
             this.btSua.Text = "Sửa";
+            this.btSua.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btSua.UseVisualStyleBackColor = false;
             this.btSua.Click += new System.EventHandler(this.Button_Click);
             // 
             // btXoa
             // 
             this.btXoa.BackColor = System.Drawing.Color.DarkRed;
+            this.btXoa.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btXoa.BackgroundImage")));
+            this.btXoa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btXoa.Location = new System.Drawing.Point(52, 437);
             this.btXoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btXoa.Name = "btXoa";
             this.btXoa.Size = new System.Drawing.Size(143, 57);
             this.btXoa.TabIndex = 3;
             this.btXoa.Text = "Xóa";
+            this.btXoa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btXoa.UseVisualStyleBackColor = false;
             this.btXoa.Click += new System.EventHandler(this.Button_Click);
             // 
             // btThoat
             // 
             this.btThoat.BackColor = System.Drawing.Color.DarkRed;
+            this.btThoat.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btThoat.BackgroundImage")));
+            this.btThoat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btThoat.Location = new System.Drawing.Point(242, 437);
             this.btThoat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btThoat.Name = "btThoat";
             this.btThoat.Size = new System.Drawing.Size(143, 57);
             this.btThoat.TabIndex = 4;
             this.btThoat.Text = "Thoát";
+            this.btThoat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btThoat.UseVisualStyleBackColor = false;
             this.btThoat.Click += new System.EventHandler(this.btThoat_Click);
             // 
@@ -218,6 +231,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1441, 729);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.txtmota);

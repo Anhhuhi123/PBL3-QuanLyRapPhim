@@ -11,23 +11,6 @@ namespace DAO
 {
     public class MonAnDAO
     {
-         private static MonAnDAO instance;
-        public static MonAnDAO Instance
-        {
-            get
-            {
-                if (instance == null)
-                    instance = new MonAnDAO();
-                return MonAnDAO.instance;
-            }
-            private set
-            {
-                MonAnDAO.instance = value;
-            }
-        }
-
-        private MonAnDAO() { }
-
         public List<MonAn> GetAll()
         {
             List<MonAn> list = new List<MonAn>();
@@ -54,6 +37,17 @@ namespace DAO
             double giaTien = Convert.ToInt32(dr["GiaTien"].ToString());
             MonAn temp = new MonAn(idMonAn, tenMonAn, giaTien);
             return temp;
+        }
+
+        public void ThemMonAnVaoHoaDon(int idmon, int idhoadon, int soluong)
+        {
+            string query=@"Insert into ChiTietHoaDon(IdHoaDon,IdMonAn,SoLuongMonAn)
+                            VALUES (@idhoadon,@idmon,@soluong)";
+            SqlParameter[] para = new SqlParameter[3];
+            para[0] = new SqlParameter("@idhoadon", idhoadon);
+            para[1] = new SqlParameter("@idmon", idmon);
+            para[2] = new SqlParameter("@soluong", soluong);
+            DatabaseHelper.Instance.ExecuteNonQuery(query, para);
         }
     }
 }

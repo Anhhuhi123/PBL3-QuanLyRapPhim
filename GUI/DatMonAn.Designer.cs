@@ -42,30 +42,35 @@
             this.button10 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
+            this.deleterRowButton = new System.Windows.Forms.Button();
+            this.deleteAll = new System.Windows.Forms.Button();
+            this.confirmbtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 12);
+            this.dataGridView1.Location = new System.Drawing.Point(602, 31);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(684, 304);
+            this.dataGridView1.Size = new System.Drawing.Size(525, 377);
             this.dataGridView1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label1.Location = new System.Drawing.Point(13, 331);
+            this.label1.Location = new System.Drawing.Point(457, 421);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(183, 20);
             this.label1.TabIndex = 1;
@@ -75,7 +80,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.SandyBrown;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button1.Location = new System.Drawing.Point(16, 354);
+            this.button1.Location = new System.Drawing.Point(398, 458);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 54);
             this.button1.TabIndex = 2;
@@ -87,7 +92,7 @@
             // 
             this.button2.BackColor = System.Drawing.Color.SandyBrown;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button2.Location = new System.Drawing.Point(134, 355);
+            this.button2.Location = new System.Drawing.Point(516, 459);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 54);
             this.button2.TabIndex = 3;
@@ -99,7 +104,7 @@
             // 
             this.button3.BackColor = System.Drawing.Color.Peru;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button3.Location = new System.Drawing.Point(134, 415);
+            this.button3.Location = new System.Drawing.Point(516, 519);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(100, 54);
             this.button3.TabIndex = 5;
@@ -111,7 +116,7 @@
             // 
             this.button4.BackColor = System.Drawing.Color.Peru;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button4.Location = new System.Drawing.Point(16, 415);
+            this.button4.Location = new System.Drawing.Point(398, 519);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(100, 54);
             this.button4.TabIndex = 4;
@@ -123,7 +128,7 @@
             // 
             this.button5.BackColor = System.Drawing.Color.Blue;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button5.Location = new System.Drawing.Point(134, 540);
+            this.button5.Location = new System.Drawing.Point(516, 640);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(100, 54);
             this.button5.TabIndex = 9;
@@ -135,7 +140,7 @@
             // 
             this.button6.BackColor = System.Drawing.Color.Blue;
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button6.Location = new System.Drawing.Point(16, 540);
+            this.button6.Location = new System.Drawing.Point(398, 640);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(100, 54);
             this.button6.TabIndex = 8;
@@ -147,7 +152,7 @@
             // 
             this.button7.BackColor = System.Drawing.Color.Red;
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button7.Location = new System.Drawing.Point(134, 480);
+            this.button7.Location = new System.Drawing.Point(516, 580);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(100, 54);
             this.button7.TabIndex = 7;
@@ -159,7 +164,7 @@
             // 
             this.button8.BackColor = System.Drawing.Color.Red;
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button8.Location = new System.Drawing.Point(16, 479);
+            this.button8.Location = new System.Drawing.Point(398, 579);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(100, 54);
             this.button8.TabIndex = 6;
@@ -171,7 +176,7 @@
             // 
             this.button9.BackColor = System.Drawing.Color.Lime;
             this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button9.Location = new System.Drawing.Point(367, 540);
+            this.button9.Location = new System.Drawing.Point(631, 580);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(100, 54);
             this.button9.TabIndex = 11;
@@ -183,7 +188,7 @@
             // 
             this.button10.BackColor = System.Drawing.Color.Lime;
             this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button10.Location = new System.Drawing.Point(249, 540);
+            this.button10.Location = new System.Drawing.Point(631, 640);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(100, 54);
             this.button10.TabIndex = 10;
@@ -195,7 +200,7 @@
             // 
             this.button11.BackColor = System.Drawing.Color.Pink;
             this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button11.Location = new System.Drawing.Point(249, 479);
+            this.button11.Location = new System.Drawing.Point(631, 519);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(100, 54);
             this.button11.TabIndex = 12;
@@ -207,7 +212,7 @@
             // 
             this.button12.BackColor = System.Drawing.Color.BlueViolet;
             this.button12.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.button12.Location = new System.Drawing.Point(249, 415);
+            this.button12.Location = new System.Drawing.Point(631, 459);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(100, 54);
             this.button12.TabIndex = 13;
@@ -216,38 +221,41 @@
             this.button12.UseVisualStyleBackColor = false;
             this.button12.Click += new System.EventHandler(this.Them_Mon_An_Click);
             // 
-            // button13
+            // deleterRowButton
             // 
-            this.button13.Location = new System.Drawing.Point(702, 10);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 50);
-            this.button13.TabIndex = 14;
-            this.button13.Text = "Bỏ chọn";
-            this.button13.UseVisualStyleBackColor = true;
+            this.deleterRowButton.Location = new System.Drawing.Point(511, 31);
+            this.deleterRowButton.Name = "deleterRowButton";
+            this.deleterRowButton.Size = new System.Drawing.Size(75, 50);
+            this.deleterRowButton.TabIndex = 14;
+            this.deleterRowButton.Text = "Bỏ chọn";
+            this.deleterRowButton.UseVisualStyleBackColor = true;
+            this.deleterRowButton.Click += new System.EventHandler(this.deleterRowButton_Click);
             // 
-            // button14
+            // deleteAll
             // 
-            this.button14.Location = new System.Drawing.Point(702, 69);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(75, 50);
-            this.button14.TabIndex = 15;
-            this.button14.Text = "Xóa hết";
-            this.button14.UseVisualStyleBackColor = true;
+            this.deleteAll.Location = new System.Drawing.Point(511, 115);
+            this.deleteAll.Name = "deleteAll";
+            this.deleteAll.Size = new System.Drawing.Size(75, 50);
+            this.deleteAll.TabIndex = 15;
+            this.deleteAll.Text = "Xóa hết";
+            this.deleteAll.UseVisualStyleBackColor = true;
+            this.deleteAll.Click += new System.EventHandler(this.deleteAll_Click);
             // 
-            // button15
+            // confirmbtn
             // 
-            this.button15.Location = new System.Drawing.Point(702, 266);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(75, 50);
-            this.button15.TabIndex = 16;
-            this.button15.Text = "Xác nhận";
-            this.button15.UseVisualStyleBackColor = true;
+            this.confirmbtn.Location = new System.Drawing.Point(511, 358);
+            this.confirmbtn.Name = "confirmbtn";
+            this.confirmbtn.Size = new System.Drawing.Size(75, 50);
+            this.confirmbtn.TabIndex = 16;
+            this.confirmbtn.Text = "Xác nhận";
+            this.confirmbtn.UseVisualStyleBackColor = true;
+            this.confirmbtn.Click += new System.EventHandler(this.confirmbtn_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label2.Location = new System.Drawing.Point(561, 334);
+            this.label2.Location = new System.Drawing.Point(815, 418);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(92, 20);
             this.label2.TabIndex = 17;
@@ -258,7 +266,7 @@
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label3.ForeColor = System.Drawing.Color.Red;
-            this.label3.Location = new System.Drawing.Point(675, 335);
+            this.label3.Location = new System.Drawing.Point(929, 419);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 22);
             this.label3.TabIndex = 18;
@@ -269,24 +277,51 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label4.Location = new System.Drawing.Point(781, 337);
+            this.label4.Location = new System.Drawing.Point(1035, 421);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(45, 20);
             this.label4.TabIndex = 19;
             this.label4.Text = "VND";
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToResizeColumns = false;
+            this.dataGridView2.AllowUserToResizeRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(18, 31);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.Size = new System.Drawing.Size(478, 384);
+            this.dataGridView2.TabIndex = 20;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label5.ForeColor = System.Drawing.Color.Red;
+            this.label5.Location = new System.Drawing.Point(15, 5);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 20);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Bảng giá:";
             // 
             // DatMonAn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(849, 614);
+            this.ClientSize = new System.Drawing.Size(1139, 704);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button15);
-            this.Controls.Add(this.button14);
-            this.Controls.Add(this.button13);
+            this.Controls.Add(this.confirmbtn);
+            this.Controls.Add(this.deleteAll);
+            this.Controls.Add(this.deleterRowButton);
             this.Controls.Add(this.button12);
             this.Controls.Add(this.button11);
             this.Controls.Add(this.button9);
@@ -305,6 +340,7 @@
             this.Name = "DatMonAn";
             this.Text = "DatMonAn";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -326,11 +362,13 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button13;
-        private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button deleterRowButton;
+        private System.Windows.Forms.Button deleteAll;
+        private System.Windows.Forms.Button confirmbtn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Label label5;
     }
 }

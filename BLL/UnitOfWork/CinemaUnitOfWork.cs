@@ -10,12 +10,13 @@ namespace BLL.UnitOfWork
 {
     public class CinemaUnitOfWork
     {
-        PhongChieuDAO phongChieuDAO;
-        PhimDAO phimDAO;
-        LichChieuDAO lichChieuDAO;
-        VeDuocDatDAO veDuocDatDAO;
-        HoaDonDAO hoaDonDAO;
-        MonAnDAO monAnDAO;
+        readonly PhongChieuDAO phongChieuDAO;
+        readonly PhimDAO phimDAO;
+        readonly LichChieuDAO lichChieuDAO;
+        readonly GheNgoiDAO ghengoidao;
+        readonly VeDuocDatDAO veDuocDatDAO;
+        readonly HoaDonDAO hoaDonDAO;
+        readonly MonAnDAO monAnDAO;
         private static CinemaUnitOfWork instance;
         public static CinemaUnitOfWork Instance
         {
@@ -27,13 +28,15 @@ namespace BLL.UnitOfWork
             }
             private set { }
         }
-        public CinemaUnitOfWork()
+        private CinemaUnitOfWork()
         {
+            ghengoidao = new GheNgoiDAO();
             phongChieuDAO = new PhongChieuDAO();
             lichChieuDAO = new LichChieuDAO();
             phimDAO = new PhimDAO();
             veDuocDatDAO = new VeDuocDatDAO();
             hoaDonDAO = new HoaDonDAO();
+            monAnDAO = new MonAnDAO();
         }
         public T GetById<T>(int id) where T:class
         {
@@ -71,7 +74,6 @@ namespace BLL.UnitOfWork
                     return null;
             }
         }
-        //Ham insert cho LichChieu
         public void InsertLichChieu(LichChieu lichChieu, int idphim, string idnvql)
         {
             lichChieuDAO.Insert(lichChieu, idphim, idnvql);
@@ -107,6 +109,8 @@ namespace BLL.UnitOfWork
                     phongChieuDAO.Delete(id);
                     break;
                 case "LichChieu":
+                    hoaDonDAO.Delete(id);
+                    veDuocDatDAO.Delete(id);
                     lichChieuDAO.Delete(id);
                     break;
                 case "Phim":
@@ -161,11 +165,6 @@ namespace BLL.UnitOfWork
         {
             return lichChieuDAO.GetLichDangChieu(id);
         }
-        public List<PhongChieu> GetAllPhongDangChieuPhim(int id)
-        {
-            return phongChieuDAO.GetAllPhongDangChieuPhim(id);
-        }
-
         //tim kiem theo ten cho phim
         public int SearchPhimByName(string name)
         {
@@ -176,6 +175,12 @@ namespace BLL.UnitOfWork
             }
             return 0;
         }
+        //lay danh sach phong chieu dang chieu phim
+        public List<PhongChieu> GetAllPhongDangChieuPhim(int id)
+        {
+            return phongChieuDAO.GetAllPhongDangChieuPhim(id);
+        }
+
         //danh cho phong chieu
         public PhongChieu GetPhongByName(string name)
         {
@@ -186,5 +191,36 @@ namespace BLL.UnitOfWork
             }
             return null;
         }
+        //Mon An
+        public MonAn GetMonByName(string name)
+        {
+            foreach (MonAn monAn in GetAll<MonAn>())
+            {
+                if (monAn.TenMonAn == name)
+                    return monAn;
+            }
+            return null;
+        }
+
+        //Mon An va Hoa Don
+        public void ThemMonAnVaoHoaDon(int idmon,int idhoadon,int soluong)
+        {
+            monAnDAO.ThemMonAnVaoHoaDon(idmon,idhoadon,soluong);
+        }
+        public void UpdateHoaDon(int idHoaDon, double gia)
+        {
+            hoaDonDAO.UpdateHoaDon(idHoaDon, gia);
+        }
+        public List<MonDuocDat> GetChiTietHoaDon(int id)
+        {
+            return hoaDonDAO.GetChiTietHoaDon(id);
+        }
+
+        //Ghe Ngoi cho Hoa Don
+        public List<string> GetGheNgoi(HoaDon hoaDon)
+        {
+            return ghengoidao.GetGheNgoi(hoaDon);
+        }
+
     }
 }

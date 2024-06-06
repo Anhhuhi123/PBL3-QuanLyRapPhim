@@ -25,13 +25,15 @@ namespace BLL
         CinemaUnitOfWork unitOfWork;
         NguoiDungBLL nguoiDungBLL;
         GheNgoiBLL gheNgoiBLL;
+        public List<MonDuocDat> monDuocDatList;
         public delegate void VeDatThanhCongEventHandler(object sender, VeDuocDatEventArgs e);
         public VeDatThanhCongEventHandler eventHandler;
         public BanVeBLL()
         {
             unitOfWork = CinemaUnitOfWork.Instance;
             nguoiDungBLL = new NguoiDungBLL();
-            gheNgoiBLL = new GheNgoiBLL(); 
+            gheNgoiBLL = new GheNgoiBLL();
+            monDuocDatList= new List<MonDuocDat>();
         }
 
         public List<GheNgoi> Search(TextBox textbox,DateTimePicker dtpicker, CheckBox dTSearch, ComboBox cbb, DataGridView dataGridView1,Panel panel)
@@ -157,7 +159,6 @@ namespace BLL
                 else
                 {
                     int idVeDuocDat = 1;
-                    MessageBox.Show(unitOfWork.GetAll<VeDuocDat>().Count.ToString());
                     if (unitOfWork.GetAll<VeDuocDat>() != null)
                     {
                         idVeDuocDat= unitOfWork.GetAll<VeDuocDat>().Count+1;
@@ -201,7 +202,7 @@ namespace BLL
             totallbl.Text = price.ToString(".000");
         }
 
-        public void XuLyDatVeThanhCong(KhachHang khachHang,VeDuocDat vdd,string idnvbh,string ghichu)
+        public int XuLyDatVeThanhCong(KhachHang khachHang,VeDuocDat vdd,string tenphim ,string idnvbh,string ghichu)
         {
             NguoiDung nVBH = nguoiDungBLL.GetNguoiDung(idnvbh);
             int idHoaDon= 1;
@@ -209,8 +210,22 @@ namespace BLL
             {
                 idHoaDon = unitOfWork.GetAll<HoaDon>().Count+1;
             }
-            HoaDon hoaDon = new HoaDon(idHoaDon,vdd.TongTien,ghichu,khachHang.FullName,nVBH.FullName);
+            HoaDon hoaDon = new HoaDon(idHoaDon,tenphim,vdd.TongTien,ghichu,khachHang.FullName,nVBH.FullName);
             unitOfWork.InsertHoaDon(hoaDon,idnvbh,khachHang.Id,vdd.Id);
+            return idHoaDon;
+        }
+
+        public void GetMonAn(DataGridView dgv)
+        {
+            foreach(DataGridViewRow dr in dgv.Rows)
+            {
+                string tenmon=dr.Cells["TenMonAn"].Value.ToString();
+                int idMon = unitOfWork.GetMonByName(tenmon).Id;
+                int soLuong = Convert.ToInt32(dr.Cells["SoLuong"].Value);
+                double giaTien = Convert.ToDouble(dr.Cells["GiaTien"].Value);
+                MonDuocDat monDuocDat = new MonDuocDat(idMon,tenmon, giaTien, soLuong);
+                monDuocDatList.Add(monDuocDat);
+            }
         }
     }
 }
