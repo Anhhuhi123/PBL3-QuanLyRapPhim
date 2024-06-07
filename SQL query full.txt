@@ -105,6 +105,6 @@ cREATE tABLE ChiTietHoaDon(
 	IdMonAn int,
 	SoLuongMonAn int,
 	Foreign key (IdHoaDon) references HoaDon(Id),
-	Foreign key (IdHoaDon) references HoaDon(Id),
+	Foreign key (IdMonAn) references HoaDon(Id),
 	Primary key(IdHoaDon,IdMonAn)
 )

@@ -35,7 +35,7 @@ namespace DAO
             INNER JOIN NguoiDung AS NguoiDungNhanVien ON HoaDon.IdNVBH = NguoiDungNhanVien.Id
 			INNER JOIN VeDuocDat ON VeDuocDat.Id=HoaDon.Id
 			INNER JOIN LichChieu ON LichChieu.Id=VeDuocDat.IdLichChieu
-			INNER JOIN Phim ON Phim.Id=LichChieu.Id;";
+			INNER JOIN Phim ON Phim.Id=LichChieu.IdPhim";
             DataTable reader = DatabaseHelper.Instance.GetRecords(query);
             foreach (DataRow dr in reader.Rows)
             {
