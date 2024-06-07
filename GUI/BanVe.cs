@@ -31,8 +31,8 @@ namespace GUI
 
         private void btTimPhong_Click(object sender, EventArgs e)
         {
+            totallbl.Text = "0";
             List<GheNgoi> list =controller.Search(txtTenPhim,dateTimePicker1, DTSearch, comboBox1, dataGridView1,flowLayoutPanel1);
-            totallbl.Text = " 0";
             if(list!=null)
                 CreateGheNgoiButtons(list);
         }
@@ -62,6 +62,7 @@ namespace GUI
             {
                 controller.HuyVe(flowLayoutPanel1,totallbl);
                 controller.XoaVe(e.VeDuocDat);
+                MessageBox.Show("Đã hủy đặt vé");
             }
             else if(thongTinKhachHang.DialogResult == DialogResult.OK)
             {
@@ -76,6 +77,10 @@ namespace GUI
                 }
                 ChiTietHoaDonForm chiTietHoaDonForm = new ChiTietHoaDonForm(hoadon.Id);
                 chiTietHoaDonForm.ShowDialog();
+                if(hoadon!=null)
+                {
+                    MessageBox.Show("Đặt vé thành công");
+                }
             }
         }
 

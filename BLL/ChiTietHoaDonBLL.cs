@@ -31,7 +31,13 @@ namespace BLL
         public void SetLabel(Label label2)
         {
             label2.Text = "";
-            foreach(GheNgoi ghe in unitOfWork.GetAllGhe(new HoaDon { Id=idhoadon}))
+            List<GheNgoi> list = unitOfWork.GetAllGhe(new HoaDon { Id = idhoadon });
+            if(list.Count == 0)
+            {
+                label2.Text = "Suất chiếu của hóa đơn đã bị xóa nên sẽ không hiện ghế!";
+                return;
+            }
+            foreach(GheNgoi ghe in list)
             {
                 label2.Text += ghe.ToString() + ", ";
             }
