@@ -80,7 +80,7 @@ namespace GUI
             {
                 controller.SetDGV(dataGridView1, checkBox1, idPhongChieu);
                 btThem.Enabled = true;
-                btThem.BackColor = Color.DarkRed;
+                btThem.BackColor = Color.NavajoWhite;
                 btXoa.Enabled = false;
                 btXoa.BackColor = Color.Gray;
                 MessageBox.Show("Hãy chọn lịch chiếu muốn thêm vào phòng");
@@ -90,7 +90,7 @@ namespace GUI
                 btThem.Enabled = false;
                 btThem.BackColor = Color.Gray;
                 btXoa.Enabled = true;
-                btXoa.BackColor = Color.DarkRed;
+                btXoa.BackColor = Color.NavajoWhite;
                 controller.SetDGV(dataGridView1,checkBox1, idPhongChieu);
                 MessageBox.Show("Đã tắt chế độ thêm");
             }

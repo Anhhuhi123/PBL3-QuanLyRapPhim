@@ -108,6 +108,10 @@ namespace BLL
             }
             try
             {
+                if (ccbTenPhim.Text == "" || txtGioChieu.Text == "")
+                {
+                    throw new Exception("Vui lòng nhập đầy đủ thông tin");
+                }
                 int idphim=unitOfWork.SearchPhimByName(ccbTenPhim.Text);
                 string tennvql = nguoiDungBLL.GetNguoiDung(idnvql).FullName;
 
@@ -154,6 +158,11 @@ namespace BLL
         }
         private void Delete(TextBox txtId)
         {
+            if(txtId.Text=="")
+            {
+                MessageBox.Show("Vui lòng chọn lịch chiếu cần xóa");
+                return;
+            }
             try
             {
                 int id = Convert.ToInt32(txtId.Text);

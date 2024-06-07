@@ -48,7 +48,6 @@
     <Compile Include="DatMonAnBLL.cs" />
     <Compile Include="DatVeBLL.cs" />
     <Compile Include="DoanhThuBLL.cs" />
-    <Compile Include="GheNgoiBLL.cs" />
     <Compile Include="LichChieuBLL.cs" />
     <Compile Include="NguoiDungBLL.cs" />
     <Compile Include="PhimBLL.cs" />

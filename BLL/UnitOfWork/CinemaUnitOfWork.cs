@@ -54,6 +54,17 @@ namespace BLL.UnitOfWork
                     return null;
             }
         }
+        public GheNgoi GetGheNgoi(int id , int idlich, int idphong)
+        {
+            foreach (GheNgoi gheNgoi in GetAllGhe(idlich, idphong))
+            {
+                if (gheNgoi.Id == id)
+                {
+                    return gheNgoi;
+                }
+            }
+            return null;
+        }
         public List<T> GetAll<T>()
         {
             switch (typeof(T).Name)
@@ -73,6 +84,10 @@ namespace BLL.UnitOfWork
                 default:
                     return null;
             }
+        }
+        public List<GheNgoi> GetAllGhe(int idLich, int idPhong)
+        {
+            return ghengoidao.GetAll(idLich, idPhong);
         }
         public void InsertLichChieu(LichChieu lichChieu, int idphim, string idnvql)
         {
@@ -116,6 +131,12 @@ namespace BLL.UnitOfWork
                 case "Phim":
                     phimDAO.Delete(id);
                     break;
+                case "GheNgoi":
+                    ghengoidao.Delete(id);
+                    break;
+                case"VeDuocDat":
+                    veDuocDatDAO.Delete(id);
+                    break;
                 default:
                     break;
             }
@@ -136,6 +157,16 @@ namespace BLL.UnitOfWork
                 default:
                     break;
             }
+        }
+        //gan ghe ngoi voi ghe duoc dat
+        public void UpdateGheNgoi(GheNgoi obj, int idlich, int idphong, int idVeDuocDat)
+        {
+            ghengoidao.Update(obj, idlich, idphong, idVeDuocDat);
+        }
+        //khi huy ve duoc dat thi cap nhat lai trang thai ghe
+        public void UpdateGheNgoi(GheNgoi obj,int idVeDuocDat)
+        {
+            ghengoidao.Update(obj,idVeDuocDat);
         }
         //Khu vuc danh cho PhongChieu_LichChieu
         public bool CheckPhimDangChieu(int idlc, int idPhong)
@@ -216,10 +247,14 @@ namespace BLL.UnitOfWork
             return hoaDonDAO.GetChiTietHoaDon(id);
         }
 
-        //Ghe Ngoi cho Hoa Don
-        public List<string> GetGheNgoi(HoaDon hoaDon)
+        //Lay Ghe ngoi
+        public List<GheNgoi> GetAllGhe(HoaDon hoaDon)
         {
             return ghengoidao.GetGheNgoi(hoaDon);
+        }
+        public List<GheNgoi> GetAllGhe(VeDuocDat vdd)
+        {
+            return ghengoidao.GetGheNgoi(vdd);
         }
 
     }

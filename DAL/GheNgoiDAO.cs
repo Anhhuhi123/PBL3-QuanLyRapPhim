@@ -13,20 +13,37 @@ namespace DAO
 {
     public class GheNgoiDAO 
     {
-        public List<string> GetGheNgoi(HoaDon hoaDon)
+        public List<GheNgoi> GetGheNgoi(HoaDon hoaDon)
+        {
+            string query = @"Select GheNgoi.Id from GheNgoi
+                            INNER JOIN VeDuocDat on VeDuocDat.Id=GheNgoi.IdVeDuocDat
+                            INNER JOIN HoaDon On HoaDon.IdVeDuocDat=VeDuocDat.Id
+                            Where HoaDon.Id=@id";
+            SqlParameter sqlParameter= new SqlParameter("@id", hoaDon.Id);
+            DataTable dt = DatabaseHelper.Instance.GetRecords(query,sqlParameter);
+            List<GheNgoi> list = new List<GheNgoi>();
+            foreach(DataRow row in dt.Rows)
+            {
+                int id = Convert.ToInt32(row["Id"]);
+                GheNgoi gheNgoi = new GheNgoi(id, true);
+                list.Add(gheNgoi);
+            }
+            return list;
+        }
+        public List<GheNgoi> GetGheNgoi(VeDuocDat vdd)
         {
             string query = @"Select GheNgoi.Id from GheNgoi
                             INNER JOIN VeDuocDat on VeDuocDat.Id=GheNgoi.IdVeDuocDat
                             INNER JOIN HoaDon On HoaDon.IdVeDuocDat=VeDuocDat.Id
                             Where VeDuocDat.Id=@id";
-            SqlParameter sqlParameter= new SqlParameter("@id", hoaDon.Id);
-            DataTable dt = DatabaseHelper.Instance.GetRecords(query,sqlParameter);
-            List<string> list = new List<string>();
-            foreach(DataRow row in dt.Rows)
+            SqlParameter sqlParameter = new SqlParameter("@id", vdd.Id);
+            DataTable dt = DatabaseHelper.Instance.GetRecords(query, sqlParameter);
+            List<GheNgoi> list = new List<GheNgoi>();
+            foreach (DataRow row in dt.Rows)
             {
                 int id = Convert.ToInt32(row["Id"]);
                 GheNgoi gheNgoi = new GheNgoi(id, true);
-                list.Add(gheNgoi.ToString());
+                list.Add(gheNgoi);
             }
             return list;
         }
@@ -38,6 +55,12 @@ namespace DAO
             sqlParameters[0] = new SqlParameter("@idphong", idphong);
             sqlParameters[1] = new SqlParameter("@idlich", idlichchieu);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
+        }
+        public void Delete (int idVe)
+        {
+            string query=@"DELETE FROM GheNgoi WHERE IdVeDuocDat=@id";
+            SqlParameter sqlParameter = new SqlParameter("@id", idVe);
+            DatabaseHelper.Instance.ExecuteNonQuery(query,sqlParameter);
         }
         public List<GheNgoi> GetAll(int idLich,int idPhong)
         {
@@ -82,6 +105,16 @@ namespace DAO
             sqlParameters[2] = new SqlParameter("@idphong", idphong);
             sqlParameters[3] = new SqlParameter("@idlich", idlich);
             sqlParameters[4] = new SqlParameter("@idVeDuocDat", idVeDuocDat);
+            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
+        }
+        public void Update(GheNgoi obj, int idVeDuocDat)
+        {
+            string query=@"UPDATE GheNgoi
+                           SET TrangThai=@trangthai,
+                           Where IdVeDuocDat=@idve";
+            SqlParameter[] sqlParameters = new SqlParameter[2];
+            sqlParameters[0] = new SqlParameter("@trangthai", obj.TrangThai);
+            sqlParameters[1] = new SqlParameter("@idve", idVeDuocDat);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
     }

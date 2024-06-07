@@ -31,9 +31,9 @@ namespace BLL
         public void SetLabel(Label label2)
         {
             label2.Text = "";
-            foreach(string s in unitOfWork.GetGheNgoi(new HoaDon { Id=idhoadon}))
+            foreach(GheNgoi ghe in unitOfWork.GetAllGhe(new HoaDon { Id=idhoadon}))
             {
-                label2.Text += s + ", ";
+                label2.Text += ghe.ToString() + ", ";
             }
         }
     }

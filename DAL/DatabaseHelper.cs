@@ -12,8 +12,8 @@ namespace DAO
 {
     public class DatabaseHelper
     {
-       // private readonly string connectionString = @"Data Source=MSI;Initial Catalog=PBL3;Integrated Security=True";
-        private readonly string connectionString = "Data Source=192.168.1.11;Initial Catalog=\"Rap phim full\";User ID=sa;Password=VeryStr0ngP@ssw0rd;";
+        private readonly string connectionString = @"Data Source=MSI;Initial Catalog=PBL3;Integrated Security=True";
+        //private readonly string connectionString = "Data Source=192.168.1.11;Initial Catalog=\"Rap phim full\";User ID=sa;Password=VeryStr0ngP@ssw0rd;";
         private SqlConnection connection;
         private static DatabaseHelper instance;
         public static DatabaseHelper Instance
@@ -67,28 +67,6 @@ namespace DAO
             {
                 connection.Close();
             }
-        }
-
-        public int ExecuteScalar(string query)
-        {
-            int result=-1;
-            using(SqlCommand command = new SqlCommand(query, connection))
-            {
-                try
-                {
-                    connection.Open();
-                    result = (int)command.ExecuteScalar();
-                }
-                catch(Exception e)
-                {
-                    throw new Exception("SQL Error "+e.Message);
-                }
-                finally
-                {
-                    connection.Close();
-                }
-            }
-            return result;
         }
     }
 }

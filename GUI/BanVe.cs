@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -53,23 +54,55 @@ namespace GUI
             Button button = (Button)sender;
             controller.GheButton_Click(button,totallbl);
         }
+        private void XuLyDatVeThanhCong(object sender , VeDuocDatEventArgs e)
+        {
+            ThongTinKhachHang thongTinKhachHang = new ThongTinKhachHang();
+            thongTinKhachHang.ShowDialog();
+            if(thongTinKhachHang.DialogResult == DialogResult.Cancel)
+            {
+                controller.HuyVe(flowLayoutPanel1,totallbl);
+                controller.XoaVe(e.VeDuocDat);
+            }
+            else if(thongTinKhachHang.DialogResult == DialogResult.OK)
+            {
+                KhachHang khachHang = thongTinKhachHang.khachHang;
+                string ghichu = thongTinKhachHang.ghiChu;
+                HoaDon hoadon =controller.XuLyDatVeThanhCong(khachHang,e.VeDuocDat,txtTenPhim.Text,idnvbh,ghichu);
+                if (MessageBox.Show("Khách hàng có muốn mua thêm đồ ăn -thức uống ? ", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    DatMonAn datMonAn = new DatMonAn(hoadon.Id);
+                    datMonAn.ShowDialog();
+                    MessageBox.Show("Đặt món ăn thành công");
+                }
+                ChiTietHoaDonForm chiTietHoaDonForm = new ChiTietHoaDonForm(hoadon.Id);
+                chiTietHoaDonForm.ShowDialog();
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.SelectedColumns.Count > 0)
+            {
+                controller.HuyVe(flowLayoutPanel1, totallbl);
+            }
+        }
         private void CreateGheNgoiButtons(List<GheNgoi> danhSachGheNgoi)
         {
-            if(flowLayoutPanel1.Controls.Count>0)
+            if (flowLayoutPanel1.Controls.Count > 0)
             {
                 flowLayoutPanel1.Controls.Clear();
-                foreach(Control control in flowLayoutPanel1.Controls)
+                foreach (Control control in flowLayoutPanel1.Controls)
                 {
                     control.Dispose();
                 }
             }
-            foreach(GheNgoi gheNgoi in danhSachGheNgoi)
+            foreach (GheNgoi gheNgoi in danhSachGheNgoi)
             {
                 Button button = new Button();
-                button.Text= gheNgoi.ToString();
+                button.Text = gheNgoi.ToString();
                 button.Name = gheNgoi.Id.ToString();
                 button.Size = new System.Drawing.Size(55, 36);
-                if(gheNgoi.TrangThai)
+                if (gheNgoi.TrangThai)
                 {
                     button.BackColor = System.Drawing.Color.Red;
                 }
@@ -79,29 +112,6 @@ namespace GUI
                 }
                 button.Click += new EventHandler(GheButton_Click);
                 flowLayoutPanel1.Controls.Add(button);
-            }
-        }
-        private void XuLyDatVeThanhCong(object sender , VeDuocDatEventArgs e)
-        {
-            ThongTinKhachHang thongTinKhachHang = new ThongTinKhachHang();
-            thongTinKhachHang.ShowDialog();
-            if(thongTinKhachHang.DialogResult == DialogResult.Cancel)
-            {
-                controller.HuyVe(flowLayoutPanel1,totallbl);
-            }
-            else if(thongTinKhachHang.DialogResult == DialogResult.OK)
-            {
-                KhachHang khachHang = thongTinKhachHang.khachHang;
-                string ghichu = thongTinKhachHang.ghiChu;
-                int idhoadon =controller.XuLyDatVeThanhCong(khachHang,e.VeDuocDat,txtTenPhim.Text,idnvbh,ghichu);
-                if (MessageBox.Show("Khách hàng có muốn mua thêm đồ ăn -thức uống ? ", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    DatMonAn datMonAn = new DatMonAn(idhoadon);
-                    datMonAn.ShowDialog();
-                    MessageBox.Show("Đặt món ăn thành công");
-                }
-                ChiTietHoaDonForm chiTietHoaDonForm = new ChiTietHoaDonForm(idhoadon);
-                chiTietHoaDonForm.ShowDialog();
             }
         }
     }

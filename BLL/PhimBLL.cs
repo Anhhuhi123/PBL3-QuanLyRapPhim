@@ -27,7 +27,7 @@ namespace BLL
 
         public void setTenPhim(List<Button> buttons)
         {
-            List<String> list = new List<String>();
+            List<string> list = new List<String>();
             foreach (Phim phim in GetAll())
             {
                 list.Add(phim.TenPhim);
@@ -79,6 +79,11 @@ namespace BLL
         {
             try
             {
+                if(ma.Text==""||ten.Text==""||theloai.Text==""||thoiluong.Text==""||mota.Text=="")
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
+                    return;
+                }
                 int id = Convert.ToInt32(ma.Text);
                 string name = ten.Text;
                 string type = theloai.Text;
@@ -97,6 +102,11 @@ namespace BLL
         {
             try
             {
+                if (ma.Text == "" || ten.Text == "" || theloai.Text == "" || thoiluong.Text == "" || mota.Text == "")
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
+                    return;
+                }
                 int id = Convert.ToInt32(ma.Text);
                 string name = ten.Text;
                 string type = theloai.Text;
@@ -115,6 +125,11 @@ namespace BLL
         {
             try
             {
+                if (maphim.Text == "")
+                {
+                    MessageBox.Show("Vui lòng nhập mã phim");
+                    return;
+                }
                 int id =Convert.ToInt32(maphim.Text);
                 unitOfWork.Delete<Phim>(id);
                 MessageBox.Show("Xóa thành công");

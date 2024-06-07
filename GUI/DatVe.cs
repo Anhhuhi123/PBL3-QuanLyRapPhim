@@ -1,4 +1,5 @@
 ﻿using BLL;
+using BLL.UnitOfWork;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -9,23 +10,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static BLL.DatVeBLL;
 
 namespace GUI
 {
     public partial class DatVe : Form
     {
         private readonly string idnvbh;
-        private readonly PhimBLL controllerPhim;
         private DatVeBLL datVeBLL;
         public DatVe(string username)
-        {   
-            controllerPhim = new PhimBLL();
+        {
             datVeBLL = new DatVeBLL();
-            datVeBLL.mydel = new DatVeBLL.Mydel(button1_Click);
             idnvbh = username;
             InitializeComponent();
             label1.Text = "Xin chào " + idnvbh;
-            datVeBLL.SetButton(flowLayoutPanel1);
+            SetButton(datVeBLL.GetPhimDangChieu());
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -34,6 +33,22 @@ namespace GUI
             BanVe bv = new BanVe(bt.Text);
             bv.idnvbh = idnvbh;
             bv.Show();
+        }
+        public void SetButton(List<string> tenphim)
+        {
+            int count = 0;
+            foreach (string ten in tenphim.Distinct())
+            {
+                Button temp = new Button();
+                temp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+                temp.Name = "button" + (++count).ToString();
+                temp.Size = new System.Drawing.Size(100, 50);
+                temp.TabIndex = count;
+                temp.Text = ten;
+                temp.UseVisualStyleBackColor = true;
+                temp.Click += button1_Click;
+                flowLayoutPanel1.Controls.Add(temp);
+            }
         }
     }
 }

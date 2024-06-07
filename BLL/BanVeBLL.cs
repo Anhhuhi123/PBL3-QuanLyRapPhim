@@ -24,7 +24,6 @@ namespace BLL
     {
         CinemaUnitOfWork unitOfWork;
         NguoiDungBLL nguoiDungBLL;
-        GheNgoiBLL gheNgoiBLL;
         public List<MonDuocDat> monDuocDatList;
         public delegate void VeDatThanhCongEventHandler(object sender, VeDuocDatEventArgs e);
         public VeDatThanhCongEventHandler eventHandler;
@@ -32,7 +31,6 @@ namespace BLL
         {
             unitOfWork = CinemaUnitOfWork.Instance;
             nguoiDungBLL = new NguoiDungBLL();
-            gheNgoiBLL = new GheNgoiBLL();
             monDuocDatList= new List<MonDuocDat>();
         }
 
@@ -52,7 +50,7 @@ namespace BLL
             DataGridViewRow selectedrow= dataGridView1.SelectedRows[0];
             int idLich = Convert.ToInt32(selectedrow.Cells["Id"].Value);
             int idPhong= unitOfWork.GetPhongByName(cbb.Text).Id;
-            List<GheNgoi> list = gheNgoiBLL.GetAll(idLich, idPhong);
+            List<GheNgoi> list = unitOfWork.GetAllGhe(idLich, idPhong);
             return list;
         }
 
@@ -146,7 +144,7 @@ namespace BLL
                     if (btn.BackColor == System.Drawing.Color.Green)
                     {
                         int idGhe = Convert.ToInt32(btn.Name);
-                        GheNgoi gheNgoi = gheNgoiBLL.GetGheNgoi(idGhe, idLich, idphong);
+                        GheNgoi gheNgoi = unitOfWork.GetGheNgoi(idGhe, idLich, idphong);
                         gheNgoi.TrangThai = false;
                         listGheNgoi.Add(gheNgoi);
                     }
@@ -167,7 +165,7 @@ namespace BLL
                     unitOfWork.InsertVeDuocDat(vdd, idLich);
                     foreach (GheNgoi gheNgoi in listGheNgoi)
                     {
-                        gheNgoiBLL.Update(gheNgoi, idLich, idphong, vdd.Id);
+                        unitOfWork.UpdateGheNgoi(gheNgoi, idLich, idphong, vdd.Id);
                     }
                     eventHandler.Invoke(this,new VeDuocDatEventArgs(vdd));
                     foreach(Button btn in flowLayoutPanel1.Controls)
@@ -178,7 +176,6 @@ namespace BLL
                         }
                     }
                     lbl.Text = "0";
-                    MessageBox.Show("Đặt vé thành công");
                 }
                 
             }
@@ -202,7 +199,7 @@ namespace BLL
             totallbl.Text = price.ToString(".000");
         }
 
-        public int XuLyDatVeThanhCong(KhachHang khachHang,VeDuocDat vdd,string tenphim ,string idnvbh,string ghichu)
+        public HoaDon XuLyDatVeThanhCong(KhachHang khachHang,VeDuocDat vdd,string tenphim ,string idnvbh,string ghichu)
         {
             NguoiDung nVBH = nguoiDungBLL.GetNguoiDung(idnvbh);
             int idHoaDon= 1;
@@ -211,8 +208,8 @@ namespace BLL
                 idHoaDon = unitOfWork.GetAll<HoaDon>().Count+1;
             }
             HoaDon hoaDon = new HoaDon(idHoaDon,tenphim,vdd.TongTien,ghichu,khachHang.FullName,nVBH.FullName);
-            unitOfWork.InsertHoaDon(hoaDon,idnvbh,khachHang.Id,vdd.Id);
-            return idHoaDon;
+            unitOfWork.InsertHoaDon(hoaDon,nVBH.Id,khachHang.Id,vdd.Id);
+            return hoaDon;
         }
 
         public void GetMonAn(DataGridView dgv)
@@ -226,6 +223,16 @@ namespace BLL
                 MonDuocDat monDuocDat = new MonDuocDat(idMon,tenmon, giaTien, soLuong);
                 monDuocDatList.Add(monDuocDat);
             }
+        }
+
+        public void XoaVe(VeDuocDat veDuocDat)
+        {
+            foreach(GheNgoi ghe in unitOfWork.GetAllGhe(veDuocDat))
+            {
+                ghe.TrangThai = true;
+                unitOfWork.UpdateGheNgoi(ghe,veDuocDat.Id);
+            }
+            unitOfWork.Delete<VeDuocDat>(veDuocDat.Id);
         }
     }
 }

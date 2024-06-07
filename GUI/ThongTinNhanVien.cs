@@ -41,7 +41,7 @@ namespace GUI
             else
             {
                 Deletebtn.Enabled = true;
-                Deletebtn.BackColor = Color.DarkRed;
+                Deletebtn.BackColor = SystemColors.ActiveCaption;
             }
             controller.setDGV(dataGridView1, rolecbb);
         }

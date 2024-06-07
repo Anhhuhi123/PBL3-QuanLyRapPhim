@@ -92,6 +92,10 @@ namespace BLL
             int kpi1 = (kpi.Text == "") ? 0 : Convert.ToInt32(kpi.Text);
             try
             {
+                if(id=="")
+                    throw new Exception("Chưa nhập mã số");
+                if(sodt.Length>10)
+                    throw new Exception("Số điện thoại không hợp lệ");
                 switch (vaitro)
                 {
                     case "Khách hàng":
@@ -151,32 +155,41 @@ namespace BLL
         }
         public void Update(TextBox txtid, TextBox txtname,ComboBox role, TextBox sdt, TextBox email, TextBox kpi, RadioButton bt)
         {
-            string id= txtid.Text;
-            string name = txtname.Text;
-            string vaitro = role.Text;
-            string sodt = sdt.Text;
-            string mail = email.Text;
-            bool active = bt.Checked;
-            int kpi1 = (kpi.Text == "") ? 0 : Convert.ToInt32(kpi.Text);
-            switch (vaitro)
+            try
             {
-                case "Khách hàng":
-                    KhachHang kh = new KhachHang(id, name, sodt, mail, vaitro);
-                    UserUnitOfWork.Instance.UpdateKhachHang(kh);
-                    break;
-                case "Nhân viên quản lý":
-                    NVQL nvql = new NVQL(id, name, sodt, mail, vaitro, active);
-                    UserUnitOfWork.Instance.UpdateNhanVienQuanLy(nvql);
-                    break;
-                case "Nhân viên bán hàng":
-                    NVBH nvbh = new NVBH(id, name, sodt, mail, vaitro, active, kpi1);
-                    UserUnitOfWork.Instance.UpdateNhanVienBanHang(nvbh);
-                    break;
-                default:
-                    MessageBox.Show("Vai trò không hợp lệ");
-                    break;
+                string id = txtid.Text;
+                string name = txtname.Text;
+                string vaitro = role.Text;
+                string sodt = sdt.Text;
+                string mail = email.Text;
+                bool active = bt.Checked;
+                int kpi1 = (kpi.Text == "") ? 0 : Convert.ToInt32(kpi.Text);
+                if (sodt.Length > 10)
+                    throw new Exception("Số điện thoại không hợp lệ");
+                switch (vaitro)
+                {
+                    case "Khách hàng":
+                        KhachHang kh = new KhachHang(id, name, sodt, mail, vaitro);
+                        UserUnitOfWork.Instance.UpdateKhachHang(kh);
+                        break;
+                    case "Nhân viên quản lý":
+                        NVQL nvql = new NVQL(id, name, sodt, mail, vaitro, active);
+                        UserUnitOfWork.Instance.UpdateNhanVienQuanLy(nvql);
+                        break;
+                    case "Nhân viên bán hàng":
+                        NVBH nvbh = new NVBH(id, name, sodt, mail, vaitro, active, kpi1);
+                        UserUnitOfWork.Instance.UpdateNhanVienBanHang(nvbh);
+                        break;
+                    default:
+                        MessageBox.Show("Vai trò không hợp lệ");
+                        break;
+                }
+                MessageBox.Show("Sửa thành công!");
             }
-            MessageBox.Show("Sửa thành công!");
+            catch(Exception e)
+            {
+                MessageBox.Show("Lỗi: " + e.Message);
+            }
         }
         public void setInfo(TextBox txtId, TextBox txtFullname, ComboBox rolecbb, TextBox txtNumber, TextBox txtemail, TextBox txtKPI, RadioButton activerdb, int index, DataGridView dgv)
         {
@@ -243,6 +256,8 @@ namespace BLL
             KhachHang temp = new KhachHang(id.Text, name.Text, Phone.Text, email.Text, "Khách hàng");
             try
             {
+                if(temp.SoDt.Length>10)
+                    throw new Exception("Số điện thoại không hợp lệ");
                 if (CheckIdIsExist(temp.Id))
                 {
                     UserUnitOfWork.Instance.UpdateKhachHang(temp);

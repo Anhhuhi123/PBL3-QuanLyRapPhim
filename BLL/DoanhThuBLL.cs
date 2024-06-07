@@ -58,6 +58,13 @@ namespace BLL
                 }
                 dgv.DataSource = hoadon;
             }
+            dgv.Columns["Id"].HeaderText="Mã Hóa Đơn";
+            dgv.Columns["TenPhim"].HeaderText="Tên Phim";
+            dgv.Columns["TongTien"].HeaderText="Tổng Tiền";
+            dgv.Columns["TenNVBH"].HeaderText="Nhân Viên Bán Hàng";
+            dgv.Columns["TenKhach"].HeaderText="Tên Khách Hàng";
+            dgv.Columns["GhiChu"].HeaderText="Ghi Chú";
+            dgv.Columns["GhiChu"].DisplayIndex=5;
             foreach(DataGridViewRow dr in dgv.Rows)
             {
                 dr.Cells["TongTien"].Value = double.Parse(dr.Cells["TongTien"].Value.ToString()) * 1000;
