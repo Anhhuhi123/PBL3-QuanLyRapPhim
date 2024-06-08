@@ -60,7 +60,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "DatVe";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "DatVe";
+            this.Text = "Đặt vé";
             this.ResumeLayout(false);
             this.PerformLayout();
 
