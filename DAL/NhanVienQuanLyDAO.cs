@@ -30,9 +30,30 @@ namespace DAO
         }
 
         public void Update(NVQL obj)
-        {
+        { //khong co gi de hien ra ca
         }
-
+        public NVQL GetById(string id)
+        {
+            string query = @"SELECT nvql.Id,nd.Fullname,nd.SoDt,nd.Email,nd.Vaitro,nv.Active 
+                            FROM NhanVienQuanLy nvql
+                            INNER JOIN NhanVien nv ON nvql.Id = nv.Id
+                            INNER JOIN NguoiDung nd ON nd.Id = nv.Id
+                            WHERE nvql.Id = @id";
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("@id", id);
+            DataTable dt = DatabaseHelper.Instance.GetRecords(query, sqlParameters);
+            if (dt.Rows.Count > 0)
+            {
+                DataRow dr = dt.Rows[0];
+                string name = dr["Fullname"].ToString();
+                string Sodt = dr["SoDt"].ToString();
+                string email = dr["Email"].ToString();
+                string vaitro = dr["Vaitro"].ToString();
+                bool active = Convert.ToBoolean(dr["Active"]);
+                return new NVQL(id, name, Sodt, email, vaitro, active);
+            }
+            return null;
+        }
         public List<NVQL> GetAll()
         {
             List<NVQL> list = new List<NVQL>();

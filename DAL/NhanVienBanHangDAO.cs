@@ -38,6 +38,28 @@ namespace DAO
             sqlParameters[1] = new SqlParameter("@kpi", obj.KPI);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
+        public NVBH GetById(string id)
+        {
+            string query = @"SELECT nvbh.Id,nd.Fullname,nd.SoDt,nd.Email,nd.Vaitro,nv.Active,nvbh.KPI 
+							FROM NhanVienBanHang nvbh
+                            INNER JOIN NhanVien nv ON nvbh.Id=nv.Id
+                            INNER JOIN NguoiDung nd ON nd.Id = nvbh.Id
+                            WHERE nvbh.Id = @id";
+            SqlParameter sqlParameter= new SqlParameter("@id", id);
+            DataTable dt = DatabaseHelper.Instance.GetRecords(query, sqlParameter);
+            if (dt.Rows.Count > 0)
+            {
+                DataRow row = dt.Rows[0];
+                string name = row["Fullname"].ToString();
+                string Sodt = row["SoDt"].ToString();
+                string email = row["Email"].ToString();
+                string vaitro = row["Vaitro"].ToString();
+                bool active = Convert.ToBoolean(row["Active"]);
+                int kpi = Convert.ToInt32(row["KPI"]);
+                return new NVBH(id, name, Sodt, email, vaitro, active, kpi);
+            }
+            return null;
+        }
         public List<NVBH> GetAll()
         {
             List<NVBH> list = new List<NVBH>();

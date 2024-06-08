@@ -27,7 +27,7 @@ namespace BLL
 
         public void setTenPhim(List<Button> buttons)
         {
-            List<string> list = new List<String>();
+            List<string> list = new List<string>();
             foreach (Phim phim in GetAll())
             {
                 list.Add(phim.TenPhim);
@@ -79,12 +79,15 @@ namespace BLL
         {
             try
             {
-                if(ma.Text==""||ten.Text==""||theloai.Text==""||thoiluong.Text==""||mota.Text=="")
+                if(ma.Text==""||ten.Text==""||theloai.Text==""||thoiluong.Text=="")
                 {
-                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
-                    return;
+                    throw new Exception("Vui lòng nhập đầy đủ thông tin");
                 }
                 int id = Convert.ToInt32(ma.Text);
+                if(unitOfWork.GetById<Phim>(id)!=null)
+                {
+                    throw new Exception("ID đã tồn tại");
+                }
                 string name = ten.Text;
                 string type = theloai.Text;
                 int dur = Convert.ToInt32(thoiluong.Text);
@@ -102,10 +105,9 @@ namespace BLL
         {
             try
             {
-                if (ma.Text == "" || ten.Text == "" || theloai.Text == "" || thoiluong.Text == "" || mota.Text == "")
+                if (ma.Text == "" || ten.Text == "" || theloai.Text == "" || thoiluong.Text == "")
                 {
-                    MessageBox.Show("Vui lòng nhập đầy đủ thông tin");
-                    return;
+                    throw new Exception("Vui lòng nhập đầy đủ thông tin");
                 }
                 int id = Convert.ToInt32(ma.Text);
                 string name = ten.Text;
@@ -121,17 +123,19 @@ namespace BLL
                 MessageBox.Show("Lỗi " + e.Message);
             }
         }
-        public void Delete(TextBox maphim)
+        public void Delete(DataGridView dgv)
         {
             try
             {
-                if (maphim.Text == "")
+                if(dgv.SelectedRows.Count==0)
                 {
-                    MessageBox.Show("Vui lòng nhập mã phim");
-                    return;
+                    throw new Exception("Vui lòng chọn phim cần xóa");
                 }
-                int id =Convert.ToInt32(maphim.Text);
-                unitOfWork.Delete<Phim>(id);
+                foreach(DataGridViewRow dr in dgv.SelectedRows)
+                {
+                    int id=Convert.ToInt32(dr.Cells["Id"].Value);
+                    unitOfWork.Delete<Phim>(id);
+                }
                 MessageBox.Show("Xóa thành công");
             }
             catch(Exception e)
@@ -139,7 +143,7 @@ namespace BLL
                 MessageBox.Show("Lỗi "+e.Message);
             }
         }
-        public void xuLySuKien(Button sender, TextBox txtMa, TextBox txtTen, ComboBox ccbTheLoai, TextBox txtThoiLuong, TextBox txtMoTa)
+        public void xuLySuKien(Button sender, TextBox txtMa, TextBox txtTen, ComboBox ccbTheLoai, TextBox txtThoiLuong, TextBox txtMoTa,DataGridView dgv)
         {
             switch (sender.Text)
             {
@@ -150,7 +154,7 @@ namespace BLL
                     Update(txtMa, txtTen, ccbTheLoai, txtThoiLuong, txtMoTa);;
                     break;
                 case "Xóa":
-                    Delete(txtMa);
+                    Delete(dgv);
                     break;
                 case "Lọc":
                     break;

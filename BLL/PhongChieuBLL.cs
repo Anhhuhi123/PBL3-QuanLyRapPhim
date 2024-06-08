@@ -74,7 +74,15 @@ namespace BLL
         {
             try
             {
+                if(txtid.Text == "" || txtname.Text == "" || txtsize.Text == "")
+                {
+                    throw new Exception("Vui lòng nhập đầy đủ thông tin");
+                }
                 int id= Convert.ToInt32(txtid.Text);
+                if(unitOfWork.GetById<PhongChieu>(id) != null)
+                {
+                    throw new Exception("ID đã tồn tại");
+                }
                 string name = txtname.Text;
                 int size = Convert.ToInt32(txtsize.Text);
                 if(size==0 || size > 100){
@@ -94,6 +102,10 @@ namespace BLL
         {
             try
             {
+                if (txtid.Text == "" || txtname.Text == "" || txtsize.Text == "")
+                {
+                    throw new Exception("Vui lòng nhập đầy đủ thông tin");
+                }
                 int id= Convert.ToInt32(txtid.Text);
                 string name = txtname.Text;
                 int size = Convert.ToInt32(txtsize.Text);
@@ -110,6 +122,10 @@ namespace BLL
         {
             try
             {
+                if (txtid.Text == "")
+                {
+                    throw new Exception("Vui lòng nhập ID cần xóa");
+                }
                 int id= Convert.ToInt32(txtid.Text);
                 unitOfWork.Delete<PhongChieu>(id);
                 MessageBox.Show("Xóa thành công");

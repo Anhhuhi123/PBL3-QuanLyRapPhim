@@ -25,10 +25,17 @@ namespace GUI
             {
                 controller.SetDGV(dataGridView1, checkBox1, idLichChieu);
 
+                dataGridView1.MultiSelect = true;
+
                 txtid.Enabled = false;
                 txtname.Enabled = false;
                 txtsize.Enabled = false;
                 txtmota.Enabled = false;
+
+                txtid.Visible = false;
+                txtname.Visible = false;
+                txtsize.Visible = false;
+                txtmota.Visible = false;
 
                 checkBox1.Enabled = true;
                 checkBox1.Visible = true;

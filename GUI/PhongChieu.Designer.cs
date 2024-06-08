@@ -63,13 +63,14 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView1.Location = new System.Drawing.Point(339, 0);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Location = new System.Drawing.Point(452, 0);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 82;
             this.dataGridView1.RowTemplate.Height = 33;
-            this.dataGridView1.Size = new System.Drawing.Size(742, 592);
+            this.dataGridView1.Size = new System.Drawing.Size(989, 729);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             // 
@@ -79,10 +80,9 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Mongolian Baiti", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(79, 31);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(105, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(159, 29);
+            this.label1.Size = new System.Drawing.Size(193, 36);
             this.label1.TabIndex = 5;
             this.label1.Text = "Phòng Chiếu";
             // 
@@ -91,27 +91,26 @@
             this.lblid.AutoSize = true;
             this.lblid.BackColor = System.Drawing.Color.Transparent;
             this.lblid.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblid.Location = new System.Drawing.Point(36, 103);
-            this.lblid.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblid.Location = new System.Drawing.Point(48, 127);
             this.lblid.Name = "lblid";
-            this.lblid.Size = new System.Drawing.Size(58, 13);
+            this.lblid.Size = new System.Drawing.Size(70, 16);
             this.lblid.TabIndex = 6;
             this.lblid.Text = "Mã phòng:";
             // 
             // txtid
             // 
-            this.txtid.Location = new System.Drawing.Point(103, 103);
-            this.txtid.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtid.Location = new System.Drawing.Point(137, 127);
+            this.txtid.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtid.Name = "txtid";
-            this.txtid.Size = new System.Drawing.Size(186, 20);
+            this.txtid.Size = new System.Drawing.Size(247, 22);
             this.txtid.TabIndex = 7;
             // 
             // txtname
             // 
-            this.txtname.Location = new System.Drawing.Point(104, 151);
-            this.txtname.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtname.Location = new System.Drawing.Point(139, 186);
+            this.txtname.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtname.Name = "txtname";
-            this.txtname.Size = new System.Drawing.Size(186, 20);
+            this.txtname.Size = new System.Drawing.Size(247, 22);
             this.txtname.TabIndex = 9;
             // 
             // lblten
@@ -119,19 +118,18 @@
             this.lblten.AutoSize = true;
             this.lblten.BackColor = System.Drawing.Color.Transparent;
             this.lblten.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblten.Location = new System.Drawing.Point(37, 151);
-            this.lblten.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblten.Location = new System.Drawing.Point(49, 186);
             this.lblten.Name = "lblten";
-            this.lblten.Size = new System.Drawing.Size(62, 13);
+            this.lblten.Size = new System.Drawing.Size(75, 16);
             this.lblten.TabIndex = 8;
             this.lblten.Text = "Tên phòng:";
             // 
             // txtsize
             // 
-            this.txtsize.Location = new System.Drawing.Point(104, 198);
-            this.txtsize.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtsize.Location = new System.Drawing.Point(139, 244);
+            this.txtsize.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtsize.Name = "txtsize";
-            this.txtsize.Size = new System.Drawing.Size(186, 20);
+            this.txtsize.Size = new System.Drawing.Size(247, 22);
             this.txtsize.TabIndex = 11;
             // 
             // lblsize
@@ -139,20 +137,19 @@
             this.lblsize.AutoSize = true;
             this.lblsize.BackColor = System.Drawing.Color.Transparent;
             this.lblsize.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblsize.Location = new System.Drawing.Point(37, 198);
-            this.lblsize.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblsize.Location = new System.Drawing.Point(49, 244);
             this.lblsize.Name = "lblsize";
-            this.lblsize.Size = new System.Drawing.Size(56, 13);
+            this.lblsize.Size = new System.Drawing.Size(65, 16);
             this.lblsize.TabIndex = 10;
             this.lblsize.Text = "Sức chứa:";
             // 
             // txtmota
             // 
-            this.txtmota.Location = new System.Drawing.Point(103, 244);
-            this.txtmota.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.txtmota.Location = new System.Drawing.Point(137, 300);
+            this.txtmota.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtmota.Multiline = true;
             this.txtmota.Name = "txtmota";
-            this.txtmota.Size = new System.Drawing.Size(186, 63);
+            this.txtmota.Size = new System.Drawing.Size(247, 77);
             this.txtmota.TabIndex = 13;
             // 
             // lbldes
@@ -160,10 +157,9 @@
             this.lbldes.AutoSize = true;
             this.lbldes.BackColor = System.Drawing.Color.Transparent;
             this.lbldes.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lbldes.Location = new System.Drawing.Point(37, 244);
-            this.lbldes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbldes.Location = new System.Drawing.Point(49, 300);
             this.lbldes.Name = "lbldes";
-            this.lbldes.Size = new System.Drawing.Size(37, 13);
+            this.lbldes.Size = new System.Drawing.Size(43, 16);
             this.lbldes.TabIndex = 12;
             this.lbldes.Text = "Mô tả:";
             // 
@@ -173,10 +169,10 @@
             this.checkBox1.BackColor = System.Drawing.Color.Transparent;
             this.checkBox1.Enabled = false;
             this.checkBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.checkBox1.Location = new System.Drawing.Point(40, 322);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.checkBox1.Location = new System.Drawing.Point(53, 396);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(176, 17);
+            this.checkBox1.Size = new System.Drawing.Size(213, 20);
             this.checkBox1.TabIndex = 14;
             this.checkBox1.Text = "Thay đổi phòng chứa lịch chiếu";
             this.checkBox1.UseVisualStyleBackColor = false;
@@ -188,10 +184,10 @@
             this.btThoat.BackColor = System.Drawing.Color.DarkRed;
             this.btThoat.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btThoat.BackgroundImage")));
             this.btThoat.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btThoat.Location = new System.Drawing.Point(182, 454);
-            this.btThoat.Margin = new System.Windows.Forms.Padding(2);
+            this.btThoat.Location = new System.Drawing.Point(243, 559);
+            this.btThoat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btThoat.Name = "btThoat";
-            this.btThoat.Size = new System.Drawing.Size(128, 46);
+            this.btThoat.Size = new System.Drawing.Size(171, 57);
             this.btThoat.TabIndex = 4;
             this.btThoat.Text = "Thoát";
             this.btThoat.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -203,10 +199,10 @@
             this.btXoa.BackColor = System.Drawing.Color.DarkRed;
             this.btXoa.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btXoa.BackgroundImage")));
             this.btXoa.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btXoa.Location = new System.Drawing.Point(39, 454);
-            this.btXoa.Margin = new System.Windows.Forms.Padding(2);
+            this.btXoa.Location = new System.Drawing.Point(52, 559);
+            this.btXoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btXoa.Name = "btXoa";
-            this.btXoa.Size = new System.Drawing.Size(130, 46);
+            this.btXoa.Size = new System.Drawing.Size(173, 57);
             this.btXoa.TabIndex = 3;
             this.btXoa.Text = "Xóa";
             this.btXoa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -218,10 +214,10 @@
             this.btSua.BackColor = System.Drawing.Color.DarkRed;
             this.btSua.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btSua.BackgroundImage")));
             this.btSua.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btSua.Location = new System.Drawing.Point(182, 372);
-            this.btSua.Margin = new System.Windows.Forms.Padding(2);
+            this.btSua.Location = new System.Drawing.Point(243, 458);
+            this.btSua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btSua.Name = "btSua";
-            this.btSua.Size = new System.Drawing.Size(128, 46);
+            this.btSua.Size = new System.Drawing.Size(171, 57);
             this.btSua.TabIndex = 2;
             this.btSua.Text = "Sửa";
             this.btSua.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -233,10 +229,10 @@
             this.btThem.BackColor = System.Drawing.Color.DarkRed;
             this.btThem.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btThem.BackgroundImage")));
             this.btThem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btThem.Location = new System.Drawing.Point(39, 372);
-            this.btThem.Margin = new System.Windows.Forms.Padding(2);
+            this.btThem.Location = new System.Drawing.Point(52, 458);
+            this.btThem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btThem.Name = "btThem";
-            this.btThem.Size = new System.Drawing.Size(130, 46);
+            this.btThem.Size = new System.Drawing.Size(173, 57);
             this.btThem.TabIndex = 1;
             this.btThem.Text = "Thêm";
             this.btThem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -245,13 +241,13 @@
             // 
             // PhongChieu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImage = global::GUI.Properties.Resources.Phongchieuphim;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1081, 592);
+            this.ClientSize = new System.Drawing.Size(1441, 729);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.txtmota);
             this.Controls.Add(this.lbldes);
@@ -268,7 +264,7 @@
             this.Controls.Add(this.btThem);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "PhongChieu";
             this.RightToLeftLayout = true;
             this.Text = "PhongChieu";

@@ -31,20 +31,20 @@ namespace DAO
             NguoiDungKhachHang.Fullname AS TenKhachHang, 
             NguoiDungNhanVien.Fullname AS TenNVBH
             FROM HoaDon
-            INNER JOIN NguoiDung AS NguoiDungKhachHang ON HoaDon.IdKhachHang = NguoiDungKhachHang.Id
-            INNER JOIN NguoiDung AS NguoiDungNhanVien ON HoaDon.IdNVBH = NguoiDungNhanVien.Id
+            LEFT JOIN NguoiDung AS NguoiDungKhachHang ON HoaDon.IdKhachHang = NguoiDungKhachHang.Id
+            LEFT JOIN NguoiDung AS NguoiDungNhanVien ON HoaDon.IdNVBH = NguoiDungNhanVien.Id
 			INNER JOIN VeDuocDat ON VeDuocDat.Id=HoaDon.Id
-			INNER JOIN LichChieu ON LichChieu.Id=VeDuocDat.IdLichChieu
-			INNER JOIN Phim ON Phim.Id=LichChieu.IdPhim";
+			LEFT JOIN LichChieu ON LichChieu.Id=VeDuocDat.IdLichChieu
+			LEFT JOIN Phim ON Phim.Id=LichChieu.IdPhim";
             DataTable reader = DatabaseHelper.Instance.GetRecords(query);
             foreach (DataRow dr in reader.Rows)
             {
                 int id = Convert.ToInt32(dr["Id"]);
                 int tongtien = Convert.ToInt32(dr["TongTien"]);
-                string tenphim= dr["TenPhim"].ToString();
+                string tenphim= (dr["TenPhim"].ToString()=="")?"Đã bị xóa":dr["TenPhim"].ToString();
                 string ghichu = dr["GhiChu"].ToString();
-                string tenKhachHang = dr["TenKhachHang"].ToString();
-                string tenNVBH = dr["TenNVBH"].ToString();
+                string tenKhachHang = (dr["TenKhachHang"].ToString()=="")?"Đã bị xóa" : dr["TenKhachHang"].ToString();
+                string tenNVBH = (dr["TenNVBH"].ToString()=="")?"Đã bị xóa":dr["TenNVBH"].ToString();
                 HoaDon hoaDon = new HoaDon(id, tenphim, tongtien, ghichu,tenKhachHang,tenNVBH);
                 list.Add(hoaDon);
             }
@@ -64,11 +64,11 @@ namespace DAO
         public void Delete(int id)
         {
             string query = @"Delete From ChiTietHoaDon WHERE IdHoaDon=@Id";
-            SqlParameter sqlParameters = new SqlParameter("@Id", id);
-            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters)
-    ;       query = @"DELETE FROM HoaDon WHERE Id=@Id";
-            SqlParameter para = new SqlParameter("@Id", id);
+            SqlParameter para= new SqlParameter("@Id", id);
             DatabaseHelper.Instance.ExecuteNonQuery(query, para);
+            query = @"DELETE FROM HoaDon WHERE Id=@Id";
+            SqlParameter sqlParameters = new SqlParameter("@Id", id);
+            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
         public List<MonDuocDat>GetChiTietHoaDon(int idHoaDon)
         {
@@ -90,6 +90,23 @@ namespace DAO
                 list.Add(mon);
             }
             return list;
+        }
+
+        public void SetHoaDon(KhachHang khachHang)
+        {
+            string query =@"Update HoaDon
+                            set IdKhachHang=null
+                            where IdKhachHang=@id";
+            SqlParameter sqlParameters = new SqlParameter("@id", khachHang.Id);
+            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
+        }
+        public void SetHoaDon(NVBH nvbh)
+        {
+            string query = @"Update HoaDon
+                            set IdNVBH=null
+                            where IdNVBH=@id";
+            SqlParameter sqlParameters = new SqlParameter("@id", nvbh.Id);
+            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
     }
 }

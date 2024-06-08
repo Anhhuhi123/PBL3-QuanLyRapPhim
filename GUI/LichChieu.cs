@@ -31,6 +31,12 @@ namespace GUI
                 txtGioChieu.Enabled = false;
                 Filterbtn.Enabled = false;
 
+                txtGioChieu.Visible = false;
+                txtIDLichChieu.Visible = false;
+                ccbTenPhim.Visible = false;
+                dateTimeLichChieu.Visible = false;
+                Filterbtn.Visible = false;
+
                 checkBox1.Visible = true;
                 checkBox1.Enabled = true;
                 btThem.Enabled = false;
@@ -50,7 +56,7 @@ namespace GUI
         {
             if(idPhongChieu==0)
             {
-                controller.XuLySuKien((Button)sender, txtIDLichChieu, ccbTenPhim, idnvql, dateTimeLichChieu, txtGioChieu);
+                controller.XuLySuKien((Button)sender, txtIDLichChieu, ccbTenPhim, idnvql, dateTimeLichChieu, txtGioChieu,dataGridView1);
                 controller.SetDGV(dataGridView1, ccbTenPhim);
             }
             else

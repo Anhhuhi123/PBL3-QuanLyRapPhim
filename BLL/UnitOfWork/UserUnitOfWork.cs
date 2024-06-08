@@ -38,87 +38,118 @@ namespace BLL.UnitOfWork
             NguoiDungDAO = new NguoiDungDAO();
             KhachHangDAO = new KhachHangDAO();
         }
-        public List<KhachHang> GetAllKhachHang()
+        public T GetById<T>(string id) where T : class
         {
-            return KhachHangDAO.GetAll();
+            switch(typeof(T).Name)
+            {
+                case "KhachHang":
+                    return KhachHangDAO.GetById(id) as T;
+                case "NhanVien":
+                    return NhanVienDAO.GetById(id) as T;
+                case "NguoiDung":
+                    return NguoiDungDAO.GetById(id) as T;
+                case "NVBH":
+                    return NhanVienBanHangDAO.GetById(id) as T;
+                case "NVQL":
+                    return NhanVienQuanLyDAO.GetById(id) as T;
+                default:
+                    return null;    
+            }
         }
-        public List<NhanVien> GetAllNhanVien()
+        public List<T> GetAll<T>()
         {
-            return NhanVienDAO.GetAll();
+            switch(typeof(T).Name)
+            {
+                case "KhachHang":
+                    return KhachHangDAO.GetAll() as List<T>;
+                case "NhanVien":
+                    return NhanVienDAO.GetAll() as List<T>;
+                case "NguoiDung":
+                    return NguoiDungDAO.GetAll() as List<T>;
+                case "NVBH":
+                    return NhanVienBanHangDAO.GetAll() as List<T>;
+                case "NVQL":
+                    return NhanVienQuanLyDAO.GetAll() as List<T>;
+                default:
+                    return null;
+            }
         }
-        public List<NguoiDung> GetAllNguoiDung()
+        public void Insert<T>(T obj) 
         {
-            return NguoiDungDAO.GetAll();
+            switch(typeof(T).Name)
+            {
+                case "KhachHang":
+                    NguoiDungDAO.Insert(obj as NguoiDung);
+                    KhachHangDAO.Insert(obj as KhachHang);
+                    break;
+                case "NhanVien":
+                    NguoiDungDAO.Insert(obj as NguoiDung);
+                    NhanVienDAO.Insert(obj as NhanVien);
+                    TaiKhoanDAO.Insert(new TaiKhoan((obj as NhanVien).Id));
+                    break;
+                case "NVBH":
+                    Insert(obj as NhanVien);
+                    NhanVienBanHangDAO.Insert(obj as NVBH);
+                    break;
+                case "NVQL":
+                    Insert(obj as NhanVien);
+                    NhanVienQuanLyDAO.Insert(obj as NVQL);
+                    break;
+                default:
+                    break;
+            }
+
         }
-        public List<NVBH> GetAllNhanVienBanHang()
+        public void Delete<T>(string id)
         {
-            return NhanVienBanHangDAO.GetAll();
+            switch (typeof(T).Name)
+            {
+                case "KhachHang":
+                    CinemaUnitOfWork.Instance.SetHoaDon(GetById<KhachHang>(id));
+                    KhachHangDAO.Delete(id);
+                    NguoiDungDAO.Delete(id);
+                    break;
+                case "NhanVien":
+                    TaiKhoanDAO.Delete(id);
+                    NhanVienDAO.Delete(id);
+                    NguoiDungDAO.Delete(id);
+                    break;
+                case "NVBH":
+                    CinemaUnitOfWork.Instance.SetHoaDon(GetById<NVBH>(id));
+                    NhanVienBanHangDAO.Delete(id);
+                    Delete<NhanVien>(id);
+                    break;
+                case "NVQL":
+                    CinemaUnitOfWork.Instance.SetLichChieu(GetById<NVQL>(id));
+                    NhanVienQuanLyDAO.Delete(id);
+                    Delete<NhanVien>(id);
+                    break;
+                default:
+                    break;
+            }
         }
-        public List<NVQL> GetAllNhanVienQuanLy()
+        public void Update<T>(T obj)
         {
-            return NhanVienQuanLyDAO.GetAll();
-        }
-        public void InsertKhachHang(KhachHang khachHang)
-        {
-            NguoiDungDAO.Insert(khachHang);
-            KhachHangDAO.Insert(khachHang);
-        }
-        private void InsertNhanVien(NhanVien nhanVien)
-        {
-            NguoiDungDAO.Insert(nhanVien);
-            NhanVienDAO.Insert(nhanVien);
-            TaiKhoanDAO.Insert(new TaiKhoan(nhanVien.Id,"123"));
-        }
-        public void InsertNhanVienBanHang(NVBH nvbh)
-        {
-            InsertNhanVien(nvbh);
-            NhanVienBanHangDAO.Insert(nvbh);
-        }
-        public void InsertNhanVienQuanLy(NVQL nvql)
-        {
-            InsertNhanVien(nvql);
-            NhanVienQuanLyDAO.Insert(nvql);
-        }
-        public void DeleteKhachHang(string id)
-        {
-            KhachHangDAO.Delete(id);
-            NguoiDungDAO.Delete(id);
-        }
-        private void DeleteNhanVien(string id)
-        {
-            TaiKhoanDAO.Delete(id);
-            NhanVienDAO.Delete(id);
-            NguoiDungDAO.Delete(id);
-        }
-        public void DeleteNhanVienQuanLy(string id)
-        {
-            NhanVienQuanLyDAO.Delete(id);
-            DeleteNhanVien(id);
-        }
-        public void DeleteNhanVienBanHang(string id)
-        {
-            NhanVienBanHangDAO.Delete(id);
-            DeleteNhanVien(id);
-        }
-        public void UpdateKhachHang(KhachHang khachHang)
-        {
-            KhachHangDAO.Update(khachHang);
-            NguoiDungDAO.Update(khachHang);
-        }
-        private void UpdateNhanVien(NhanVien nhanVien)
-        {
-            NhanVienDAO.Update(nhanVien);
-            NguoiDungDAO.Update(nhanVien);
-        }
-        public void UpdateNhanVienBanHang(NVBH nvbh)
-        {
-            UpdateNhanVien(nvbh);
-            NhanVienBanHangDAO.Update(nvbh);
-        }
-        public void UpdateNhanVienQuanLy(NVQL nvql)
-        {
-            UpdateNhanVien(nvql);
-            NhanVienQuanLyDAO.Update(nvql);
+            switch (typeof(T).Name)
+            {
+                case "KhachHang":
+                    NguoiDungDAO.Update(obj as NguoiDung);
+                    break;
+                case "NhanVien":
+                    NhanVienDAO.Update(obj as NhanVien);
+                    NguoiDungDAO.Update(obj as NguoiDung);
+                    break;
+                case "NVBH":
+                    Update(obj as NhanVien);
+                    NhanVienBanHangDAO.Update(obj as NVBH);
+                    break;
+                case "NVQL":
+                    Update(obj as NhanVien);
+                    NhanVienQuanLyDAO.Update(obj as NVQL);
+                    break;
+                default:
+                    break;
+            }
         }
         public void Dispose()
         {

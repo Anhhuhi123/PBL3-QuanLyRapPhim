@@ -89,15 +89,19 @@ namespace BLL.UnitOfWork
         {
             return ghengoidao.GetAll(idLich, idPhong);
         }
-        public void InsertLichChieu(LichChieu lichChieu, int idphim, string idnvql)
+        public List<LichChieu>GetAllLichChieuTheoPhim(int idphim)
+        {
+            return lichChieuDAO.GetAllLichChieuTheoPhim(idphim);
+        }
+        public void Insert(LichChieu lichChieu, int idphim, string idnvql)
         {
             lichChieuDAO.Insert(lichChieu, idphim, idnvql);
         }
-        public void InsertVeDuocDat(VeDuocDat vdd, int idLich)
+        public void Insert(VeDuocDat vdd, int idLich)
         {
             veDuocDatDAO.Insert(vdd, idLich);
         }
-        public void InsertHoaDon(HoaDon hoaDon, string idNVBH, string idKhachHang, int idVeDuocDat)
+        public void Insert(HoaDon hoaDon, string idNVBH, string idKhachHang, int idVeDuocDat)
         {
             hoaDonDAO.Insert(hoaDon, idNVBH, idKhachHang, idVeDuocDat);
         }
@@ -124,11 +128,16 @@ namespace BLL.UnitOfWork
                     phongChieuDAO.Delete(id);
                     break;
                 case "LichChieu":
-                    hoaDonDAO.Delete(id);
-                    veDuocDatDAO.Delete(id);
                     lichChieuDAO.Delete(id);
                     break;
                 case "Phim":
+                    if (GetAllLichChieuTheoPhim(id).Count > 0)
+                    {
+                        foreach (LichChieu lichChieu in GetAllLichChieuTheoPhim(id))
+                        {
+                            lichChieuDAO.Delete(lichChieu.Id);
+                        }
+                    }
                     phimDAO.Delete(id);
                     break;
                 case "GheNgoi":
@@ -148,9 +157,6 @@ namespace BLL.UnitOfWork
                 case "PhongChieu":
                     phongChieuDAO.Update(obj as PhongChieu);
                     break;
-                case "LichChieu":
-                    lichChieuDAO.Update(obj as LichChieu);
-                    break;
                 case "Phim":
                     phimDAO.Update(obj as Phim);
                     break;
@@ -158,13 +164,17 @@ namespace BLL.UnitOfWork
                     break;
             }
         }
+        public void Update(LichChieu lichChieu, int idphim, string idnvql)
+        {
+            lichChieuDAO.Update(lichChieu, idphim, idnvql);
+        }
         //gan ghe ngoi voi ghe duoc dat
-        public void UpdateGheNgoi(GheNgoi obj, int idlich, int idphong, int idVeDuocDat)
+        public void Update(GheNgoi obj, int idlich, int idphong, int idVeDuocDat)
         {
             ghengoidao.Update(obj, idlich, idphong, idVeDuocDat);
         }
         //khi huy ve duoc dat thi cap nhat lai trang thai ghe
-        public void UpdateGheNgoi(GheNgoi obj,int idVeDuocDat)
+        public void Update(GheNgoi obj,int idVeDuocDat)
         {
             ghengoidao.Update(obj,idVeDuocDat);
         }
@@ -192,9 +202,9 @@ namespace BLL.UnitOfWork
         }
 
         //Lay danh sach suat chieu.
-        public List<LichChieu> GetLichDangChieu(int id)
+        public List<LichChieu> GetLichDangChieu(int idphong)
         {
-            return lichChieuDAO.GetLichDangChieu(id);
+            return lichChieuDAO.GetLichDangChieu(idphong);
         }
         //tim kiem theo ten cho phim
         public int SearchPhimByName(string name)
@@ -207,9 +217,9 @@ namespace BLL.UnitOfWork
             return 0;
         }
         //lay danh sach phong chieu dang chieu phim
-        public List<PhongChieu> GetAllPhongDangChieuPhim(int id)
+        public List<PhongChieu> GetAllPhongDangChieuPhim(int idlich)
         {
-            return phongChieuDAO.GetAllPhongDangChieuPhim(id);
+            return phongChieuDAO.GetAllPhongDangChieuPhim(idlich);
         }
 
         //danh cho phong chieu
@@ -257,5 +267,19 @@ namespace BLL.UnitOfWork
             return ghengoidao.GetGheNgoi(vdd);
         }
 
+        //Xoa thong tin cua Khach hang va nhan vien ban hang khi bi xoa trong csdl
+        public void SetHoaDon(KhachHang khachHang)
+        {
+            hoaDonDAO.SetHoaDon(khachHang);
+        }
+        public void SetHoaDon(NVBH nVBH)
+        {
+            hoaDonDAO.SetHoaDon(nVBH);
+        }
+        //xoa thong tin cua nhan vien quan ly khi bi xoa trong csdl
+        public void SetLichChieu(NVQL nVQL)
+        {
+            lichChieuDAO.SetLichChieu(nVQL);
+        }
     }
 }

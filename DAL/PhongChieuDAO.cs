@@ -20,14 +20,12 @@ namespace DAO
         public void Delete(int id)
         {
             string query = @"DELETE FROM LichChieu_PhongChieu WHERE IdPhongChieu = @id";
-            SqlParameter sqlparameterlk = new SqlParameter("@id", id);
-            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlparameterlk);
-            query =@"DELETE FROM GheNgoi WHERE IdPhong = @id";
-            SqlParameter sqlparameterGhe =new SqlParameter("@id",id);
-            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlparameterGhe);
-            query = @"DELETE FROM PhongChieu WHERE Id = @id";
-            SqlParameter sqlParameters = new SqlParameter("@id", id);
-            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
+            SqlParameter sqlparameter = new SqlParameter("@id", id);
+            DatabaseHelper.Instance.ExecuteNonQuery(query, sqlparameter);
+            query = @"DELETE FROM GheNgoi WHERE IdPhong = @id";
+            DatabaseHelper.Instance.ExecuteNonQuery(query, new SqlParameter("@id",id));
+            query =@"DELETE FROM PhongChieu WHERE Id = @id";
+            DatabaseHelper.Instance.ExecuteNonQuery(query, new SqlParameter("@id",id)); 
         }
 
         public List<PhongChieu> GetAll()
@@ -75,6 +73,10 @@ namespace DAO
             SqlParameter[] sqlParameters = new SqlParameter[1];
             sqlParameters[0] = new SqlParameter("@id", id);
             DataTable dt = DatabaseHelper.Instance.GetRecords(query, sqlParameters);
+            if(dt.Rows.Count == 0)
+            {
+                return null;
+            }
             DataRow dr = dt.Rows[0];
             int idphong = Convert.ToInt32(dr["Id"]);
             string name = dr["Name"].ToString();

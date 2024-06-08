@@ -42,7 +42,6 @@ namespace GUI
             this.txtNumber = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtemail = new System.Windows.Forms.TextBox();
-            this.Activerdb = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
             this.Addbtn = new System.Windows.Forms.Button();
             this.Updatebtn = new System.Windows.Forms.Button();
@@ -50,6 +49,7 @@ namespace GUI
             this.Deletebtn = new System.Windows.Forms.Button();
             this.txtKPI = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.activeCB = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -168,20 +168,6 @@ namespace GUI
             this.txtemail.Size = new System.Drawing.Size(247, 22);
             this.txtemail.TabIndex = 11;
             // 
-            // Activerdb
-            // 
-            this.Activerdb.AutoSize = true;
-            this.Activerdb.BackColor = System.Drawing.Color.Transparent;
-            this.Activerdb.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Activerdb.Location = new System.Drawing.Point(132, 351);
-            this.Activerdb.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Activerdb.Name = "Activerdb";
-            this.Activerdb.Size = new System.Drawing.Size(88, 20);
-            this.Activerdb.TabIndex = 14;
-            this.Activerdb.TabStop = true;
-            this.Activerdb.Text = "Trạng thái";
-            this.Activerdb.UseVisualStyleBackColor = false;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -273,6 +259,17 @@ namespace GUI
             this.label7.TabIndex = 20;
             this.label7.Text = "KPI";
             // 
+            // activeCB
+            // 
+            this.activeCB.BackColor = System.Drawing.Color.Transparent;
+            this.activeCB.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.activeCB.Location = new System.Drawing.Point(129, 351);
+            this.activeCB.Name = "activeCB";
+            this.activeCB.Size = new System.Drawing.Size(127, 20);
+            this.activeCB.TabIndex = 0;
+            this.activeCB.Text = "Trạng thái";
+            this.activeCB.UseVisualStyleBackColor = false;
+            // 
             // ThongTinNhanVien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -281,6 +278,7 @@ namespace GUI
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.BackgroundImage = global::GUI.Properties.Resources.nhanvien;
             this.ClientSize = new System.Drawing.Size(1441, 729);
+            this.Controls.Add(this.activeCB);
             this.Controls.Add(this.txtKPI);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.Exitbtn);
@@ -288,7 +286,6 @@ namespace GUI
             this.Controls.Add(this.Updatebtn);
             this.Controls.Add(this.Addbtn);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.Activerdb);
             this.Controls.Add(this.txtemail);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtNumber);
@@ -301,7 +298,7 @@ namespace GUI
             this.Controls.Add(this.Idlbl);
             this.Controls.Add(this.dataGridView1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ThongTinNhanVien";
             this.Text = "ThongTinNhanVien";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -322,7 +319,6 @@ namespace GUI
         private System.Windows.Forms.TextBox txtNumber;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtemail;
-        private System.Windows.Forms.RadioButton Activerdb;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button Addbtn;
         private System.Windows.Forms.Button Updatebtn;
@@ -330,5 +326,6 @@ namespace GUI
         private System.Windows.Forms.Button Deletebtn;
         private System.Windows.Forms.TextBox txtKPI;
         private System.Windows.Forms.Label label7;
+        private CheckBox activeCB;
     }
 }

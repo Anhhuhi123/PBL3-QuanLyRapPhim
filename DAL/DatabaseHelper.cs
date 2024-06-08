@@ -12,7 +12,7 @@ namespace DAO
 {
     public class DatabaseHelper
     {
-        private readonly string connectionString = @"Data Source=MSI;Initial Catalog=PBL3;Integrated Security=True";
+        private readonly string connectionString = @"Data Source=MSI;Initial Catalog=rapphim;Integrated Security=True";
         //private readonly string connectionString = "Data Source=192.168.1.11;Initial Catalog=\"Rap phim full\";User ID=sa;Password=VeryStr0ngP@ssw0rd;";
         private SqlConnection connection;
         private static DatabaseHelper instance;
@@ -40,7 +40,13 @@ namespace DAO
                 }
                 catch(Exception e)
                 {
-                    throw new Exception("SQL Error "+e.Message);
+                    string error = e.Message;
+                    error += "\n" + query;
+                    foreach(SqlParameter parameter in sqlParameters)
+                    {
+                        error = error.Replace(parameter.ParameterName, parameter.Value.ToString());
+                    }
+                    throw new Exception("ExecuteNonQuery Error "+ error);
                 }
                 finally
                 {
@@ -61,7 +67,7 @@ namespace DAO
             }
             catch (Exception e)
             {
-                throw new Exception("Get Data Error "+ e.Message);
+                throw new Exception("Get Data Error "+ e.Message+" "+query);
             }
             finally
             {

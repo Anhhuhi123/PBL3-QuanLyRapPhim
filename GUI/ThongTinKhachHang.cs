@@ -39,10 +39,6 @@ namespace GUI
                 DialogResult = DialogResult.OK;
                 this.Dispose();
             }
-            else
-            {
-                MessageBox.Show("Có lỗi xảy ra, vui lòng kiểm tra lại thông tin", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
     }
 }

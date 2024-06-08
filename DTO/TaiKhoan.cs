@@ -11,10 +11,10 @@ namespace DTO
         public string TenTK { get; set; }
         public string MatKhau { get; set; }
 
-        public TaiKhoan(string tenTK, string matKhau)
+        public TaiKhoan(string tenTK)
         {
             TenTK = tenTK;
-            MatKhau = matKhau;
+            MatKhau = tenTK;
         }
     }
 }

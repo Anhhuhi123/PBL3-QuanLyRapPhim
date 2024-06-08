@@ -39,6 +39,26 @@ namespace DAO
             return list;
         }
 
+        public KhachHang GetById(string id)
+        {
+            string query = @"SELECT kh.Id,nd.Fullname,nd.SoDt,nd.Email,nd.Vaitro
+                            FROM KhachHang kh
+                            INNER JOIN NguoiDung nd ON nd.Id = kh.Id
+                            WHERE kh.Id = @id";
+            SqlParameter sqlParameter= new SqlParameter("@id", id);
+            DataTable dt = DatabaseHelper.Instance.GetRecords(query, sqlParameter);
+            if(dt.Rows.Count == 0)
+            {
+                return null;
+            }
+            DataRow dr = dt.Rows[0];
+            string name = dr["Fullname"].ToString();
+            string Sodt = dr["SoDt"].ToString();
+            string email = dr["Email"].ToString();
+            string vaitro = dr["Vaitro"].ToString();
+            return new KhachHang(id.ToString(), name, Sodt, email, vaitro);
+        }
+
         public void Insert(KhachHang obj)
         {
             string query = @"INSERT INTO KhachHang (Id)

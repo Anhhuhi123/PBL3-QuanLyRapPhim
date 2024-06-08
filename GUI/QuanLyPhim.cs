@@ -28,7 +28,7 @@ namespace GUI
         }
         private void button_Click(object sender,EventArgs e)
         {
-            controller.xuLySuKien((Button)sender,txtMaPhim,txtTenPhim,ccbTheLoai,txtThoiLuong,txtMoTa);
+            controller.xuLySuKien((Button)sender,txtMaPhim,txtTenPhim,ccbTheLoai,txtThoiLuong,txtMoTa,dataGridView1);
             controller.setDGV(dataGridView1,ccbTheLoai);
         }
         private void Exit_Click(object sender, EventArgs e)

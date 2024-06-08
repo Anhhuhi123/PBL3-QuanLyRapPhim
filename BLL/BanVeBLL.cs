@@ -139,6 +139,12 @@ namespace BLL
             {
                 int idphong = unitOfWork.GetPhongByName(comboBox1.Text).Id;
                 int idLich = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["Id"].Value);
+                LichChieu lc = unitOfWork.GetById<LichChieu>(idLich);
+                if(lc.NgayChieu<DateTime.Now.Date || (lc.NgayChieu==DateTime.Now.Date &&lc.GioChieu<DateTime.Now.Hour))
+                {
+                    MessageBox.Show("Không thể đặt vé cho lịch chiếu đã qua");
+                    return;
+                }
                 foreach (Button btn in flowLayoutPanel1.Controls)
                 {
                     if (btn.BackColor == System.Drawing.Color.Green)
@@ -162,10 +168,10 @@ namespace BLL
                         idVeDuocDat= unitOfWork.GetAll<VeDuocDat>().Count+1;
                     }
                     VeDuocDat vdd = new VeDuocDat(idVeDuocDat,listGheNgoi.Count, Convert.ToDouble(lbl.Text));
-                    unitOfWork.InsertVeDuocDat(vdd, idLich);
+                    unitOfWork.Insert(vdd, idLich);
                     foreach (GheNgoi gheNgoi in listGheNgoi)
                     {
-                        unitOfWork.UpdateGheNgoi(gheNgoi, idLich, idphong, vdd.Id);
+                        unitOfWork.Update(gheNgoi, idLich, idphong, vdd.Id);
                     }
                     eventHandler.Invoke(this,new VeDuocDatEventArgs(vdd));
                     foreach(Button btn in flowLayoutPanel1.Controls)
@@ -201,14 +207,14 @@ namespace BLL
 
         public HoaDon XuLyDatVeThanhCong(KhachHang khachHang,VeDuocDat vdd,string tenphim ,string idnvbh,string ghichu)
         {
-            NguoiDung nVBH = nguoiDungBLL.GetNguoiDung(idnvbh);
+            NguoiDung nVBH = UserUnitOfWork.Instance.GetById<NguoiDung>(idnvbh);
             int idHoaDon= 1;
             if(unitOfWork.GetAll<HoaDon>()!=null)
             {
                 idHoaDon = unitOfWork.GetAll<HoaDon>().Count+1;
             }
             HoaDon hoaDon = new HoaDon(idHoaDon,tenphim,vdd.TongTien,ghichu,khachHang.FullName,nVBH.FullName);
-            unitOfWork.InsertHoaDon(hoaDon,nVBH.Id,khachHang.Id,vdd.Id);
+            unitOfWork.Insert(hoaDon,nVBH.Id,khachHang.Id,vdd.Id);
             return hoaDon;
         }
 
@@ -230,7 +236,7 @@ namespace BLL
             foreach(GheNgoi ghe in unitOfWork.GetAllGhe(veDuocDat))
             {
                 ghe.TrangThai = true;
-                unitOfWork.UpdateGheNgoi(ghe,veDuocDat.Id);
+                unitOfWork.Update(ghe,veDuocDat.Id);
             }
             unitOfWork.Delete<VeDuocDat>(veDuocDat.Id);
         }

@@ -7,11 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
-
 namespace BLL
 {
     public class NguoiDungBLL
     {
+        public string idNVQL;
         private void SetDGVHeader(DataGridView dgv,ComboBox cb)
         {
             dgv.Columns["Id"].HeaderText = "Mã số";
@@ -51,19 +51,19 @@ namespace BLL
             switch (cb.Text)
             {
                 case "Khách hàng":
-                    dgv.DataSource = UserUnitOfWork.Instance.GetAllKhachHang();
+                    dgv.DataSource = UserUnitOfWork.Instance.GetAll<KhachHang>();
                     break;
                 case "Nhân viên quản lý":
-                    dgv.DataSource = UserUnitOfWork.Instance.GetAllNhanVienQuanLy();
+                    dgv.DataSource = UserUnitOfWork.Instance.GetAll<NVQL>();
                     break;
                 case "Nhân viên bán hàng":
-                    dgv.DataSource = UserUnitOfWork.Instance.GetAllNhanVienBanHang();
+                    dgv.DataSource = UserUnitOfWork.Instance.GetAll<NVBH>();
                     break;
                 case "Nhân viên":
-                    dgv.DataSource = UserUnitOfWork.Instance.GetAllNhanVien();
+                    dgv.DataSource = UserUnitOfWork.Instance.GetAll<NhanVien>();
                     break;
                 case "Người dùng":
-                    dgv.DataSource = UserUnitOfWork.Instance.GetAllNguoiDung();
+                    dgv.DataSource = UserUnitOfWork.Instance.GetAll<NguoiDung>();
                     break;
                 default:
                     throw new Exception("Không hợp lệ!");
@@ -71,17 +71,8 @@ namespace BLL
             SetDGVHeader(dgv,cb);
             return;
         }
-        public bool CheckIdIsExist(string id)
-        {
-            foreach(NguoiDung nd in UserUnitOfWork.Instance.GetAllNguoiDung())
-            {
-                if (nd.Id == id)
-                    return true;
-            }
-            return false;
-        }
 
-        public void Insert(TextBox txtid, TextBox txtname, ComboBox role, TextBox sdt, TextBox email, TextBox kpi, RadioButton bt)
+        public void Insert(TextBox txtid, TextBox txtname, ComboBox role, TextBox sdt, TextBox email, TextBox kpi, CheckBox bt)
         {
             string id = txtid.Text;
             string name = txtname.Text;
@@ -92,23 +83,27 @@ namespace BLL
             int kpi1 = (kpi.Text == "") ? 0 : Convert.ToInt32(kpi.Text);
             try
             {
-                if(id=="")
-                    throw new Exception("Chưa nhập mã số");
+                if (id == "" || name =="" || sodt=="")
+                    throw new Exception("Chưa nhập đầy đủ thông tin");
+                if(UserUnitOfWork.Instance.GetById<NguoiDung>(id)!=null)
+                    throw new Exception("Mã số đã tồn tại");
+                if(id.Length!=10)
+                    throw new Exception("Mã số không hợp lệ");
                 if(sodt.Length>10)
                     throw new Exception("Số điện thoại không hợp lệ");
                 switch (vaitro)
                 {
                     case "Khách hàng":
                         KhachHang kh = new KhachHang(id, name, sodt, mail, vaitro);
-                        UserUnitOfWork.Instance.InsertKhachHang(kh);
+                        UserUnitOfWork.Instance.Insert(kh);
                         break;
                     case "Nhân viên quản lý":
                         NVQL nvql = new NVQL(id, name, sodt, mail, vaitro, active);
-                        UserUnitOfWork.Instance.InsertNhanVienQuanLy(nvql);
+                        UserUnitOfWork.Instance.Insert(nvql);
                         break;
                     case "Nhân viên bán hàng":
                         NVBH nvbh = new NVBH(id, name, sodt, mail, vaitro, active, kpi1);
-                        UserUnitOfWork.Instance.InsertNhanVienBanHang(nvbh);
+                        UserUnitOfWork.Instance.Insert(nvbh);
                         break;
                     default:
                         throw new Exception("Vai trò không hợp lệ");
@@ -131,16 +126,21 @@ namespace BLL
                 foreach (DataGridViewRow dr in dgv.SelectedRows)
                 {
                     string id = dr.Cells["Id"].Value.ToString();
+                    if(id==idNVQL)
+                    {
+                        throw new Exception("Không thể xóa chính mình!");
+                    }
                     string vaitro = dr.Cells["VaiTro"].Value.ToString();
                     switch (vaitro)
                     {
                         case "Khách hàng":
-                            throw new Exception("Không thể xóa khách hàng!");
+                           UserUnitOfWork.Instance.Delete<KhachHang>(id);
+                            break;
                         case "Nhân viên quản lý":
-                            UserUnitOfWork.Instance.DeleteNhanVienQuanLy(id);
+                            UserUnitOfWork.Instance.Delete<NVQL>(id);
                             break;
                         case "Nhân viên bán hàng":
-                            UserUnitOfWork.Instance.DeleteNhanVienBanHang(id);
+                            UserUnitOfWork.Instance.Delete<NVBH>(id);
                             break;
                         default:
                             throw new Exception("Vai trò không hợp lệ");
@@ -153,7 +153,7 @@ namespace BLL
                 MessageBox.Show("Lỗi: " + e.Message);
             }
         }
-        public void Update(TextBox txtid, TextBox txtname,ComboBox role, TextBox sdt, TextBox email, TextBox kpi, RadioButton bt)
+        public void Update(TextBox txtid, TextBox txtname,ComboBox role, TextBox sdt, TextBox email, TextBox kpi, CheckBox bt)
         {
             try
             {
@@ -164,25 +164,28 @@ namespace BLL
                 string mail = email.Text;
                 bool active = bt.Checked;
                 int kpi1 = (kpi.Text == "") ? 0 : Convert.ToInt32(kpi.Text);
+                if (id == "" || name == "" || sodt == "")
+                    throw new Exception("Chưa nhập đầy đủ thông tin");
+                if (UserUnitOfWork.Instance.GetById<NguoiDung>(id) == null)
+                    throw new Exception("Mã số không tồn tại");
                 if (sodt.Length > 10)
                     throw new Exception("Số điện thoại không hợp lệ");
                 switch (vaitro)
                 {
                     case "Khách hàng":
                         KhachHang kh = new KhachHang(id, name, sodt, mail, vaitro);
-                        UserUnitOfWork.Instance.UpdateKhachHang(kh);
+                        UserUnitOfWork.Instance.Update(kh);
                         break;
                     case "Nhân viên quản lý":
                         NVQL nvql = new NVQL(id, name, sodt, mail, vaitro, active);
-                        UserUnitOfWork.Instance.UpdateNhanVienQuanLy(nvql);
+                        UserUnitOfWork.Instance.Update(nvql);
                         break;
                     case "Nhân viên bán hàng":
                         NVBH nvbh = new NVBH(id, name, sodt, mail, vaitro, active, kpi1);
-                        UserUnitOfWork.Instance.UpdateNhanVienBanHang(nvbh);
+                        UserUnitOfWork.Instance.Update(nvbh);
                         break;
                     default:
-                        MessageBox.Show("Vai trò không hợp lệ");
-                        break;
+                        throw new Exception("Vai trò không hợp lệ");
                 }
                 MessageBox.Show("Sửa thành công!");
             }
@@ -191,7 +194,7 @@ namespace BLL
                 MessageBox.Show("Lỗi: " + e.Message);
             }
         }
-        public void setInfo(TextBox txtId, TextBox txtFullname, ComboBox rolecbb, TextBox txtNumber, TextBox txtemail, TextBox txtKPI, RadioButton activerdb, int index, DataGridView dgv)
+        public void setInfo(TextBox txtId, TextBox txtFullname, ComboBox rolecbb, TextBox txtNumber, TextBox txtemail, TextBox txtKPI, CheckBox activerdb, int index, DataGridView dgv)
         {
             if (index >= 0)
             {
@@ -214,7 +217,7 @@ namespace BLL
         }
 
 
-        public void xuLySuKien(Button sender, TextBox txtid, TextBox txtname, ComboBox role, TextBox sdt, TextBox email, TextBox kpi, RadioButton bt)
+        public void xuLySuKien(Button sender, TextBox txtid, TextBox txtname, ComboBox role, TextBox sdt, TextBox email, TextBox kpi, CheckBox bt)
         {
             try
             {
@@ -236,35 +239,38 @@ namespace BLL
                 MessageBox.Show("Lỗi: " + e.Message);
             }
         }
-
-        public NguoiDung GetNguoiDung(string idnd)
-        {
-            foreach(NguoiDung nd in UserUnitOfWork.Instance.GetAllNguoiDung())
-            {
-                if (nd.Id == idnd)
-                    return nd;
-            }
-            return null;
-        }
         public KhachHang AddOrUpdateKH(TextBox id,TextBox name,TextBox Phone,TextBox email)
         {
-            if (id.Text == "")
-            {
-                MessageBox.Show("Chưa nhập mã số");
-                return null;
-            }
-            KhachHang temp = new KhachHang(id.Text, name.Text, Phone.Text, email.Text, "Khách hàng");
             try
             {
-                if(temp.SoDt.Length>10)
-                    throw new Exception("Số điện thoại không hợp lệ");
-                if (CheckIdIsExist(temp.Id))
+                if (id.Text == "")
                 {
-                    UserUnitOfWork.Instance.UpdateKhachHang(temp);
+                    MessageBox.Show("Chưa nhập mã số");
+                    return null;
+                }
+                KhachHang kh = UserUnitOfWork.Instance.GetById<KhachHang>(id.Text);
+                if (kh != null)
+                {
+                    if (name.Text == "" && Phone.Text == "" && email.Text == "")
+                    {
+                        return kh;
+                    }
+                    kh.FullName = name.Text;
+                    kh.SoDt = Phone.Text;
+                    kh.Email = email.Text;
+                    UserUnitOfWork.Instance.Update(kh);
+                    return kh;
                 }
                 else
                 {
-                    UserUnitOfWork.Instance.InsertKhachHang(temp);
+                    if(name.Text==""||Phone.Text=="")
+                    {
+                        MessageBox.Show("Chưa nhập đầy đủ thông tin");
+                        return null;
+                    }
+                    kh = new KhachHang(id.Text, name.Text, Phone.Text, email.Text, "Khách hàng");
+                    UserUnitOfWork.Instance.Insert(kh);
+                    return kh;
                 }
             }
             catch (Exception e)
@@ -272,7 +278,6 @@ namespace BLL
                 MessageBox.Show("Lỗi: " + e.Message);
                 return null;
             }
-            return temp;
         }
     }
 }

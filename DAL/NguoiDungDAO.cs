@@ -20,6 +20,23 @@ namespace DAO
             sqlParameters[0] = new SqlParameter("@id", id);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
+        public NguoiDung GetById(string id)
+        {
+            string query = "SELECT * FROM NguoiDung WHERE ID = @id";
+            SqlParameter[] sqlParameters = new SqlParameter[1];
+            sqlParameters[0] = new SqlParameter("@id", id);
+            DataTable dt = DatabaseHelper.Instance.GetRecords(query, sqlParameters);
+            if (dt.Rows.Count > 0)
+            {
+                DataRow dr = dt.Rows[0];
+                string name = dr["Fullname"].ToString();
+                string Sodt = dr["SoDt"].ToString();
+                string email = dr["Email"].ToString();
+                string vaitro = dr["Vaitro"].ToString();
+                return new NguoiDung(id, name, Sodt, email, vaitro);
+            }
+            return null;
+        }
         public List<NguoiDung> GetAll()
         {
             List<NguoiDung> list = new List<NguoiDung> ();
@@ -36,6 +53,7 @@ namespace DAO
             }
             return list;
         }
+
         public void Insert(NguoiDung obj)
         {
             string query = @"Insert into NguoiDung(Id,Fullname,SoDt,Email,Vaitro)

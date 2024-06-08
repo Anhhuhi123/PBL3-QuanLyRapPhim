@@ -62,7 +62,7 @@ namespace GUI
 
         private void Quan_Ly_Nhan_Vien_Click(object sender, EventArgs e)
         {
-            openChildForm(new ThongTinNhanVien());
+            openChildForm(new ThongTinNhanVien(idnvql));
         }
 
         private void Doanh_Thu_Click(object sender, EventArgs e)

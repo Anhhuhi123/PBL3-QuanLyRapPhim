@@ -130,7 +130,7 @@
             this.txtId.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(192, 22);
-            this.txtId.TabIndex = 9;
+            this.txtId.TabIndex = 0;
             // 
             // label5
             // 

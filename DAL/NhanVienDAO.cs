@@ -38,6 +38,26 @@ namespace DAO
             sqlParameters[1] = new SqlParameter("@active", obj.Active);
             DatabaseHelper.Instance.ExecuteNonQuery(query, sqlParameters);
         }
+        public NhanVien GetById(string id)
+        {
+            string query =@"SELECT nv.Id,nd.Fullname,nd.SoDt,nd.Email,nd.Vaitro,nv.Active 
+                            FROM NhanVien nv
+                            INNER JOIN  NguoiDung nd on nv.Id=nd.Id
+                            WHERE nv.Id = @id";
+            SqlParameter sqlParameter = new SqlParameter("@id", id);
+            DataTable dt = DatabaseHelper.Instance.GetRecords(query, sqlParameter);
+            if(dt.Rows.Count==0)
+            {
+                return null;
+            }
+            DataRow dr = dt.Rows[0];
+            string name = dr["Fullname"].ToString();
+            string Sodt = dr["SoDt"].ToString();
+            string email = dr["Email"].ToString();
+            string vaitro = dr["Vaitro"].ToString();
+            bool active = Convert.ToBoolean(dr["Active"]);
+            return new NhanVien(id, name, Sodt, email, vaitro, active);
+        }
         public List<NhanVien> GetAll()
         {
             string query = @"SELECT nv.Id,nd.Fullname,nd.SoDt,nd.Email,nd.Vaitro,nv.Active 
@@ -57,5 +77,6 @@ namespace DAO
             }
             return list;
         }
+
     }
 }

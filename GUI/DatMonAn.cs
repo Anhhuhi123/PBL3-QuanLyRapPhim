@@ -15,7 +15,7 @@ namespace GUI
     public partial class DatMonAn : Form
     {
         readonly DatMonAnBLL controller;
-        public delegate void DatMonDel(DataGridView dgv);
+        //public delegate void DatMonDel(DataGridView dgv);
         public DatMonAn(int idhoadon)
         {
             InitializeComponent();
@@ -40,7 +40,8 @@ namespace GUI
         private void confirmbtn_Click(object sender, EventArgs e)
         {
             controller.XacNhanMon(dataGridView1);
-            this.Close();
+            this.DialogResult = DialogResult.OK;
+            this.Dispose();
         }
     }
 }

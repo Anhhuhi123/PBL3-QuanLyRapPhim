@@ -21,7 +21,7 @@ namespace DAO
             {
                 string tentk = row["TenTK"].ToString();
                 string matkhau = row["MatKhau"].ToString();
-                list.Add(new TaiKhoan(tentk, matkhau));
+                list.Add(new TaiKhoan(tentk));
             }
             return list;
         }

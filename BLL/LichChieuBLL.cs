@@ -113,16 +113,20 @@ namespace BLL
                     throw new Exception("Vui lòng nhập đầy đủ thông tin");
                 }
                 int idphim=unitOfWork.SearchPhimByName(ccbTenPhim.Text);
-                string tennvql = nguoiDungBLL.GetNguoiDung(idnvql).FullName;
+                string tennvql = UserUnitOfWork.Instance.GetById<NguoiDung>(idnvql).FullName;
 
                 int id =Convert.ToInt32(txtIDLichChieu.Text);
+                if (CinemaUnitOfWork.Instance.GetById<LichChieu>(id) != null)
+                {
+                    throw new Exception("ID đã tồn tại");
+                }
                 string tenphim = ccbTenPhim.Text;
                 DateTime ngaychieu = dateTimeLichChieu.Value;
                 int giochieu = Convert.ToInt32(txtGioChieu.Text);
                 double time = unitOfWork.GetById<Phim>(idphim).ThoiLuong/60;
                 int gioketthuc = giochieu + (int)Math.Ceiling(time);
                 LichChieu temp =new LichChieu(id, tenphim, tennvql, ngaychieu, giochieu, gioketthuc);
-                unitOfWork.InsertLichChieu(temp, idphim, idnvql);
+                unitOfWork.Insert(temp, idphim, idnvql);
                 MessageBox.Show("Thêm thành công");
             }
             catch (Exception e)
@@ -144,10 +148,12 @@ namespace BLL
                     string tenphim = cbbtenphim.Text;
                     DateTime ngaychieu = DTngaychieu.Value;
                     int giochieu = Convert.ToInt32(txtgio.Text);
-                    double time = unitOfWork.GetById<Phim>(unitOfWork.SearchPhimByName(tenphim)).ThoiLuong / 60;
+                    Phim temp = unitOfWork.GetById<Phim>(unitOfWork.SearchPhimByName(tenphim));
+                    double time = temp.ThoiLuong / 60;
                     int gioketthuc = giochieu + (int)Math.Ceiling(time);
-                    LichChieu temp = new LichChieu(id, tenphim, nguoiDungBLL.GetNguoiDung(idnvql).FullName, ngaychieu, giochieu, gioketthuc);
-                    unitOfWork.Update(temp);
+                    NguoiDung nVQL = UserUnitOfWork.Instance.GetById<NguoiDung>(idnvql);
+                    LichChieu lctemp = new LichChieu(id, tenphim, nVQL.FullName, ngaychieu, giochieu, gioketthuc);
+                    unitOfWork.Update(lctemp,temp.Id,nVQL.Id);
                     MessageBox.Show("Sửa thành công");
                 }
             }
@@ -156,17 +162,19 @@ namespace BLL
                 MessageBox.Show("Lỗi " + e.Message);
             }
         }
-        private void Delete(TextBox txtId)
+        private void Delete(DataGridView dgv)
         {
-            if(txtId.Text=="")
-            {
-                MessageBox.Show("Vui lòng chọn lịch chiếu cần xóa");
-                return;
-            }
             try
             {
-                int id = Convert.ToInt32(txtId.Text);
-                unitOfWork.Delete<LichChieu>(id);
+                if(dgv.SelectedRows.Count==0)
+                {
+                    throw new Exception("Vui lòng chọn lịch chiếu cần xóa");
+                }
+                foreach(DataGridViewRow dr in dgv.SelectedRows)
+                {
+                    int id = Convert.ToInt32(dr.Cells["Id"].Value.ToString());
+                    unitOfWork.Delete<LichChieu>(id);
+                }
                 MessageBox.Show("Xóa thành công");
             }
             catch (Exception e)
@@ -174,7 +182,7 @@ namespace BLL
                 MessageBox.Show("Lỗi " + e.Message);
             }
         }
-        public void XuLySuKien(Button sender, TextBox txtIDLichChieu, ComboBox ccbTenPhim, string idnvql, DateTimePicker dateTimeLichChieu, TextBox txtGioChieu)
+        public void XuLySuKien(Button sender, TextBox txtIDLichChieu, ComboBox ccbTenPhim, string idnvql, DateTimePicker dateTimeLichChieu, TextBox txtGioChieu,DataGridView dgv)
         {
             switch(sender.Text)
             {
@@ -185,7 +193,7 @@ namespace BLL
                     Update(txtIDLichChieu, ccbTenPhim, idnvql, dateTimeLichChieu, txtGioChieu);
                     break;
                 case "Xóa":
-                    Delete(txtIDLichChieu);
+                    Delete(dgv);
                     break;
                 case "Lọc":
                     break;
@@ -200,9 +208,9 @@ namespace BLL
             }
             else
             {
-                foreach(DataGridViewRow dr in dataGridView1.SelectedRows)
+                try
                 {
-                    try
+                    foreach (DataGridViewRow dr in dataGridView1.SelectedRows)
                     {
                         int id = Convert.ToInt32(dr.Cells["Id"].Value.ToString());
                         switch (sender.Text)
@@ -215,12 +223,12 @@ namespace BLL
                                 break;
                         }
                     }
-                    catch (Exception e)
-                    {
-                        MessageBox.Show("Lỗi " + e.Message);
-                    }
+                    MessageBox.Show("Thay đổi thành công");
                 }
-                MessageBox.Show("Thay đổi thành công!");
+                catch (Exception e)
+                {
+                    MessageBox.Show("Lỗi " + e.Message);
+                }
             }
         }
 

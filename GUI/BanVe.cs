@@ -73,7 +73,9 @@ namespace GUI
                 {
                     DatMonAn datMonAn = new DatMonAn(hoadon.Id);
                     datMonAn.ShowDialog();
-                    MessageBox.Show("Đặt món ăn thành công");
+                    if(datMonAn.DialogResult==DialogResult.OK)
+                        MessageBox.Show("Đặt món ăn thành công");
+                    else MessageBox.Show("Đã hủy đặt món ăn");
                 }
                 ChiTietHoaDonForm chiTietHoaDonForm = new ChiTietHoaDonForm(hoadon.Id);
                 chiTietHoaDonForm.ShowDialog();
