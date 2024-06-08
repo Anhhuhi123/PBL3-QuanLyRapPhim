@@ -245,8 +245,7 @@ namespace BLL
             {
                 if (id.Text == "")
                 {
-                    MessageBox.Show("Chưa nhập mã số");
-                    return null;
+                    throw new Exception("Chưa nhập mã số khách hàng");
                 }
                 KhachHang kh = UserUnitOfWork.Instance.GetById<KhachHang>(id.Text);
                 if (kh != null)
@@ -263,10 +262,13 @@ namespace BLL
                 }
                 else
                 {
+                    if(id.Text.Length!=10)
+                    {
+                        throw new Exception("Mã số không hợp lệ");
+                    }
                     if(name.Text==""||Phone.Text=="")
                     {
-                        MessageBox.Show("Chưa nhập đầy đủ thông tin");
-                        return null;
+                        throw new Exception("Chưa nhập đầy đủ thông tin");
                     }
                     kh = new KhachHang(id.Text, name.Text, Phone.Text, email.Text, "Khách hàng");
                     UserUnitOfWork.Instance.Insert(kh);

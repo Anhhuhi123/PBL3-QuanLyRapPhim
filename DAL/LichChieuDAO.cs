@@ -150,7 +150,7 @@ namespace DAO
                 Inner JOIN Phim p ON p.Id=lc.IdPhim
                 INNER JOIN LichChieu_PhongChieu lcpp ON lc.Id = lcpp.IdLichChieu
                 INNER JOIN PhongChieu pc ON lcpp.IdPhongChieu = pc.Id
-                INNER JOIN NguoiDung nd ON lc.IdNVQL = nd.Id
+                LEFT JOIN NguoiDung nd ON lc.IdNVQL = nd.Id
                 WHERE pc.Id = @id";
             SqlParameter sqlParameters = new SqlParameter("@id",idPhongChieu);
             DataTable reader = DatabaseHelper.Instance.GetRecords(query, sqlParameters);
@@ -162,7 +162,7 @@ namespace DAO
                 int giochieu = Convert.ToInt32(dr["GioChieu"]);
                 double time = Convert.ToDouble(dr["ThoiLuong"]) / 60;
                 int gioketthuc = giochieu + (int)Math.Ceiling(time);
-                string tennvql = dr["Fullname"].ToString();
+                string tennvql = (dr["Fullname"].ToString()=="")?"Đã bị xóa": dr["Fullname"].ToString();
                 list.Add(new LichChieu(IdLichChieu, tenphim, tennvql, ngaychieu, giochieu, gioketthuc));
             }
             return list;
